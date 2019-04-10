@@ -105,19 +105,19 @@
 
 
 
-<meta name="description" content="对浏览器的缓存机制的理解 一、基础概念浏览器缓存：指浏览器在本地磁盘对用户最近存储的资源进行存储，当下一次用户请求同一个资源（页面），满足条件的话，可以直接从本地缓存读取资源的机制。作用—浏览器缓存可以：4、减少数据传输的冗余；5、减少服务器负担；6、加速网页的加载； 二、浏览器的两种缓存机制①强缓存：   强缓存是浏览器只有首次请求资源才会和服务器通信，服务器会给客户端提供页面、200状态码以及">
+<meta name="description" content="对浏览器的缓存机制的理解  一、基础概念浏览器缓存：指浏览器在本地磁盘对用户最近存储的资源进行存储，当下一次用户请求同一个资源（页面），满足条件的话，可以直接从本地缓存读取资源的机制。作用—浏览器缓存可以：4、减少数据传输的冗余；5、减少服务器负担；6、加速网页的加载； 二、浏览器的两种缓存机制①强缓存：   强缓存是浏览器只有首次请求资源才会和服务器通信，服务器会给客户端提供页面、200状态码以">
 <meta property="og:type" content="article">
 <meta property="og:title" content="笔记03">
 <meta property="og:url" content="http://yoursite.com/2019/03/25/post03/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="对浏览器的缓存机制的理解 一、基础概念浏览器缓存：指浏览器在本地磁盘对用户最近存储的资源进行存储，当下一次用户请求同一个资源（页面），满足条件的话，可以直接从本地缓存读取资源的机制。作用—浏览器缓存可以：4、减少数据传输的冗余；5、减少服务器负担；6、加速网页的加载； 二、浏览器的两种缓存机制①强缓存：   强缓存是浏览器只有首次请求资源才会和服务器通信，服务器会给客户端提供页面、200状态码以及">
+<meta property="og:description" content="对浏览器的缓存机制的理解  一、基础概念浏览器缓存：指浏览器在本地磁盘对用户最近存储的资源进行存储，当下一次用户请求同一个资源（页面），满足条件的话，可以直接从本地缓存读取资源的机制。作用—浏览器缓存可以：4、减少数据传输的冗余；5、减少服务器负担；6、加速网页的加载； 二、浏览器的两种缓存机制①强缓存：   强缓存是浏览器只有首次请求资源才会和服务器通信，服务器会给客户端提供页面、200状态码以">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s2.ax1x.com/2019/04/02/AyoZ2n.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/04/02/AyonK0.png">
-<meta property="og:updated_time" content="2019-04-02T04:03:27.745Z">
+<meta property="og:updated_time" content="2019-04-10T13:15:47.784Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="笔记03">
-<meta name="twitter:description" content="对浏览器的缓存机制的理解 一、基础概念浏览器缓存：指浏览器在本地磁盘对用户最近存储的资源进行存储，当下一次用户请求同一个资源（页面），满足条件的话，可以直接从本地缓存读取资源的机制。作用—浏览器缓存可以：4、减少数据传输的冗余；5、减少服务器负担；6、加速网页的加载； 二、浏览器的两种缓存机制①强缓存：   强缓存是浏览器只有首次请求资源才会和服务器通信，服务器会给客户端提供页面、200状态码以及">
+<meta name="twitter:description" content="对浏览器的缓存机制的理解  一、基础概念浏览器缓存：指浏览器在本地磁盘对用户最近存储的资源进行存储，当下一次用户请求同一个资源（页面），满足条件的话，可以直接从本地缓存读取资源的机制。作用—浏览器缓存可以：4、减少数据传输的冗余；5、减少服务器负担；6、加速网页的加载； 二、浏览器的两种缓存机制①强缓存：   强缓存是浏览器只有首次请求资源才会和服务器通信，服务器会给客户端提供页面、200状态码以">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/04/02/AyoZ2n.png">
 
 
@@ -338,7 +338,8 @@
       
 
       
-        <p>对浏览器的缓存机制的理解</p>
+        <h3>对浏览器的缓存机制的理解</h3>
+
 <p>一、基础概念<br>浏览器缓存：指浏览器在本地磁盘对用户最近存储的资源进行存储，当下一次用户请求同一个资源（页面），满足条件的话，可以直接从本地缓存读取资源的机制。<br>作用—浏览器缓存可以：<br>4、减少数据传输的冗余；<br>5、减少服务器负担；<br>6、加速网页的加载；</p>
 <p>二、浏览器的两种缓存机制<br>①强缓存：<br>   强缓存是浏览器只有首次请求资源才会和服务器通信，服务器会给客户端提供页面、200状态码以及缓存标识（Last-Modified、ETag）；后续读取缓存的资源的时候，不会再次发出请求，而是直接从缓存中读取；强缓存可以通过两种http 头部来实现，他们是http1.0的expires和http1.1的cache-control；<br>        expires会根据设置的缓存过期时间，决定缓存到期，但时间依据是客户端的实际时间，就容易发生差错；<br>        Cache-control 可通过max-age来设置时间；它也有属性如private和public以及属性no-cache代表不使用强缓存，而是缓存资源立即失效，每一次发起请求都会去验证资源是否过期；即此设置会启动协商缓存；</p>
 <p>②协商缓存：<br>   协商缓存就是强制缓存失败后的缓存机制，它可能因为强缓存（本地缓存）的max-age或expires的到期时间到期、或是设置了cache-control的no-cache机制，它的实现主要依靠两种http头部分别是Last-Modified和ETag；因强缓存只关心缓存有无过期，而不关心服务器是否更新了内容，所以我们需要知道服务器端的更新，就需要使用协商缓存策略。<br>  协商缓存的过程如下：<br>1、浏览器向缓存（缓存数据库）发送http请求，数据库中若有可使用缓存，则会将该资源从本地直接读取而不通过服务器；<br>2、若本地缓存，可能因缓存过期、或cache-control中设no-cache导致缓存资源立即失效；从而导致协商缓存的开始；此时返回该资源缓存标识；<br>3、首先客户端（浏览器）会检查是否具备协商缓存策略的两种http 头部，即是否携带该资源的标识即ETag、Last-Modified，若具备则自动分别添加：头部If-None-Match、If-Modified-Since并给服务器发送http请求。<br>4、再由服务器进行是否命中协商缓存的判定；若命中返回304提示上一次请求后资源未修改，可继续使用缓存；若未命中，则表示资源更新，则返回200、新资源以及更新后的缓存标识，并且更新缓存数据库。<br>5、页面加载成功。<br> 命中协商缓存如图：<br>   <a href="https://imgchr.com/i/AyoZ2n" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/04/02/AyoZ2n.png" alt="AyoZ2n.png" border="0"></a><br> 未命中协商缓存如图：<br><a href="https://imgchr.com/i/AyonK0" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/04/02/AyonK0.png" alt="AyonK0.png" border="0"></a><br>  即资源有更新，则返回状态码200以及资源更新的结果，并且重新生成ETag，或更新Last-Modified的最后修改时间; 只要资源更新就会重新生成ETag,并且此标识会存入到请求头部中的If-None-Match中；随后客户端会将请求结果和缓存标识ETag继续存入缓存数据库中。</p>
@@ -431,8 +432,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -449,7 +459,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -476,6 +486,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">对浏览器的缓存机制的理解</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
