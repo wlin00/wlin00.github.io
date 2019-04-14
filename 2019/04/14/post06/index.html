@@ -105,17 +105,17 @@
 
 
 
-<meta name="description" content="transition和animation的区别一、共同点：transition和animation都能在一定时间段内，改变元素的属性值；二、区别1–触发方式：transition必须通过事件来触发启动，如hover、click事件，让物体进行css的改变；而animation可以直接播放，不需要触发事件；   区别2–帧数：transition只有from到to的两帧，即只有开始和结束的过程；">
+<meta name="description" content="React脚手架的搭建 1、搭建react脚手架，需要我们首先安装node.js，nodejs中的包管理工具npm可以帮我们搭建react项目的环境。2、安装完成nodejs打开命令行，输入node -v以及npm -v来检验nodejs和npm工具的安装情况和版本号。3、全局安装react脚手架工具，就可以使用命令创建react项目。在cmd中输入以下命令：    npm install -g">
 <meta property="og:type" content="article">
-<meta property="og:title" content="笔记04">
-<meta property="og:url" content="http://yoursite.com/2019/04/02/post04/index.html">
+<meta property="og:title" content="笔记06">
+<meta property="og:url" content="http://yoursite.com/2019/04/14/post06/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="transition和animation的区别一、共同点：transition和animation都能在一定时间段内，改变元素的属性值；二、区别1–触发方式：transition必须通过事件来触发启动，如hover、click事件，让物体进行css的改变；而animation可以直接播放，不需要触发事件；   区别2–帧数：transition只有from到to的两帧，即只有开始和结束的过程；">
+<meta property="og:description" content="React脚手架的搭建 1、搭建react脚手架，需要我们首先安装node.js，nodejs中的包管理工具npm可以帮我们搭建react项目的环境。2、安装完成nodejs打开命令行，输入node -v以及npm -v来检验nodejs和npm工具的安装情况和版本号。3、全局安装react脚手架工具，就可以使用命令创建react项目。在cmd中输入以下命令：    npm install -g">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-10T13:15:51.151Z">
+<meta property="og:updated_time" content="2019-04-14T14:27:48.607Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="笔记04">
-<meta name="twitter:description" content="transition和animation的区别一、共同点：transition和animation都能在一定时间段内，改变元素的属性值；二、区别1–触发方式：transition必须通过事件来触发启动，如hover、click事件，让物体进行css的改变；而animation可以直接播放，不需要触发事件；   区别2–帧数：transition只有from到to的两帧，即只有开始和结束的过程；">
+<meta name="twitter:title" content="笔记06">
+<meta name="twitter:description" content="React脚手架的搭建 1、搭建react脚手架，需要我们首先安装node.js，nodejs中的包管理工具npm可以帮我们搭建react项目的环境。2、安装完成nodejs打开命令行，输入node -v以及npm -v来检验nodejs和npm工具的安装情况和版本号。3、全局安装react脚手架工具，就可以使用命令创建react项目。在cmd中输入以下命令：    npm install -g">
 
 
 
@@ -145,13 +145,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/04/02/post04/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/14/post06/">
 
 
 
 
 
-  <title>笔记04 | </title>
+  <title>笔记06 | </title>
   
 
 
@@ -268,7 +268,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/02/post04/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/14/post06/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ZJJ00">
@@ -285,7 +285,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">笔记04</h1>
+          <h1 class="post-title" itemprop="name headline">笔记06</h1>
         
 
         <div class="post-meta">
@@ -297,8 +297,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-02T11:13:57+08:00">
-                2019-04-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-14T22:14:43+08:00">
+                2019-04-14
               </time>
             
 
@@ -335,8 +335,8 @@
       
 
       
-        <p></p><h3>transition和animation的区别</h3><br>一、共同点：transition和animation都能在一定时间段内，改变元素的属性值；<br>二、区别1–触发方式：transition必须通过事件来触发启动，如hover、click事件，让物体进行css的改变；而animation可以直接播放，不需要触发事件；<br>   区别2–帧数：transition只有from到to的两帧，即只有开始和结束的过程；<br>               animation则除了from、to的两帧方式，还可以通过百分比来设置动画的帧数，可以有多帧。<br>三、补充各自重要属性： Transition：<br>transform 0.5s linear（transition辅助修改动画效果，动画时间，动画曲线）<br>transform：rotate、X、Y、Z（360 deg）具体动画操作；<br>transform-origin:可以从元素的left、right、top、bottom四个边选择两边确定动画的支点；<br> Animation：<br>      Animation-name：动画名；<br>      Animation-duration：动画每帧的播放时间；<br>      Animation-delay：动画延迟播放秒数；<br>      Animation-iteration-count：动画播放次数，infinite是无限；<br>      Animation-timing-function：动画播放曲线：<br>ease：低速开始，加速，再低速结束<br>ease-in：低速开始<br>ease-out：低速结束<br>ease-in-out：低速开始和结束<br>Animation-direction：动画循环方式：alternate代表重复、alternate-reverse往返重复；<br>难点：设置steps（1，start/end）可以让动画按照一帧一帧播放<p></p>
-
+        <p></p><h2>React脚手架的搭建</h2><p></p>
+<p><br>1、搭建react脚手架，需要我们首先安装node.js，nodejs中的包管理工具npm可以帮我们搭建react项目的环境。<br>2、安装完成nodejs打开命令行，输入node -v以及npm -v来检验nodejs和npm工具的安装情况和版本号。<br>3、全局安装react脚手架工具，就可以使用命令创建react项目。<br>在cmd中输入以下命令：<br>    npm install -g create-react-app<br>4、创建react项目，在对应的文件夹位置打开cmd，输如以下命令：<br><br>   create-react-app appname   —创建react项目，名字不能大写<br>   cd appname                 —进入项目<br>   cnpm init                  —初始化工作，连续回车键<br>   cnpm install               —在该目录导入react和reactdom<br>   cnpm install               —保存react路由<br>   cnpm start                 —启动项目<br><br></p>
       
     </div>
     
@@ -360,8 +360,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/25/post01/" rel="next" title="笔记01">
-                <i class="fa fa-chevron-left"></i> 笔记01
+              <a href="/2019/04/10/post05/" rel="next" title="笔记05">
+                <i class="fa fa-chevron-left"></i> 笔记05
               </a>
             
           </div>
@@ -369,10 +369,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/10/post05/" rel="prev" title="笔记05">
-                笔记05 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -488,7 +484,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">transition和animation的区别</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">React脚手架的搭建</span></a></li></ol></div>
             
 
           </div>
