@@ -105,17 +105,16 @@
 
 
 
-<meta name="description" content="浅谈react中的state和props区别  1、首先props是组件对外的接口，可以进行组件之间的数据传递。组件内部渲染的时候，定义组件阶段，可以使用prop来设置属性值；渲染组件阶段再给props赋值，从而给组件标签赋值。   如： class Component extends React.Component{         constructor(props){">
-<meta property="og:type" content="article">
-<meta property="og:title" content="笔记05">
-<meta property="og:url" content="http://yoursite.com/2019/04/10/post05/index.html">
+<meta name="description" content="Heal the scars Change the stars">
+<meta property="og:type" content="website">
+<meta property="og:title">
+<meta property="og:url" content="http://yoursite.com/archives/2019/08/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="浅谈react中的state和props区别  1、首先props是组件对外的接口，可以进行组件之间的数据传递。组件内部渲染的时候，定义组件阶段，可以使用prop来设置属性值；渲染组件阶段再给props赋值，从而给组件标签赋值。   如： class Component extends React.Component{         constructor(props){">
+<meta property="og:description" content="Heal the scars Change the stars">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-10T14:14:25.730Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="笔记05">
-<meta name="twitter:description" content="浅谈react中的state和props区别  1、首先props是组件对外的接口，可以进行组件之间的数据传递。组件内部渲染的时候，定义组件阶段，可以使用prop来设置属性值；渲染组件阶段再给props赋值，从而给组件标签赋值。   如： class Component extends React.Component{         constructor(props){">
+<meta name="twitter:title">
+<meta name="twitter:description" content="Heal the scars Change the stars">
 
 
 
@@ -145,13 +144,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/04/10/post05/">
+  <link rel="canonical" href="http://yoursite.com/archives/2019/08/">
 
 
 
 
 
-  <title>笔记05 | </title>
+  <title>归档 | </title>
   
 
 
@@ -170,7 +169,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left page-archive">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -254,208 +253,72 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block archive">
+    <div id="posts" class="posts-collapse">
+      <span class="archive-move-on"></span>
 
-  
+      <span class="archive-page-counter">
+        
+        
+        
+          
+        
+        嗯..! 目前共计 8 篇日志。 继续努力。
+      </span>
 
-  
-  
-  
+      
+
+        
+        
+        
+
+        
+          
+          <div class="collection-title">
+            <h1 class="archive-year" id="archive-year-2019">2019</h1>
+          </div>
+        
+        
+
+        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/10/post05/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ZJJ00">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/02.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content>
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
-        
-          <h1 class="post-title" itemprop="name headline">笔记05</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
+            <a class="post-title-link" href="/2019/08/07/post08/" itemprop="url">
               
-                <span class="post-meta-item-text">发表于</span>
+                <span itemprop="name">笔记08</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-10T21:14:30+08:00">
-                2019-04-10
-              </time>
-            
+            </a>
+        
+      </h2>
 
-            
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-08-07T17:03:04+08:00" content="2019-08-07">
+          08-07
+        </time>
+      </div>
 
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h3>浅谈react中的state和props区别</h3>
-
-<p>1、首先props是组件对外的接口，可以进行组件之间的数据传递。组件内部渲染的时候，定义组件阶段，可以使用prop来设置属性值；渲染组件阶段再给props赋值，从而给组件标签赋值。<br>   如：</p>
-<pre><code>class Component extends React.Component{
-        constructor(props){
-            super(props)
-            this.state={}
-        } 
-        render(){
-            return (
-               &lt;标签内&gt;{this.props.name}&lt;/标签内&gt;
-                  //prop可以用于组件自身设置属性
-                  )
-                }
-              }
- ReactDOM.render(  &lt;Component name=&quot;zhangsan&quot; /&gt;,  
-  //渲染具备标签属性的组件
- document.getElementById(&apos;example2&apos;) )   
-</code></pre><p>   2、在引入了prop库之后，可以使用propTypes对组件进行属性必要性的限制。</p>
-<pre><code>Component.propType={
-    name:PropTypes.string.isRequired
-}
-
-3、可以使用组件名.defaultProps为props添加默认值
-
-Component.defaultProps={name:&quot;张三&quot;,age:18}
-
-4、父组件给子组件传递数据，可以使用父组件的state来让子组件用props接收，
-这个时候子组件的props是只读的，想要改变props的值必须由this.setState来修改父组件的state
-   代码如下：
-
-       class APP extends React.Component{
-           constructor(props){
-            super(props)
-            this.state={}
-           }
-         render(
-             return(
-                 &lt;div&gt;
-               &lt;child1 传递的属性={this.state.属性名}/&gt;
-               &lt;child2 传递的属性={this.state.属性名}/&gt;
-                 &lt;/div&gt;
-                 )
-               )
-       }
-    子组件的接收属性和渲染过程(用props来将传来的数据渲染)：
-         class child1 extends React.Component{
-             render(
-                 return(
-                  &lt;div&gt;{this.props.属性}&lt;/div&gt;
-                     )
-             )
-         }
-
-5、state和props的区别：
-
-      state和props首先都可以用来承载组件要显示的数据。
-      state：是组件内部用来标识组件内部数据的状态的数据；
-             可以使用this.setState来修改数据状态。
-      props：一般是写标签的时候由外部传入到组件内部的数据；
-             组件内部可以使用props这个接口来进行数据传递；
-             并且可以通过props来接收父组件传递下来的数据。
-             并且注意这种情况下，props是只读的，即修改传递
-             的值只能通过修改父组件的state来达成值的修改。
-</code></pre>
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/04/02/post04/" rel="next" title="笔记04">
-                <i class="fa fa-chevron-left"></i> 笔记04
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/14/post06/" rel="prev" title="笔记06">
-                笔记06 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
 
-    <div class="post-spread">
       
+
     </div>
   </div>
+  
+  
+  
+
+  
+
 
 
           </div>
@@ -463,10 +326,6 @@ Component.defaultProps={name:&quot;张三&quot;,age:18}
 
 
           
-
-  
-
-
 
         </div>
         
@@ -487,17 +346,8 @@ Component.defaultProps={name:&quot;张三&quot;,age:18}
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -541,22 +391,6 @@ Component.defaultProps={name:&quot;张三&quot;,age:18}
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">浅谈react中的state和props区别</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -706,10 +540,6 @@ Component.defaultProps={name:&quot;张三&quot;,age:18}
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 
