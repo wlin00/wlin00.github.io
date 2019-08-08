@@ -105,19 +105,20 @@
 
 
 
-<meta name="description" content="旋转的硬币效果{ 外层wrap结构：   html部分是外层盒子通过绝对定位将布局设置为水平竖直居中，采用绝对定位以及margin负方向各一半的方法,设置内部的transform-style为-preserve-3d以及指定keyframes动画和动画的时间、轨迹、方式等参数。 内部结构：   硬币由三层结构组成：表面、背面、内部填充   表面和背面用不同的background-image背景">
+<meta name="description" content="原型对象总结   ①我们所创建的每一个函数，解析器都会向函数中添加一个属性prototype，这个是构造函数的显式原型；每次由var aaa=new 构造函数(){}创建新实例对象aaa，它都会有一个属性proto代表隐式原型；函数对象对应一个空Object对象，这个对象就是我们说的原型对象； ②注意：构造函数fun实例化的aaa，它总会有一个隐式原型对象（属性proto） 的总会指向构造函数fu">
 <meta property="og:type" content="article">
-<meta property="og:title" content="post09">
-<meta property="og:url" content="http://yoursite.com/2019/08/08/post09/index.html">
+<meta property="og:title" content="post11">
+<meta property="og:url" content="http://yoursite.com/2019/08/08/post11/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="旋转的硬币效果{ 外层wrap结构：   html部分是外层盒子通过绝对定位将布局设置为水平竖直居中，采用绝对定位以及margin负方向各一半的方法,设置内部的transform-style为-preserve-3d以及指定keyframes动画和动画的时间、轨迹、方式等参数。 内部结构：   硬币由三层结构组成：表面、背面、内部填充   表面和背面用不同的background-image背景">
+<meta property="og:description" content="原型对象总结   ①我们所创建的每一个函数，解析器都会向函数中添加一个属性prototype，这个是构造函数的显式原型；每次由var aaa=new 构造函数(){}创建新实例对象aaa，它都会有一个属性proto代表隐式原型；函数对象对应一个空Object对象，这个对象就是我们说的原型对象； ②注意：构造函数fun实例化的aaa，它总会有一个隐式原型对象（属性proto） 的总会指向构造函数fu">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://s2.ax1x.com/2019/08/08/eoTpPx.th.png">
-<meta property="og:updated_time" content="2019-08-08T03:12:52.154Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/08/08/eTzMmq.md.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/08/08/eTzQ00.png">
+<meta property="og:updated_time" content="2019-08-08T09:15:52.608Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="post09">
-<meta name="twitter:description" content="旋转的硬币效果{ 外层wrap结构：   html部分是外层盒子通过绝对定位将布局设置为水平竖直居中，采用绝对定位以及margin负方向各一半的方法,设置内部的transform-style为-preserve-3d以及指定keyframes动画和动画的时间、轨迹、方式等参数。 内部结构：   硬币由三层结构组成：表面、背面、内部填充   表面和背面用不同的background-image背景">
-<meta name="twitter:image" content="https://s2.ax1x.com/2019/08/08/eoTpPx.th.png">
+<meta name="twitter:title" content="post11">
+<meta name="twitter:description" content="原型对象总结   ①我们所创建的每一个函数，解析器都会向函数中添加一个属性prototype，这个是构造函数的显式原型；每次由var aaa=new 构造函数(){}创建新实例对象aaa，它都会有一个属性proto代表隐式原型；函数对象对应一个空Object对象，这个对象就是我们说的原型对象； ②注意：构造函数fun实例化的aaa，它总会有一个隐式原型对象（属性proto） 的总会指向构造函数fu">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/08/08/eTzMmq.md.png">
 
 
 
@@ -147,13 +148,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/08/08/post09/">
+  <link rel="canonical" href="http://yoursite.com/2019/08/08/post11/">
 
 
 
 
 
-  <title>post09 | </title>
+  <title>post11 | </title>
   
 
 
@@ -270,7 +271,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/08/post09/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/08/post11/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ZJJ00">
@@ -287,7 +288,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">post09</h1>
+          <h1 class="post-title" itemprop="name headline">post11</h1>
         
 
         <div class="post-meta">
@@ -299,7 +300,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-08T09:59:46+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-08T16:56:02+08:00">
                 2019-08-08
               </time>
             
@@ -337,18 +338,33 @@
       
 
       
-        <p></p><h3>旋转的硬币效果</h3><br>{<p></p>
-<p>外层wrap结构：<br>   html部分是外层盒子通过绝对定位将布局设置为水平竖直居中，采用绝对定位以及margin负方向各一半的方法,设置内部的transform-style为-preserve-3d以及指定keyframes动画和动画的时间、轨迹、方式等参数。</p>
-<p>内部结构：<br>   硬币由三层结构组成：表面、背面、内部填充<br>   表面和背面用不同的background-image背景<br>   内部则随意选用任意的一个背景，它们设置width和height相同，且除了一面外其他都是绝对定位，多个填充部分由属性transform:translateZ(npx)的不同值来设置Z轴方向的重叠关系。</p>
-<p>动画@keyframs my_rotateY使整体盒子进行环绕Y轴的无限转动<br> 设置为基础为两帧的动画，分别是:<br>     0%：transform rotateY(0deg)<br>     100%：transform rotateY(360deg)   </p>
-<p>}<br>  <a href="https://imgchr.com/i/eoTpPx" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/08/08/eoTpPx.th.png" alt="eoTpPx.png" border="0"></a><br>代码如下</p>
-<p>HTML部分:</p>
- <div id="wrap"><br>    <div class="back"></div><br>    <div class="middle" style="transform: translateZ(1px)"></div><br>    <div class="middle" style="transform: translateZ(2px)"></div><br>    <div class="middle" style="transform: translateZ(3px)"></div><br>    <div class="middle" style="transform: translateZ(4px)"></div><br>    <div class="middle" style="transform: translateZ(5px)"></div><br>    <div class="middle" style="transform: translateZ(6px)"></div><br>    <div class="middle" style="transform: translateZ(7px)"></div><br>    <div class="middle" style="transform: translateZ(8px)"></div><br>    <div class="middle" style="transform: translateZ(9px)"></div><br>    <div class="front"></div><br> </div>
+        <h3>原型对象总结</h3>
 
-<p> CSS部分：</p>
-<p> #wrap{<br>     width:150px;<br>     height:150px;<br>     margin-left:-75px;<br>     margin-top:-75px;<br>     position:absolute;<br>     top:50%;<br>     left:50%;<br>     transform-style:preserve-3d;<br>     animation:my_rotateY 3s linear infinite;<br> }</p>
-<p> @keyframes my_rotateY{<br> 0%{<br>      transform:rotateY(0deg);<br>   }<br> 100%{<br>      transform:rotateY(360deg);<br>     }<br> }</p>
-<p>.back{  //硬币背面<br>    background-image : url(‘/bei.png’)<br>    width:150px;<br>    height:150px;<br> }<br> .back{  //硬币正面<br>    background-image : url(‘/zheng.png’)<br>    width:150px;<br>    height:150px;<br>    position:absolute;<br>    top:0;<br>    transform:translateZ(10px);<br> }<br> .mid{  //硬币内部填充–每一层实际厚度由对应html内style设置<br>    background-image : url(‘/zheng.png’)<br>    width:150px;<br>    height:150px;<br>    position:absolute;<br>    top:0;<br>    transform:translateZ(1px);<br> }</p>
+
+<p>①我们所创建的每一个函数，解析器都会向函数中添加一个属性prototype，这个是构造函数的显式原型；每次由var aaa=new 构造函数(){}创建新实例对象aaa，它都会有一个属性<strong>proto</strong>代表隐式原型；函数对象对应一个空Object对象，这个对象就是我们说的原型对象；</p>
+<p>②注意：构造函数fun实例化的aaa，它总会有一个隐式原型对象（属性<strong>proto</strong>） 的总会指向构造函数fun的显示原型对象，即prototype属性指向的那个对象。从而prototype对象中出现的任何函数都可以由实例化的对象直接使用。并且在函数prototype属性指向的那个对象（显式原型对象）中，有一个constructor属性，这个属性又指向了函数对象。即函数对象fun.prototype.constructor===fun;</p>
+<p>③普通函数中的prototype没有作用，但是如果是以构造函数的形式调用的时候，同一个构造函数创建的对象会有同一个隐藏的属性（这个属性就是对象的隐式原型，指向构造函数的显式原型），那就是一个公共的区域，所有同构造函数（类）的实例都可以访问到这个原型对象（访问方式：<strong>proto</strong>）</p>
+<p>④根据《悟透JavaScript》中，记载了new操作创建对象的三步骤：<br>   1、创建一个新对象a=new 构造函数fun(){}<br>   2、将对象a的隐式原型的值（<strong>proto</strong>的值，代表了实例对象指向的隐式原型对象）赋值为构造函数的显式原型（prototype属性的值，代表了所指向的显示原型的内存地址，通过原型继承，可以使用构造函数fun.prototype指向的显式原型对象的任何属性）<br>   3、再将对象a设置为this参数，调用的构造函数，初始化成员设置。</p>
+<p>⑤原型链的继承方法：创建一个子“类“，即后代的空构造函数；将空构造函数的prototype属性指向父类构造的对象：<br>function Person(name){this.name=name} //父类构造函数<br>function children(){}//      后代空构造函数<br>children.prototype=new Person(){}<br>  //子类的prototype属性指向父类的一个对象<br>  即继承的核心是：子类的函数对象–显式原型的值是父类的一个实例对象   </p>
+<p>⑥变量指向构造函数对象和变量指向实例对象的图解–}<br> <a href="https://imgchr.com/i/eTzMmq" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/08/08/eTzMmq.md.png" alt="eTzMmq.md.png" border="0"></a></p>
+<p>由上图：构造函数的显式原型这个属性的值会等于实例对象的隐式原型这个属性的值，即指向内存相同；fun.prototype的值===obj.<strong>proto</strong><br>并且隐式原型和显示原型的指向又会是一个新的内存地址，若一直沿隐式原型链向上寻找（所有构造函数的对象，即函数对象，都有一个隐式原型<strong>proto</strong>属性指向一个空Object对象，会指向Object函数对象的显示原型指向的对象，直到找到Object的原型对象），总会寻找到Object的原型对象，就是原型链的尽头（因为这个Object的原型对象的隐式原型是null）；它存在部分内置方法如toString（）；</p>
+<p>⑦Function函数对象的特殊性质，这个函数对象有一个隐式原型属性:<strong>proto</strong>这个属性总会指向构造函数的显式原型对象，即命名function prototype；然后这个原型对象的显式原型对象（此对象无隐式原型）又会指向回Function，代表Function是由自身构造创建的。 </p>
+<p>⑧ 且由于实例对象的proto隐式原型属性指向的是构造函数的显示原型属性指向的对象，这个对象是一个空的Object对象；且空Object对象存在一个隐式原型属性指向了Object函数对象的prototype显示原型属性，这里注意Object函数对象还是Function的实例，但它们间的关系已经不影响隐式原型链，因为空Object的原型对象就是原型链的尽头。</p>
+<p>⑨instanceof方法，判断A instanceof B可以做到判断实例对象A是否是函数对象B的实例，判断的依据是：函数B的显示原型对象是否在A的原型链上面<br>返回true和false；<br>   例：function Foo(){}<br>   var f1=new Foo();<br>   console.log(f1 instanceof Object)//true 因为Object的prototype在fn的隐式原型链<br>  （由下图：Foo构造函数和Object都有一个显示原型属性，且都在实例对象f1的原型链上）<br>   <a href="https://imgchr.com/i/eTzQ00" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/08/08/eTzQ00.png" alt="eTzQ00.png" border="0"></a></p>
+<p>  例如：一个构造函数 function MyClass(){                   }<br>     var mc=new MyClass();<br>     var mc2=new MyClass();<br>     console.log(mc2.<em>proto</em>==MyClass.prototype);//true</p>
+<p>⑩我们可以将对象中共有的区域，统一的设置到原型对象中<br>例如像MyClass的原型添加属性a<br>MyClass.prototype.a=123;<br>即是将所有MyClass构造的对象，都存在一个原型属性a 属性值123；<br>也可以在原型添加方法，效果一样，若本身找不到，则在原型找方法；<br>原型即一个公共区域，可以将共有的方法保存到：构造函数.原型.方法=function（）{}</p>
+<pre><code>例如：
+    Person.prototype.sayName=function(){alert(&quot;Hello&quot;);};
+    这样做 所有指向构造原型内存地址的对象（所有由构造函数构造的对象）
+    都存在一个原型方法来提供重复使用，而不会影响到全局作用域，就可以使每个对象都具有这些属性和方法;作用是：若当前对象自身找不到指定的属性的时候，会在原型对象上面去找 是否原型有这个属性，若找到的话，就会使用原型对象上的属性和对应属性值。
+</code></pre><p>⑩①检查对象/原型对象中是否有对应属性： </p>
+<pre><code>in检查:                           
+    console.log(&quot;name&quot; in  对象名)
+只检查对象自身是否有对应的属性： 
+    console.log(对象名.hasOwnProperty(&quot;name&quot;));//假设自身有name属性；若检查 :console.log(对象名.__proto__.hasOwnProperty(&quot;name&quot;));则返false，因name只是自身属性；
+只检查原型对象是否有对应的属性:  
+    console.log(对象名.isOwnProperty(&quot;name&quot;));
+</code></pre><p>⑩②原型对象总结：<br>    若我们使用一个对象的属性或方法的时候，会在自身中寻找，自身中如果有则直接使用；<br>    如果没有则去原型对象中找，如果原型对象中存在，则直接使用，不然则找原型对象的原型对象，直到找到Object对象的原型<br>    若是在Object对象的原型是最后一级，若还是没有找到，则返回undefined</p>
 
       
     </div>
@@ -373,8 +389,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/07/post08/" rel="next" title="笔记08">
-                <i class="fa fa-chevron-left"></i> 笔记08
+              <a href="/2019/08/08/post10/" rel="next" title="post10">
+                <i class="fa fa-chevron-left"></i> post10
               </a>
             
           </div>
@@ -382,10 +398,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/08/08/post10/" rel="prev" title="post10">
-                post10 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -501,7 +513,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">旋转的硬币效果</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">原型对象总结</span></a></li></ol></div>
             
 
           </div>
