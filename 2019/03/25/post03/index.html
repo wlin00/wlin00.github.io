@@ -105,19 +105,19 @@
 
 
 
-<meta name="description" content="对浏览器的缓存机制的理解  一、基础概念浏览器缓存：指浏览器在本地磁盘对用户最近存储的资源进行存储，当下一次用户请求同一个资源（页面），满足条件的话，可以直接从本地缓存读取资源的机制。作用—浏览器缓存可以：4、减少数据传输的冗余；5、减少服务器负担；6、加速网页的加载； 二、浏览器的两种缓存机制①强缓存：   强缓存是浏览器只有首次请求资源才会和服务器通信，服务器会给客户端提供页面、200状态码以">
+<meta name="description" content="对浏览器的缓存机制的理解  一、基础概念浏览器缓存：指浏览器在本地磁盘对用户最近存储的资源进行存储，当下一次用户请求同一个资源（页面），满足条件的话，可以直接从本地缓存读取资源的机制。作用—浏览器缓存可以：4、减少数据传输的冗余；5、减少服务器负担；6、加速网页的加载； 二、浏览器的两种缓存机制①强缓存：（不需要请求服务器，直接强制缓存)   强缓存即强制缓存策略：当浏览器首次请求资源才会和服务器">
 <meta property="og:type" content="article">
-<meta property="og:title" content="笔记03">
+<meta property="og:title" content="笔记03浏览器缓存总结">
 <meta property="og:url" content="http://yoursite.com/2019/03/25/post03/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="对浏览器的缓存机制的理解  一、基础概念浏览器缓存：指浏览器在本地磁盘对用户最近存储的资源进行存储，当下一次用户请求同一个资源（页面），满足条件的话，可以直接从本地缓存读取资源的机制。作用—浏览器缓存可以：4、减少数据传输的冗余；5、减少服务器负担；6、加速网页的加载； 二、浏览器的两种缓存机制①强缓存：   强缓存是浏览器只有首次请求资源才会和服务器通信，服务器会给客户端提供页面、200状态码以">
+<meta property="og:description" content="对浏览器的缓存机制的理解  一、基础概念浏览器缓存：指浏览器在本地磁盘对用户最近存储的资源进行存储，当下一次用户请求同一个资源（页面），满足条件的话，可以直接从本地缓存读取资源的机制。作用—浏览器缓存可以：4、减少数据传输的冗余；5、减少服务器负担；6、加速网页的加载； 二、浏览器的两种缓存机制①强缓存：（不需要请求服务器，直接强制缓存)   强缓存即强制缓存策略：当浏览器首次请求资源才会和服务器">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s2.ax1x.com/2019/04/02/AyoZ2n.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/04/02/AyonK0.png">
-<meta property="og:updated_time" content="2019-04-10T13:15:47.784Z">
+<meta property="og:updated_time" content="2019-12-27T20:09:29.373Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="笔记03">
-<meta name="twitter:description" content="对浏览器的缓存机制的理解  一、基础概念浏览器缓存：指浏览器在本地磁盘对用户最近存储的资源进行存储，当下一次用户请求同一个资源（页面），满足条件的话，可以直接从本地缓存读取资源的机制。作用—浏览器缓存可以：4、减少数据传输的冗余；5、减少服务器负担；6、加速网页的加载； 二、浏览器的两种缓存机制①强缓存：   强缓存是浏览器只有首次请求资源才会和服务器通信，服务器会给客户端提供页面、200状态码以">
+<meta name="twitter:title" content="笔记03浏览器缓存总结">
+<meta name="twitter:description" content="对浏览器的缓存机制的理解  一、基础概念浏览器缓存：指浏览器在本地磁盘对用户最近存储的资源进行存储，当下一次用户请求同一个资源（页面），满足条件的话，可以直接从本地缓存读取资源的机制。作用—浏览器缓存可以：4、减少数据传输的冗余；5、减少服务器负担；6、加速网页的加载； 二、浏览器的两种缓存机制①强缓存：（不需要请求服务器，直接强制缓存)   强缓存即强制缓存策略：当浏览器首次请求资源才会和服务器">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/04/02/AyoZ2n.png">
 
 
@@ -154,7 +154,7 @@
 
 
 
-  <title>笔记03 | </title>
+  <title>笔记03浏览器缓存总结 | </title>
   
 
 
@@ -288,7 +288,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">笔记03</h1>
+          <h1 class="post-title" itemprop="name headline">笔记03浏览器缓存总结</h1>
         
 
         <div class="post-meta">
@@ -341,8 +341,8 @@
         <h3>对浏览器的缓存机制的理解</h3>
 
 <p>一、基础概念<br>浏览器缓存：指浏览器在本地磁盘对用户最近存储的资源进行存储，当下一次用户请求同一个资源（页面），满足条件的话，可以直接从本地缓存读取资源的机制。<br>作用—浏览器缓存可以：<br>4、减少数据传输的冗余；<br>5、减少服务器负担；<br>6、加速网页的加载；</p>
-<p>二、浏览器的两种缓存机制<br>①强缓存：<br>   强缓存是浏览器只有首次请求资源才会和服务器通信，服务器会给客户端提供页面、200状态码以及缓存标识（Last-Modified、ETag）；后续读取缓存的资源的时候，不会再次发出请求，而是直接从缓存中读取；强缓存可以通过两种http 头部来实现，他们是http1.0的expires和http1.1的cache-control；<br>        expires会根据设置的缓存过期时间，决定缓存到期，但时间依据是客户端的实际时间，就容易发生差错；<br>        Cache-control 可通过max-age来设置时间；它也有属性如private和public以及属性no-cache代表不使用强缓存，而是缓存资源立即失效，每一次发起请求都会去验证资源是否过期；即此设置会启动协商缓存；</p>
-<p>②协商缓存：<br>   协商缓存就是强制缓存失败后的缓存机制，它可能因为强缓存（本地缓存）的max-age或expires的到期时间到期、或是设置了cache-control的no-cache机制，它的实现主要依靠两种http头部分别是Last-Modified和ETag；因强缓存只关心缓存有无过期，而不关心服务器是否更新了内容，所以我们需要知道服务器端的更新，就需要使用协商缓存策略。<br>  协商缓存的过程如下：<br>1、浏览器向缓存（缓存数据库）发送http请求，数据库中若有可使用缓存，则会将该资源从本地直接读取而不通过服务器；<br>2、若本地缓存，可能因缓存过期、或cache-control中设no-cache导致缓存资源立即失效；从而导致协商缓存的开始；此时返回该资源缓存标识；<br>3、首先客户端（浏览器）会检查是否具备协商缓存策略的两种http 头部，即是否携带该资源的标识即ETag、Last-Modified，若具备则自动分别添加：头部If-None-Match、If-Modified-Since并给服务器发送http请求。<br>4、再由服务器进行是否命中协商缓存的判定；若命中返回304提示上一次请求后资源未修改，可继续使用缓存；若未命中，则表示资源更新，则返回200、新资源以及更新后的缓存标识，并且更新缓存数据库。<br>5、页面加载成功。<br> 命中协商缓存如图：<br>   <a href="https://imgchr.com/i/AyoZ2n" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/04/02/AyoZ2n.png" alt="AyoZ2n.png" border="0"></a><br> 未命中协商缓存如图：<br><a href="https://imgchr.com/i/AyonK0" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/04/02/AyonK0.png" alt="AyonK0.png" border="0"></a><br>  即资源有更新，则返回状态码200以及资源更新的结果，并且重新生成ETag，或更新Last-Modified的最后修改时间; 只要资源更新就会重新生成ETag,并且此标识会存入到请求头部中的If-None-Match中；随后客户端会将请求结果和缓存标识ETag继续存入缓存数据库中。</p>
+<p>二、浏览器的两种缓存机制<br>①强缓存：（不需要请求服务器，直接强制缓存)<br>   强缓存即强制缓存策略：当浏览器首次请求资源才会和服务器通信，服务器会给客户端提供页面、200状态码以及缓存标识（Last-Modified、ETag）；后续读取缓存的资源的时候，不会再次发出请求，而是直接从缓存中读取；强缓存可以通过两种http 头部来实现，他们是http1.0的expires和http1.1的cache-control；<br>        expires会根据设置的缓存过期时间，决定缓存到期，但时间依据是客户端的实际时间，就容易发生差错；<br>        Cache-control 可通过max-age来设置时间，每一次发起请求都会去验证资源是否过期；它也有属性如private和public以及属性no-cache代表不使用强缓存，而是缓存资源立即失效，即此设置会启动协商缓存；</p>
+<p>②协商缓存：(每次都会发生请求给服务器)<br>   协商缓存就是强制缓存失败后的缓存机制，它可能因为强缓存（本地缓存）的max-age或expires的到期时间到期、或是设置了cache-control的no-cache机制，它的实现主要依靠两种http头部分别是Last-Modified和ETag；因强缓存只关心缓存有无过期，而不关心服务器是否更新了内容，所以我们需要知道服务器端的更新，就需要使用协商缓存策略。<br>  协商缓存的过程如下：<br>1、先考虑强缓存是否存在。浏览器向缓存（缓存数据库）发送http请求，数据库中若有可使用缓存，则会将该资源从本地直接读取而不通过服务器；<br>2、若无强缓存策略或失败，可能因缓存过期、或cache-control中设no-cache导致缓存资源立即失效；从而导致协商缓存的开始；此时返回该资源缓存标识；<br>3、首先客户端（浏览器）会检查是否具备协商缓存策略的两种http 头部，即是否携带该资源的标识即ETag（优先）、Last-Modified，若具备则自动分别添加：头部If-None-Match（优先）、If-Modified-Since并给服务器发送http请求进行协商缓存。<br>4、再由服务器进行是否命中协商缓存的判定；若命中返回304提示上一次请求后资源未修改，可继续使用缓存数据库中的资源；若未命中，则表示资源更新，则返回200、新资源以及更新后的缓存标识，并且更新缓存数据库。<br>5、页面加载成功。<br> 命中协商缓存如图：<br>   <a href="https://imgchr.com/i/AyoZ2n" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/04/02/AyoZ2n.png" alt="AyoZ2n.png" border="0"></a><br> 未命中协商缓存如图：<br><a href="https://imgchr.com/i/AyonK0" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/04/02/AyonK0.png" alt="AyonK0.png" border="0"></a><br>  即资源有更新，则返回状态码200以及资源更新的结果，并且重新生成ETag，或更新Last-Modified的最后修改时间; 只要资源更新就会重新生成ETag,并且此标识会存入到请求头部中的If-None-Match中；随后客户端会将请求结果和缓存标识ETag继续存入缓存数据库中。</p>
 <p>三、缓存标识符Last-Modified和ETag的使用解析和比较总结：<br>（1）两种协商缓存的实现方式解析：<br>   Last-Modified<br>   Last-Modified的工作原理是：服务器用发送来的http头部中的If-Modified-Since中的值与自身的同一个资源作时间的对比，比较发送来的资源是否早于服务器的资源，若服务器的Last-Modified值更大，则表示对应标识的资源有更新，就会返回状态码200和新的资源文件（同时更新缓存标识）<br>比较缓存保存时间。每次服务器接受浏览器请求时候，会检测是否在http header中有Last-Modified；若有则检测服务器中对应缓存标识资源Last-Modified和传来的If-Modified-Since这个头部中的时间，若服务器中头部时间更早，则说明文件有更新，返回200并且更新。<br>Last-Modified这种协商缓存的实现方式，存在弊端，1：若本地打开文件会造成缓存标识中的时间信息被修改，以至于下次接受请求，不能命中协商缓存。2：Last-Modified只能以秒计时，如果在不可感知的时间内修改资源，服务器依然会命中不理想的协商缓存，而不是更新页面。</p>
 <p>   ETag<br>鉴于Last-Modified是根据文件修改时间来决定协商缓存的命中，并且这种方式有不足之处，所以http1.1出现了新的协商缓存的规则：<br>   服务器根据客户端发来的If-None-Match与自身对应的资源ETag是否相等，若匹配成功，则返回304通知客户端继续从缓存中读取资源；若匹配不成功，则返回状态码200和更新后的资源（以及新的ETag，ETag每次资源更新都会更新） </p>
 <p>（2）Last-Modified和ETag方式的区别：<br>1、时间精度：ETag准确保存每时刻的缓存变化，只要资源更新，ETag立即更新；但是Last-Modified的值变化的单位是秒，如果一秒内改变其标记的缓存资源多次，那么Last-Modified不会正确反映出变化。<br>2、性能：由于Last-Modified是根据文件的修改时间来决定是否缓存，变化单位是秒；然而ETag是需要服务器通过算法来计算出一个Hash值，所以性能方面Last-Modified更高。<br>3、优先级上：ETag更优先；</p>
@@ -372,14 +372,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/03/25/post02/" rel="next" title="笔记02常见http状态码">
+                <i class="fa fa-chevron-left"></i> 笔记02常见http状态码
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/25/post01/" rel="prev" title="笔记01">
-                笔记01 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/02/post04/" rel="prev" title="笔记04transition和animation的区别">
+                笔记04transition和animation的区别 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

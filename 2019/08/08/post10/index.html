@@ -105,17 +105,17 @@
 
 
 
-<meta name="description" content="从输入url到显示页面的过程{ （核心思路是应用层-传输层-ip层-数据链路层-物理层来回的传递请求）  1、首先，在浏览器地址栏中输入url  2、 浏览器会检查是否返回状态码304，如果未命中协商缓存，则会在页面上直接显示缓存数据库中的数据内容。  3、如果本地无缓存，则需要发送http请求数据。Dns域名解析服务会先将本地的域名解析为ip地址。  4、浏览器向服务器发送tcp连接建立三次握手">
+<meta name="description" content="从输入url到显示页面的过程{ （核心思路：应用层-传输层-ip层-数据链路层-物理层来回的传递请求   具体流程：Dns域名解析，Tcp连接，HTTP连接，处理请求返回HTTP响应，页面渲染，关闭连接  ）  1、首先，在浏览器地址栏中输入url,键盘将输入的数据发送给操作系统，判断是不是系统命令，然后发送数据给应用程序。  2、Dns域名解析：因为在地址栏输入的域名不是真正的资源所在位置，域名">
 <meta property="og:type" content="article">
-<meta property="og:title" content="post10">
+<meta property="og:title" content="post10深拷贝实现、输入url到显示过程的思考">
 <meta property="og:url" content="http://yoursite.com/2019/08/08/post10/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="从输入url到显示页面的过程{ （核心思路是应用层-传输层-ip层-数据链路层-物理层来回的传递请求）  1、首先，在浏览器地址栏中输入url  2、 浏览器会检查是否返回状态码304，如果未命中协商缓存，则会在页面上直接显示缓存数据库中的数据内容。  3、如果本地无缓存，则需要发送http请求数据。Dns域名解析服务会先将本地的域名解析为ip地址。  4、浏览器向服务器发送tcp连接建立三次握手">
+<meta property="og:description" content="从输入url到显示页面的过程{ （核心思路：应用层-传输层-ip层-数据链路层-物理层来回的传递请求   具体流程：Dns域名解析，Tcp连接，HTTP连接，处理请求返回HTTP响应，页面渲染，关闭连接  ）  1、首先，在浏览器地址栏中输入url,键盘将输入的数据发送给操作系统，判断是不是系统命令，然后发送数据给应用程序。  2、Dns域名解析：因为在地址栏输入的域名不是真正的资源所在位置，域名">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-08T05:53:40.659Z">
+<meta property="og:updated_time" content="2019-12-27T20:40:20.585Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="post10">
-<meta name="twitter:description" content="从输入url到显示页面的过程{ （核心思路是应用层-传输层-ip层-数据链路层-物理层来回的传递请求）  1、首先，在浏览器地址栏中输入url  2、 浏览器会检查是否返回状态码304，如果未命中协商缓存，则会在页面上直接显示缓存数据库中的数据内容。  3、如果本地无缓存，则需要发送http请求数据。Dns域名解析服务会先将本地的域名解析为ip地址。  4、浏览器向服务器发送tcp连接建立三次握手">
+<meta name="twitter:title" content="post10深拷贝实现、输入url到显示过程的思考">
+<meta name="twitter:description" content="从输入url到显示页面的过程{ （核心思路：应用层-传输层-ip层-数据链路层-物理层来回的传递请求   具体流程：Dns域名解析，Tcp连接，HTTP连接，处理请求返回HTTP响应，页面渲染，关闭连接  ）  1、首先，在浏览器地址栏中输入url,键盘将输入的数据发送给操作系统，判断是不是系统命令，然后发送数据给应用程序。  2、Dns域名解析：因为在地址栏输入的域名不是真正的资源所在位置，域名">
 
 
 
@@ -151,7 +151,7 @@
 
 
 
-  <title>post10 | </title>
+  <title>post10深拷贝实现、输入url到显示过程的思考 | </title>
   
 
 
@@ -285,7 +285,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">post10</h1>
+          <h1 class="post-title" itemprop="name headline">post10深拷贝实现、输入url到显示过程的思考</h1>
         
 
         <div class="post-meta">
@@ -335,7 +335,7 @@
       
 
       
-        <h3>从输入url到显示页面的过程</h3><br>{<br> （核心思路是应用层-传输层-ip层-数据链路层-物理层来回的传递请求）<br><br>  1、首先，在浏览器地址栏中输入url<br>  2、 浏览器会检查是否返回状态码304，如果未命中协商缓存，则会在页面上直接显示缓存数据库中的数据内容。<br>  3、如果本地无缓存，则需要发送http请求数据。Dns域名解析服务会先将本地的域名解析为ip地址。<br>  4、浏览器向服务器发送tcp连接建立三次握手。<br>  5、浏览器向服务器发送http请求，服务器收到请求后返回数据给浏览器。<br>  6、HTML解析以及DOM树、CSS ruleTree的解析和渲染；<br>  7、客户端和服务器的交互、ajax请求。<br><br>}<br><br><h3>深拷贝的简单实现</h3>
+        <h3>从输入url到显示页面的过程</h3><br>{<br> （核心思路：应用层-传输层-ip层-数据链路层-物理层来回的传递请求<br>   具体流程：Dns域名解析，Tcp连接，HTTP连接，处理请求返回HTTP响应，页面渲染，关闭连接<br>  ）<br><br>  1、首先，在浏览器地址栏中输入url,键盘将输入的数据发送给操作系统，判断是不是系统命令，然后发送数据给应用程序。<br><br>  2、Dns域名解析：因为在地址栏输入的域名不是真正的资源所在位置，域名只是ip地址的一个映射。域名方便我们去记住一串串数字组成的ip地址，Dns域名的解析则是让域名转化为ip地址的过程。<br>    Dns解析的方式：<br>    ①迭代查询 ②递归查询<br><br>  3、Tcp连接： 在获取域名解析后，我们拿到了服务器的ip地址，此时会开始第一次连接，这是由Tcp协议完成，过程是三次握手。<br>  4、浏览器向服务器发送tcp连接建立三次握手。<br>     浏览器向服务器发送同步请求（syn）<br>     服务器向浏览器回复请求应答（syn+ack确认报文）<br>     浏览器返回服务器确认包（ack）<br>  5、浏览器向服务器发送http请求，服务器收到请求后返回数据给浏览器。（包括:请求行、请求头、请求正文）<br>  6、HTML解析以及DOM树、CSS ruleTree的解析和渲染；<br>    ①渲染引擎线程解析HTML文档，转化出一颗Dom树<br>    ②css渲染线程解析内联、外联、嵌入的Css样式，渲染出另一颗render tree<br>    ③渲染树木的布局处理<br>    ④遍历渲染树，并用Ui后端层将每一个节点绘制出来<br>  7、关闭连接，四次挥手过程：<br>    浏览器确认发送完请求，且服务器已经完全接收。浏览器发送Fin终止请求；<br>    服务器返回浏览器ACk确认报文；<br>    服务器可能还在发送数据，若发送完毕，服务器发送Fin终止请求给浏览器；<br>    浏览器接收到后，发送Ack给服务器，并且浏览器等待2ms后，若未再收到任何消息，浏览器关闭连接，服务器关闭连接。<br><br>}<br><br><h3>深拷贝的简单实现</h3>
 
 <p>  定义:  浅拷贝指的是拷贝前后共用一片堆区内存；<br>         深拷贝指的是拷贝前后对象的所在内存区域不同；</p>
 <p>  方法1： 对于对象的克隆，直接用JSON对象和字符串之间的转换</p>
@@ -344,30 +344,36 @@
     let _result = JSON.parse(_obj)
        return _result;
 }
-</code></pre><p>  方法2：当不确定传入的参数是对象或数组，需要区分判断</p>
-<pre><code>function cloneDeep2(obj){
-       if(Array.isArray(obj)){
-           var _obj = {};//若传入对象
-       }else{
-           var _obj = [];//若传入数组
+</code></pre><p>  方法2：当不确定传入的参数是对象、数组、null、regExp或非引用数据类型的时候，需要区分判断,通过递归实现：</p>
+<pre><code>function cloneDeep(target){
+    let result 
+    if(typeof (target) === &apos;object&apos;){
+     if(Array.isArray(target)){
+         //若传入参数是数组的情况
+         result = []
+         for( let [index,item] of target.entries()){
+             result[index].push( cloneDeep(target[index]) ) //使用for-of，结合arr.entries方法遍历数组
+         }
+     }
+     else if(target === null){
+         //若传入参数是null的情况
+         result = null 
+     }
+     else if (target.constructor === RegExp){
+         result = target
+     }    
+     else{
+         //若传入参数是对象
+         result = {}
+         for(let s of Object.keys(target)) //for-of 遍历Object.keys转换对象后的可枚举类型
+           result[s] = cloneDeep(target[s])
+     }
+    } else { //若非引用数据类型，直接拷贝
+         result = target    
     }
 
-     for(var i in obj){
-         if(typeof obj[i] == &apos;object&apos;){
-             _obj[i] = cloneDeep2(obj[i]);
-                   //递归调用，直到内层非对象
-         }else{
-             _obj[i] = obj[i]
-         }
-     }  
-
-} 
-
-var a1 = {a:[1]};
-var a2 = cloneDeep2(a1);
-a1[&apos;a&apos;].push(2);
-console.log(a1)   //{a:[1,2]}    
-console.log(a2)   //{a:[1]} --- a2深拷贝a1所以互不影响 
+    return result;
+}
 </code></pre>
       
     </div>
@@ -392,8 +398,8 @@ console.log(a2)   //{a:[1]} --- a2深拷贝a1所以互不影响
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/08/post09/" rel="next" title="post09">
-                <i class="fa fa-chevron-left"></i> post09
+              <a href="/2019/08/08/post09/" rel="next" title="post09旋转的硬币效果">
+                <i class="fa fa-chevron-left"></i> post09旋转的硬币效果
               </a>
             
           </div>
@@ -402,8 +408,8 @@ console.log(a2)   //{a:[1]} --- a2深拷贝a1所以互不影响
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/08/08/post11/" rel="prev" title="post11">
-                post11 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/08/post11/" rel="prev" title="post11原型对象总结">
+                post11原型对象总结 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
