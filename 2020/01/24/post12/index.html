@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前后端常用的鉴权方式 四种鉴权方式    1、Http Basic Authentication   2、session-cookie   3、Token + Jwt   4、OAuth(开放授权) Http Basic Authentication    介绍：这种授权指浏览器遵守http协议实现的基本授权方式，http协议在通信的过程中，定义了基本认证来允许http服务器对客户端进行鉴权">
+<meta property="og:type" content="article">
+<meta property="og:title" content="笔记12前后端常用的鉴权方式">
+<meta property="og:url" content="http://yoursite.com/2020/01/24/post12/index.html">
+<meta property="og:site_name">
+<meta property="og:description" content="前后端常用的鉴权方式 四种鉴权方式    1、Http Basic Authentication   2、session-cookie   3、Token + Jwt   4、OAuth(开放授权) Http Basic Authentication    介绍：这种授权指浏览器遵守http协议实现的基本授权方式，http协议在通信的过程中，定义了基本认证来允许http服务器对客户端进行鉴权">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-01-24T06:51:28.259Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="笔记12前后端常用的鉴权方式">
+<meta name="twitter:description" content="前后端常用的鉴权方式 四种鉴权方式    1、Http Basic Authentication   2、session-cookie   3、Token + Jwt   4、OAuth(开放授权) Http Basic Authentication    介绍：这种授权指浏览器遵守http协议实现的基本授权方式，http协议在通信的过程中，定义了基本认证来允许http服务器对客户端进行鉴权">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/01/24/post12/">
+
+
+
+
+
+  <title>笔记12前后端常用的鉴权方式 | </title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title"></span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-nav">
+          <a href="/nav/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            站点导航
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/24/post12/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZJJ00">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/02.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">笔记12前后端常用的鉴权方式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-24T11:13:57+08:00">
+                2020-01-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p></p><h1>前后端常用的鉴权方式</h1><br><br><p></p>
+<p></p><h2>四种鉴权方式</h2><p></p>
+<p></p><p><br>   1、Http Basic Authentication<br>   2、session-cookie<br>   3、Token + Jwt<br>   4、OAuth(开放授权)<br></p><br><br><p></p>
+<p></p><h2>Http Basic Authentication</h2><p></p>
+<p></p><p><br>   介绍：这种授权指浏览器遵守http协议实现的基本授权方式，http协议在通信的过程中，定义了基本认证来允许http服务器对客户端进行鉴权<br>   过程：<br>     1、客户端向服务器请求数据，请求的内容可能是一个网页或者一个异步ajax请求，此时客户端若没有被验证，则客户端提供给服务器：<br>        Get /index.html HTTP/1.0<br>        Host: <a href="http://www.google.com" target="_blank" rel="noopener">www.google.com</a><br>     2、服务器会向客户端发送验证请求的代码401，例如：<br>         HTTP/1.0 401 Unauthorised<br>         Server: SokEvo/1.0<br>         WWW-Authenticate: Basic realm=”google.com”  （关键信息）<br>         content-Type: text/html<br>         Content-Length: xxx<br>     3、当符合http1.0或http1.1规范的客户端（如IE，Firefox）收到401未授权时，会自动弹出一个登陆窗口，要求用户输入用户名、密码<br>     4、用户输入用户名和密码后，将用户名和密码通过Base64加密，并将密文放入前一条请求信息中，则客户端发送的第一条信息变为：<br>       Authorization： Basic 密文~~~<br>     5、服务器收到以上信息，将Authorization字段后的用户信息取出，解密，再通过与数据库中用户名密码进行比较，从而进行鉴权。<br></p><p></p>
+<h3><br>  优点：基本认证支持所有的网页浏览器；基本认证很少在可公开访问的互联网网站上使用，有时会在小的私有系统中使用；容易实现。<br>  缺点：如果没有使用ssl/tls传输层安全协议，以明文传输的口令和密钥很容易被拦截，该方案也同样没有对服务器返回的信息提供保护。<br>       现存的浏览器保存认证信息直到标签页或浏览器被关闭，或者用户清除历史记录，Http没有为服务器提供一种方案去知识客户端丢弃被缓存的密钥，这导致服务器在用户不关闭浏览器的情况下，没有一种有效的方法去注销用户。<br></h3><br><br><br><h2>session-cookie</h2><br><p><br>  cookie:HTTP是一个无状态协议，服务器不知道哪一台浏览器访问了它，所以需要一个标识来让服务器区分不同的client，cookie就是这个管理服务器和客户端之间状态的标识。<br><br>  cookie原理是：浏览器第一个向服务器发送请求，服务器在response头部设置Set-Cookie字段，浏览器收到响应就会社会cookie并且存储。在下一次浏览器向服务器发送请求的时候，就会在请求头request头部自动带上Cookie字段，服务器收到该cookie就可以区分不同的浏览器。这个cookie与某个用户的对应关系就会存储在服务器端，这时候就要用到session。<br><br>  session：session是会话的意思，浏览器第一次访问服务器，服务器会创建一次会话，在会话中保存标识该浏览器的信息，它与cookie的区别是session是缓存在服务器端的，cookie是缓存在浏览器端，他们都由服务器端生成，用与弥补http无状态的缺陷。<br></p><br><h3>cookie-session用户登录认证</h3><br><p><br>  使用session-cookie登录认证，登录时存储session，退出登录时删除session，所有需要登录后才能操作的接口会提前验证是否存在session，存在才能进行路由跳转，不存在则回到登录页面。<br></p><br><pre>前端代码<br>async login(){<br>    await axios.post(‘/login’,{<br>      username: this.username,<br>      password: this.password<br>    })<br>},<br>async logout(){<br>    await axios.post(‘/logout’)<br>},<br>async getUser(){<br>    await axios.get(‘/getUser’)<br>}<br></pre><br><pre>后端代码<br><br>//koa中引入中间件auth.js<br>module.exports = aysnc (ctx,next)=&gt;{<br>    if(!ctx.session.userinfo){<br>    ctx.body={ok:0,message:’用户未登录’};<br>    else{<br>    await next()<br>  }<br> }<br>};<br><br>//登录接口<br>router.post(‘/login’,async(ctx)=&gt;{<br>    const {body} = ctx.request<br>    ctx.session.userinfo = body.username //设置session<br>    ctx.body={ message:’login success’ }<br>})<br><br>//登出<br>router.post(‘/logout’,async(ctx)=&gt;{<br>    delete ctx.session.userinfo<br>    ctx.body = { message:’logout success’ }<br>})<br><br>//需要验证的接口<br>router.get(‘/getUser’,require(‘auth’),async(ctx)=&gt;{<br>    ctx.body={<br>    message:’获取用户列表成功’,<br>    userinfo:ctx.session.userinfo<br>}<br>})<br><br></pre><br><br><br><h2>Token</h2><br><p>token是一个令牌，浏览器第一次访问服务器的时候会签发一张令牌，之后浏览器每次携带者张令牌访问服务器就会认证这个令牌是否有效，只要服务器端可以解密这个令牌，说明请求是合法的，令牌中包含的用户信息还可以区分不同身份的用户，一般token由用户信息、时间戳和hash算法加密的签名构成</p><br><h3>认证流程：<br>  1、客户端使用用户名和密码登陆<br>  2、服务端收到请求，去验证用户名和密码<br>  3、验证成功，服务器端会签发一个token，并发送给客户端<br>  4、客户端收到token可以把它存储起来，例如放在cookie或者webStorage中<br>  5、客户端每次向服务器端请求都需要带上服务器端签发的token<br>  6、服务器受到其你去，去验证客户端请求里面带的token（前端做法是axios请求拦截：request头部添加authorization）如果验证成功则向客户端返回请求的数据，反之则返回401鉴权失败。<br></h3><br><br><br><h3>token和cookie-session区别<br>   cookie-session缺点<br>   (1)cookie-session认证方式局限于浏览器中使用；cookie无法在app端使用；<br>   (2)为了满足全局一致性，我们最好把session存储在redis中做持久化，而在分布式的环境中，我们需要每个服务器上备份，占用大量存储空间<br>   (3)cookie需要在https下使用，防止CSRF攻击<br><br>   token缺点:<br>   (1)加密解密是使得token认证比session-cookie更加消耗性能<br>   (2)token比sessionId大，更占带宽<br></h3>
+
+<pre>前端代码
+
+  //axios请求拦截器，在每个request请求头上加上认证信息
+  axios.interceptors.request.use(
+    config =>{
+       const token = window.localStorage.getItem('token')
+       if(token){
+          //判断本地缓存中是否存在token
+          config.headers.common["Authorization"]="Bearer" + token;
+       }
+       return config
+    },
+    err=>{return Promise.reject(err)}
+  )
+
+  //登陆函数--将后端返回的jwt存入localStorage
+  async login(){
+    const res = await axios.post('/login',{
+    username:this.username,
+    password:this.password
+    })
+    localStorage.setItem('toekn',res.data.token)
+  }
+
+  //登出函数
+  async logout(){
+    localStorage.removeItem('token')
+  }
+
+  //获取登陆用户列表，需对token的有效性进行判定 
+  async getUser(){ 
+    await axios.get('/getUser-token')
+  }
+</pre>
+
+<p><pre>后端代码<br>//引入koa模块<br>const jwt = require(‘jsonwebtoken’)<br>cont jwtAuth = require(‘koa-jwt’)<br>//用来签名的密钥<br>const secret = ‘it is a secret’<br>//需要权限的接口,jwtAuth是koa自带的鉴权中间件，它用密钥secret来解析jwt是否合法<br>router.get(‘/getUser-token’,jwtAuth({secret}),async ctx=&gt;{<br>    ctx.body={<br>      message:’获取用户数据成功’,<br>      userinfo:ctx.state.user.data<br>    }<br>  })<br>//用户登录<br>router.post(‘/login-token’,async ctx=&gt;{<br>     const {body} = ctx.requset<br>     const userinfo = body.username<br>     //此处进行登陆校验，即查找数据库（略），若用户和密码合法，进行下列生成jwt令牌操作<br>     ctx.body={<br>       message: ‘login success’,<br>       user: userinfo,<br>       token: jwt.sign({  //签发token<br>         data: userinfo,  //token由：用户信息、时间戳、密钥结合hash加密构成<br>         exp: Math.floor(Data.now()/1000)+ 60*60<br>       },<br>         secret<br>       )<br>     }<br>  })</pre></p>
+<p><br><br></p>
+<p></p><h2>Oauth开放授权</h2><p></p>
+<p></p><p><br>  OAuth (Open Authorization)是一个开放标准。数据的所有者告诉系统，同意授权的第三方应用进入系统，获取数据。系统从而产生一个短期的令牌token来代替密码，供第三方应用使用。</p>
+<p>  OAuth授权，第三方应用申请令牌之前，都必须拿到系统备案，说明自己的身份，然后会拿到两个身份识别码：client ID 和client secret;<br>  在前后分离的情景下，我们常使用授权码方式，指第三方应用先申请一个授权码，然后用该码获取令牌<br></p><p></p>
+<h3>获取GitHub第三方登陆权限<br><br>  1、在GitHub中备案第三方应用，拿到它的客户端id和客户端密钥；<br>  2、封装一个config = { client_id ‘<del>~’, client_secret: ‘</del>~’ }<br>  3、在ajax请求后配置对应参数，让用户重定向到授权服务器<br>  4、用户跳转到GitHub，输入用户名和密码，此时授权码code会携带用户身份跳回第三方网站<br>  5、第三方收到授权码，可以拿授权码、clientId、clientSecret向GitHub换取access_token<br>  6、GitHub收到请求，向第三方网站颁发令牌，第三方应用具备短时间的权限<br><br></h3>
+
+
+
+
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/08/post11/" rel="next" title="post11原型对象总结">
+                <i class="fa fa-chevron-left"></i> post11原型对象总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/02.jpg" alt="ZJJ00">
+            
+              <p class="site-author-name" itemprop="name">ZJJ00</p>
+              <p class="site-description motion-element" itemprop="description">Heal the scars Change the stars</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">前后端常用的鉴权方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.</span> <span class="nav-text">四种鉴权方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.2.</span> <span class="nav-text">Http Basic Authentication</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.2.1.</span> <span class="nav-text">  优点：基本认证支持所有的网页浏览器；基本认证很少在可公开访问的互联网网站上使用，有时会在小的私有系统中使用；容易实现。  缺点：如果没有使用ssl/tls传输层安全协议，以明文传输的口令和密钥很容易被拦截，该方案也同样没有对服务器返回的信息提供保护。       现存的浏览器保存认证信息直到标签页或浏览器被关闭，或者用户清除历史记录，Http没有为服务器提供一种方案去知识客户端丢弃被缓存的密钥，这导致服务器在用户不关闭浏览器的情况下，没有一种有效的方法去注销用户。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.3.</span> <span class="nav-text">session-cookie</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.3.1.</span> <span class="nav-text">cookie-session用户登录认证</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.4.</span> <span class="nav-text">Token</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.4.1.</span> <span class="nav-text">认证流程：  1、客户端使用用户名和密码登陆  2、服务端收到请求，去验证用户名和密码  3、验证成功，服务器端会签发一个token，并发送给客户端  4、客户端收到token可以把它存储起来，例如放在cookie或者webStorage中  5、客户端每次向服务器端请求都需要带上服务器端签发的token  6、服务器受到其你去，去验证客户端请求里面带的token（前端做法是axios请求拦截：request头部添加authorization）如果验证成功则向客户端返回请求的数据，反之则返回401鉴权失败。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.4.2.</span> <span class="nav-text">token和cookie-session区别   cookie-session缺点   (1)cookie-session认证方式局限于浏览器中使用；cookie无法在app端使用；   (2)为了满足全局一致性，我们最好把session存储在redis中做持久化，而在分布式的环境中，我们需要每个服务器上备份，占用大量存储空间   (3)cookie需要在https下使用，防止CSRF攻击   token缺点:   (1)加密解密是使得token认证比session-cookie更加消耗性能   (2)token比sessionId大，更占带宽</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.5.</span> <span class="nav-text">Oauth开放授权</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.5.1.</span> <span class="nav-text">获取GitHub第三方登陆权限  1、在GitHub中备案第三方应用，拿到它的客户端id和客户端密钥；  2、封装一个config = { client_id ‘~’, client_secret: ‘~’ }  3、在ajax请求后配置对应参数，让用户重定向到授权服务器  4、用户跳转到GitHub，输入用户名和密码，此时授权码code会携带用户身份跳回第三方网站  5、第三方收到授权码，可以拿授权码、clientId、clientSecret向GitHub换取access_token  6、GitHub收到请求，向第三方网站颁发令牌，第三方应用具备短时间的权限</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZJJ00</span>
+
+  
+</div>
+
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+-->
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+ 
+</body>
+</html>
