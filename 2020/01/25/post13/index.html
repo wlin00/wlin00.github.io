@@ -105,17 +105,17 @@
 
 
 
-<meta name="description" content="hexo搭建博客基础总结 一、选择原因：hexo是基于nodejs的一款轻量级框架，可以使用markdown来写文章，生成静态网页，并且实现一键部署的优质博客开发框架。二、环境搭建：1、所需工具有：nodejs、npm以及git工具；所需资源是一个注册后的GitHub账号并且申请仓库（注意项目名结构）；2、安装hexo，这里我选择在d盘新建一个文件夹WorkPlace，作为根目录；并且里面再建立一">
+<meta name="description" content="常见js手写题 函数防抖、函数节流、函数柯里化、二分查找、InstanceOf 函数防抖    function debounce(fn,wait){ //防抖：每次点击重置定时器     let timer = null     return (...arg)=&amp;gt;{       let self = this       clearTimeout(timer)       timer = set">
 <meta property="og:type" content="article">
-<meta property="og:title" content="笔记01常见http状态码">
-<meta property="og:url" content="http://yoursite.com/2019/03/25/post01/index.html">
+<meta property="og:title" content="笔记13常见js手写题(1)">
+<meta property="og:url" content="http://yoursite.com/2020/01/25/post13/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="hexo搭建博客基础总结 一、选择原因：hexo是基于nodejs的一款轻量级框架，可以使用markdown来写文章，生成静态网页，并且实现一键部署的优质博客开发框架。二、环境搭建：1、所需工具有：nodejs、npm以及git工具；所需资源是一个注册后的GitHub账号并且申请仓库（注意项目名结构）；2、安装hexo，这里我选择在d盘新建一个文件夹WorkPlace，作为根目录；并且里面再建立一">
+<meta property="og:description" content="常见js手写题 函数防抖、函数节流、函数柯里化、二分查找、InstanceOf 函数防抖    function debounce(fn,wait){ //防抖：每次点击重置定时器     let timer = null     return (...arg)=&amp;gt;{       let self = this       clearTimeout(timer)       timer = set">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-27T20:47:11.099Z">
+<meta property="og:updated_time" content="2020-01-25T06:31:40.983Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="笔记01常见http状态码">
-<meta name="twitter:description" content="hexo搭建博客基础总结 一、选择原因：hexo是基于nodejs的一款轻量级框架，可以使用markdown来写文章，生成静态网页，并且实现一键部署的优质博客开发框架。二、环境搭建：1、所需工具有：nodejs、npm以及git工具；所需资源是一个注册后的GitHub账号并且申请仓库（注意项目名结构）；2、安装hexo，这里我选择在d盘新建一个文件夹WorkPlace，作为根目录；并且里面再建立一">
+<meta name="twitter:title" content="笔记13常见js手写题(1)">
+<meta name="twitter:description" content="常见js手写题 函数防抖、函数节流、函数柯里化、二分查找、InstanceOf 函数防抖    function debounce(fn,wait){ //防抖：每次点击重置定时器     let timer = null     return (...arg)=&amp;gt;{       let self = this       clearTimeout(timer)       timer = set">
 
 
 
@@ -145,13 +145,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/25/post01/">
+  <link rel="canonical" href="http://yoursite.com/2020/01/25/post13/">
 
 
 
 
 
-  <title>笔记01常见http状态码 | </title>
+  <title>笔记13常见js手写题(1) | </title>
   
 
 
@@ -268,7 +268,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/25/post01/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/25/post13/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ZJJ00">
@@ -285,7 +285,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">笔记01常见http状态码</h1>
+          <h1 class="post-title" itemprop="name headline">笔记13常见js手写题(1)</h1>
         
 
         <div class="post-meta">
@@ -297,8 +297,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-25T14:23:52+08:00">
-                2019-03-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-25T14:00:00+08:00">
+                2020-01-25
               </time>
             
 
@@ -335,8 +335,93 @@
       
 
       
-        <p></p><h3>hexo搭建博客基础总结</h3><p></p>
-<p>一、选择原因：hexo是基于nodejs的一款轻量级框架，可以使用markdown来写文章，生成静态网页，并且实现一键部署的优质博客开发框架。<br>二、环境搭建：1、所需工具有：nodejs、npm以及git工具；所需资源是一个注册后的GitHub账号并且申请仓库（注意项目名结构）；2、安装hexo，这里我选择在d盘新建一个文件夹WorkPlace，作为根目录；并且里面再建立一个空文件夹叫bbb，内部文件夹用存放后续初始化的hexo文件；3、接着可以进行hexo的安装和初始化，安装步骤首先是在WorkPlace打开Git Bash进行hexo的全局安装，然后执行：npm install hexo-cli -g；4、接着cd bbb进入子目录进行hexo的初始化，执行：hexo init,注意初始化操作是一个非常容易出错的地方，系统会提示进行nmp install操作,继续在子目录按要求执行，然后这时候完成初始化后直接生成hexo,使用：hexo g;并且可以使用hexo s在本次生成，根据本地的<a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a> 来访问本地网页，然后在修改成功后hexo cl可以清理垃圾；这样初步完成了本地网页的访问，但是想要部署到GitHub还需要关联hexo和Github page联系起来。<br>三、关联操作和SSH密钥：1、首先设置全局的username和email变量，然后输入cd ~/.ssh检查是否本地存在ssh文件夹；2、定义用户密钥：ssh-keygen -t rsa -C “个人邮箱” 接着按下三次回车去获得ssh密钥文件；3、通过clip语句将id_rsa文件中的密钥提取到粘贴板，然后将其复制到个人GitHub网站的new ssh key里；4、修改跟目录配置文件config，修改deploy值，注意注意这里的坑是每个:后记得加一个空格。最后输入: ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>可以验证ssh是否配置成功，同时也是hexo是否关联于GitHub page。5、这样之后执行： hexo d就可以一键部署到个人网页。</p>
+        <p></p><h1>常见js手写题</h1><br><br><p></p>
+<p></p><h2>函数防抖、函数节流、函数柯里化、二分查找、InstanceOf</h2><br><br><p></p>
+<p></p><h3>函数防抖<p></p>
+<pre>
+  function debounce(fn,wait){ //防抖：每次点击重置定时器
+    let timer = null
+    return (...arg)=>{
+      let self = this
+      clearTimeout(timer)
+      timer = setTimeout(()=>{
+        fn.apply(self,arg)
+      },wait)
+    }
+  }
+</pre>
+<br>
+<h3>函数节流
+<pre>
+  function throttle(fn,wait){ //节流：规定时延内重复作用无效
+    let flag = false
+    return (...arg)=>{
+      let self = this 
+      if(flag){retun}
+      flag = true;
+      setTimeout(()=>{
+        fn.apply(self,arg)
+      },wait)
+    }
+  }
+</pre>
+<br>
+<h3>函数柯里化
+<pre>
+function curry(fn,arg=[]){ //传入一个函数，返回一个函数
+    let length = fn.length
+    return (...rest)=>{
+      let _arg = arg.slice(0) //获得现有参数数组深拷贝副本
+      _arg.push(...rest) //将函数参数传入现存参数数组
+      if(length > _arg.length){
+        return curry.call(this,fn,_arg) //参数未传够则递归
+      } else {
+        fn.apply(this,_arg)      }
+  }
+}
+</pre>
+<br>
+<h3>二分查找
+<pre>
+  function binarySearch(arr,target){ //输入数字，目标；返回找到的下标
+    let left =0,
+        right =arr.length-1,
+        mid;
+    while(left < right){
+      mid =Math.floor((left+right)/2);
+      if(target > arr[mid]){
+        left = mid+1
+      }
+      else if (targrt < arr[mid]){
+        right = mid-1
+      }
+      else {
+        return mid
+      }
+    }    
+  } 
+</pre>
+<br>
+<h3>InstanceOf实现
+<pre>
+  InstanceOf = (A,B)=>{  //A：需判定的子类；B：父类
+    let a = A.__proto__;
+    let b = B.prototype;
+    while(true){
+      if(a === b){ return true } //原型继承条件：子类隐式原型指向父类显示原型
+      if(a === null){return false}
+      a = a.__proto__
+    }
+  }
+</pre>
+
+
+
+
+
+
+
+</h3></h3></h3></h3></h3>
       
     </div>
     
@@ -360,8 +445,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/25/post02/" rel="next" title="笔记02常见http状态码">
-                <i class="fa fa-chevron-left"></i> 笔记02常见http状态码
+              <a href="/2020/01/24/post12/" rel="next" title="笔记12前后端常用的鉴权方式">
+                <i class="fa fa-chevron-left"></i> 笔记12前后端常用的鉴权方式
               </a>
             
           </div>
@@ -369,10 +454,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/25/post03/" rel="prev" title="笔记03浏览器缓存总结">
-                笔记03浏览器缓存总结 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -488,7 +569,275 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">hexo搭建博客基础总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">常见js手写题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.</span> <span class="nav-text">函数防抖、函数节流、函数柯里化、二分查找、InstanceOf</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.1.</span> <span class="nav-text">函数防抖
+
+  function debounce(fn,wait){ //防抖：每次点击重置定时器
+    let timer = null
+    return (...arg)=&gt;{
+      let self = this
+      clearTimeout(timer)
+      timer = setTimeout(()=&gt;{
+        fn.apply(self,arg)
+      },wait)
+    }
+  }
+
+
+函数节流
+
+  function throttle(fn,wait){ //节流：规定时延内重复作用无效
+    let flag = false
+    return (...arg)=&gt;{
+      let self = this 
+      if(flag){retun}
+      flag = true;
+      setTimeout(()=&gt;{
+        fn.apply(self,arg)
+      },wait)
+    }
+  }
+
+
+函数柯里化
+
+function curry(fn,arg=[]){ //传入一个函数，返回一个函数
+    let length = fn.length
+    return (...rest)=&gt;{
+      let _arg = arg.slice(0) //获得现有参数数组深拷贝副本
+      _arg.push(...rest) //将函数参数传入现存参数数组
+      if(length &gt; _arg.length){
+        return curry.call(this,fn,_arg) //参数未传够则递归
+      } else {
+        fn.apply(this,_arg)      }
+  }
+}
+
+
+二分查找
+
+  function binarySearch(arr,target){ //输入数字，目标；返回找到的下标
+    let left =0,
+        right =arr.length-1,
+        mid;
+    while(left &lt; right){
+      mid =Math.floor((left+right)/2);
+      if(target &gt; arr[mid]){
+        left = mid+1
+      }
+      else if (targrt &lt; arr[mid]){
+        right = mid-1
+      }
+      else {
+        return mid
+      }
+    }    
+  } 
+
+
+InstanceOf实现
+
+  InstanceOf = (A,B)=&gt;{  //A：需判定的子类；B：父类
+    let a = A.__proto__;
+    let b = B.prototype;
+    while(true){
+      if(a === b){ return true } //原型继承条件：子类隐式原型指向父类显示原型
+      if(a === null){return false}
+      a = a.__proto__
+    }
+  }
+
+
+
+
+
+
+
+
+</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.2.</span> <span class="nav-text">函数节流
+
+  function throttle(fn,wait){ //节流：规定时延内重复作用无效
+    let flag = false
+    return (...arg)=&gt;{
+      let self = this 
+      if(flag){retun}
+      flag = true;
+      setTimeout(()=&gt;{
+        fn.apply(self,arg)
+      },wait)
+    }
+  }
+
+
+函数柯里化
+
+function curry(fn,arg=[]){ //传入一个函数，返回一个函数
+    let length = fn.length
+    return (...rest)=&gt;{
+      let _arg = arg.slice(0) //获得现有参数数组深拷贝副本
+      _arg.push(...rest) //将函数参数传入现存参数数组
+      if(length &gt; _arg.length){
+        return curry.call(this,fn,_arg) //参数未传够则递归
+      } else {
+        fn.apply(this,_arg)      }
+  }
+}
+
+
+二分查找
+
+  function binarySearch(arr,target){ //输入数字，目标；返回找到的下标
+    let left =0,
+        right =arr.length-1,
+        mid;
+    while(left &lt; right){
+      mid =Math.floor((left+right)/2);
+      if(target &gt; arr[mid]){
+        left = mid+1
+      }
+      else if (targrt &lt; arr[mid]){
+        right = mid-1
+      }
+      else {
+        return mid
+      }
+    }    
+  } 
+
+
+InstanceOf实现
+
+  InstanceOf = (A,B)=&gt;{  //A：需判定的子类；B：父类
+    let a = A.__proto__;
+    let b = B.prototype;
+    while(true){
+      if(a === b){ return true } //原型继承条件：子类隐式原型指向父类显示原型
+      if(a === null){return false}
+      a = a.__proto__
+    }
+  }
+
+
+
+
+
+
+
+
+</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.3.</span> <span class="nav-text">函数柯里化
+
+function curry(fn,arg=[]){ //传入一个函数，返回一个函数
+    let length = fn.length
+    return (...rest)=&gt;{
+      let _arg = arg.slice(0) //获得现有参数数组深拷贝副本
+      _arg.push(...rest) //将函数参数传入现存参数数组
+      if(length &gt; _arg.length){
+        return curry.call(this,fn,_arg) //参数未传够则递归
+      } else {
+        fn.apply(this,_arg)      }
+  }
+}
+
+
+二分查找
+
+  function binarySearch(arr,target){ //输入数字，目标；返回找到的下标
+    let left =0,
+        right =arr.length-1,
+        mid;
+    while(left &lt; right){
+      mid =Math.floor((left+right)/2);
+      if(target &gt; arr[mid]){
+        left = mid+1
+      }
+      else if (targrt &lt; arr[mid]){
+        right = mid-1
+      }
+      else {
+        return mid
+      }
+    }    
+  } 
+
+
+InstanceOf实现
+
+  InstanceOf = (A,B)=&gt;{  //A：需判定的子类；B：父类
+    let a = A.__proto__;
+    let b = B.prototype;
+    while(true){
+      if(a === b){ return true } //原型继承条件：子类隐式原型指向父类显示原型
+      if(a === null){return false}
+      a = a.__proto__
+    }
+  }
+
+
+
+
+
+
+
+
+</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.4.</span> <span class="nav-text">二分查找
+
+  function binarySearch(arr,target){ //输入数字，目标；返回找到的下标
+    let left =0,
+        right =arr.length-1,
+        mid;
+    while(left &lt; right){
+      mid =Math.floor((left+right)/2);
+      if(target &gt; arr[mid]){
+        left = mid+1
+      }
+      else if (targrt &lt; arr[mid]){
+        right = mid-1
+      }
+      else {
+        return mid
+      }
+    }    
+  } 
+
+
+InstanceOf实现
+
+  InstanceOf = (A,B)=&gt;{  //A：需判定的子类；B：父类
+    let a = A.__proto__;
+    let b = B.prototype;
+    while(true){
+      if(a === b){ return true } //原型继承条件：子类隐式原型指向父类显示原型
+      if(a === null){return false}
+      a = a.__proto__
+    }
+  }
+
+
+
+
+
+
+
+
+</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.5.</span> <span class="nav-text">InstanceOf实现
+
+  InstanceOf = (A,B)=&gt;{  //A：需判定的子类；B：父类
+    let a = A.__proto__;
+    let b = B.prototype;
+    while(true){
+      if(a === b){ return true } //原型继承条件：子类隐式原型指向父类显示原型
+      if(a === null){return false}
+      a = a.__proto__
+    }
+  }
+
+
+
+
+
+
+
+
+</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
