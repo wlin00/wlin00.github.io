@@ -105,17 +105,17 @@
 
 
 
-<meta name="description" content="常见js手写题2 PromiseAll、PromiseRace、走楼梯问题、repeat函数、最长回文子串 PromiseAll      //特点:等所有Promise执行成功，再resolve；一旦有一个失败回调第一个失败     function PromiseAll(arr){        return new Promise(){       let index = 0,">
+<meta name="description" content="常见js手写题2 PromiseAll、PromiseRace、走楼梯问题、repeat函数、最长回文子串、两数/三数和 PromiseAll      //特点:等所有Promise执行成功，再resolve；一旦有一个失败回调第一个失败     function PromiseAll(arr){        return new Promise(){       let index = 0,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="笔记14常见js手写题(2)">
 <meta property="og:url" content="http://yoursite.com/2020/01/26/post14/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="常见js手写题2 PromiseAll、PromiseRace、走楼梯问题、repeat函数、最长回文子串 PromiseAll      //特点:等所有Promise执行成功，再resolve；一旦有一个失败回调第一个失败     function PromiseAll(arr){        return new Promise(){       let index = 0,">
+<meta property="og:description" content="常见js手写题2 PromiseAll、PromiseRace、走楼梯问题、repeat函数、最长回文子串、两数/三数和 PromiseAll      //特点:等所有Promise执行成功，再resolve；一旦有一个失败回调第一个失败     function PromiseAll(arr){        return new Promise(){       let index = 0,">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-01-26T13:36:43.006Z">
+<meta property="og:updated_time" content="2020-01-27T09:07:13.654Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="笔记14常见js手写题(2)">
-<meta name="twitter:description" content="常见js手写题2 PromiseAll、PromiseRace、走楼梯问题、repeat函数、最长回文子串 PromiseAll      //特点:等所有Promise执行成功，再resolve；一旦有一个失败回调第一个失败     function PromiseAll(arr){        return new Promise(){       let index = 0,">
+<meta name="twitter:description" content="常见js手写题2 PromiseAll、PromiseRace、走楼梯问题、repeat函数、最长回文子串、两数/三数和 PromiseAll      //特点:等所有Promise执行成功，再resolve；一旦有一个失败回调第一个失败     function PromiseAll(arr){        return new Promise(){       let index = 0,">
 
 
 
@@ -336,7 +336,7 @@
 
       
         <p></p><h1>常见js手写题2</h1><br><br><p></p>
-<p></p><h2>PromiseAll、PromiseRace、走楼梯问题、repeat函数、最长回文子串</h2><br><br><p></p>
+<p></p><h2>PromiseAll、PromiseRace、走楼梯问题、repeat函数、最长回文子串、两数/三数和</h2><br><br><p></p>
 <p></p><h3>PromiseAll<p></p>
 <pre>
     //特点:等所有Promise执行成功，再resolve；一旦有一个失败回调第一个失败
@@ -458,13 +458,64 @@
     return result
   }
 </=2){></pre>
+<br>
+<h3>两数之和
+<pre>
+  //需求：输入数组、目标和；返回和等于目标的两数下标
+  <br>
+  function sumOfTwo(arr,target){
+    let res=[]; //维护一个hash-map
+    for(let i=0;i < arr.length;i++){
+      if(res[arr[i]] === undefined){
+        res[target - arr[i]] = i
+      } else {
+          return [res[arr[i]],i]
+      }
+    }
+  }
+</pre>
+<br>
+<h3>三数之和
+<pre>
+  //需求：输入数组；返回三数之和为0的数
+  <br>
+  function sumOfThree(arr){
+    arr=arr.sort((a,b)=>a-b) //对输入数组排序
+    let res = [];
+    for(let i=0;i < arr.length-2;i++){
+      if(i>=1 && arr[i] === arr[i-1]){ //对第一位i去重
+        continue; 
+      }
+      let j = i+1,
+          k = arr.length-1;
+      while(j < k){
+        let sum = arr[i]+arr[j]+arr[k];//获取三数之和
+        if(sum ===0){
+          res.push(arr[i],arr[j],arr[k])
+          j++;
+          while(arr[j] === arr[j-1]){ //对第二位数j去重
+            j++;
+          }
+        }
+        else if(sum < 0){
+          j++;
+        }
+        else if(sum > 0){
+          k--;    
+        }
+      }    
+    }
+    return res;
+  }
+</pre>
 
 
 
 
 
 
-</h3></h3></h3></h3></h3>
+
+</h3></h3></h3></h3></h3></h3></h3>
       
     </div>
     
@@ -612,7 +663,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">常见js手写题2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.</span> <span class="nav-text">PromiseAll、PromiseRace、走楼梯问题、repeat函数、最长回文子串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.1.</span> <span class="nav-text">PromiseAll
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">常见js手写题2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.</span> <span class="nav-text">PromiseAll、PromiseRace、走楼梯问题、repeat函数、最长回文子串、两数/三数和</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.1.</span> <span class="nav-text">PromiseAll
 
     //特点:等所有Promise执行成功，再resolve；一旦有一个失败回调第一个失败
     function PromiseAll(arr){ 
@@ -734,6 +785,57 @@ rePeat函数
   }
 
 
+两数之和
+
+  //需求：输入数组、目标和；返回和等于目标的两数下标
+  
+  function sumOfTwo(arr,target){
+    let res=[]; //维护一个hash-map
+    for(let i=0;i &lt; arr.length;i++){
+      if(res[arr[i]] === undefined){
+        res[target - arr[i]] = i
+      } else {
+          return [res[arr[i]],i]
+      }
+    }
+  }
+
+
+三数之和
+
+  //需求：输入数组；返回三数之和为0的数
+  
+  function sumOfThree(arr){
+    arr=arr.sort((a,b)=&gt;a-b) //对输入数组排序
+    let res = [];
+    for(let i=0;i &lt; arr.length-2;i++){
+      if(i&gt;=1 &amp;&amp; arr[i] === arr[i-1]){ //对第一位i去重
+        continue; 
+      }
+      let j = i+1,
+          k = arr.length-1;
+      while(j &lt; k){
+        let sum = arr[i]+arr[j]+arr[k];//获取三数之和
+        if(sum ===0){
+          res.push(arr[i],arr[j],arr[k])
+          j++;
+          while(arr[j] === arr[j-1]){ //对第二位数j去重
+            j++;
+          }
+        }
+        else if(sum &lt; 0){
+          j++;
+        }
+        else if(sum &gt; 0){
+          k--;    
+        }
+      }    
+    }
+    return res;
+  }
+
+
+
 
 
 
@@ -836,6 +938,57 @@ rePeat函数
   }
 
 
+两数之和
+
+  //需求：输入数组、目标和；返回和等于目标的两数下标
+  
+  function sumOfTwo(arr,target){
+    let res=[]; //维护一个hash-map
+    for(let i=0;i &lt; arr.length;i++){
+      if(res[arr[i]] === undefined){
+        res[target - arr[i]] = i
+      } else {
+          return [res[arr[i]],i]
+      }
+    }
+  }
+
+
+三数之和
+
+  //需求：输入数组；返回三数之和为0的数
+  
+  function sumOfThree(arr){
+    arr=arr.sort((a,b)=&gt;a-b) //对输入数组排序
+    let res = [];
+    for(let i=0;i &lt; arr.length-2;i++){
+      if(i&gt;=1 &amp;&amp; arr[i] === arr[i-1]){ //对第一位i去重
+        continue; 
+      }
+      let j = i+1,
+          k = arr.length-1;
+      while(j &lt; k){
+        let sum = arr[i]+arr[j]+arr[k];//获取三数之和
+        if(sum ===0){
+          res.push(arr[i],arr[j],arr[k])
+          j++;
+          while(arr[j] === arr[j-1]){ //对第二位数j去重
+            j++;
+          }
+        }
+        else if(sum &lt; 0){
+          j++;
+        }
+        else if(sum &gt; 0){
+          k--;    
+        }
+      }    
+    }
+    return res;
+  }
+
+
+
 
 
 
@@ -926,6 +1079,57 @@ rePeat函数
   }
 
 
+两数之和
+
+  //需求：输入数组、目标和；返回和等于目标的两数下标
+  
+  function sumOfTwo(arr,target){
+    let res=[]; //维护一个hash-map
+    for(let i=0;i &lt; arr.length;i++){
+      if(res[arr[i]] === undefined){
+        res[target - arr[i]] = i
+      } else {
+          return [res[arr[i]],i]
+      }
+    }
+  }
+
+
+三数之和
+
+  //需求：输入数组；返回三数之和为0的数
+  
+  function sumOfThree(arr){
+    arr=arr.sort((a,b)=&gt;a-b) //对输入数组排序
+    let res = [];
+    for(let i=0;i &lt; arr.length-2;i++){
+      if(i&gt;=1 &amp;&amp; arr[i] === arr[i-1]){ //对第一位i去重
+        continue; 
+      }
+      let j = i+1,
+          k = arr.length-1;
+      while(j &lt; k){
+        let sum = arr[i]+arr[j]+arr[k];//获取三数之和
+        if(sum ===0){
+          res.push(arr[i],arr[j],arr[k])
+          j++;
+          while(arr[j] === arr[j-1]){ //对第二位数j去重
+            j++;
+          }
+        }
+        else if(sum &lt; 0){
+          j++;
+        }
+        else if(sum &gt; 0){
+          k--;    
+        }
+      }    
+    }
+    return res;
+  }
+
+
+
 
 
 
@@ -990,6 +1194,57 @@ rePeat函数
   }
 
 
+两数之和
+
+  //需求：输入数组、目标和；返回和等于目标的两数下标
+  
+  function sumOfTwo(arr,target){
+    let res=[]; //维护一个hash-map
+    for(let i=0;i &lt; arr.length;i++){
+      if(res[arr[i]] === undefined){
+        res[target - arr[i]] = i
+      } else {
+          return [res[arr[i]],i]
+      }
+    }
+  }
+
+
+三数之和
+
+  //需求：输入数组；返回三数之和为0的数
+  
+  function sumOfThree(arr){
+    arr=arr.sort((a,b)=&gt;a-b) //对输入数组排序
+    let res = [];
+    for(let i=0;i &lt; arr.length-2;i++){
+      if(i&gt;=1 &amp;&amp; arr[i] === arr[i-1]){ //对第一位i去重
+        continue; 
+      }
+      let j = i+1,
+          k = arr.length-1;
+      while(j &lt; k){
+        let sum = arr[i]+arr[j]+arr[k];//获取三数之和
+        if(sum ===0){
+          res.push(arr[i],arr[j],arr[k])
+          j++;
+          while(arr[j] === arr[j-1]){ //对第二位数j去重
+            j++;
+          }
+        }
+        else if(sum &lt; 0){
+          j++;
+        }
+        else if(sum &gt; 0){
+          k--;    
+        }
+      }    
+    }
+    return res;
+  }
+
+
+
 
 
 
@@ -1034,6 +1289,153 @@ rePeat函数
     }
     return result
   }
+
+
+两数之和
+
+  //需求：输入数组、目标和；返回和等于目标的两数下标
+  
+  function sumOfTwo(arr,target){
+    let res=[]; //维护一个hash-map
+    for(let i=0;i &lt; arr.length;i++){
+      if(res[arr[i]] === undefined){
+        res[target - arr[i]] = i
+      } else {
+          return [res[arr[i]],i]
+      }
+    }
+  }
+
+
+三数之和
+
+  //需求：输入数组；返回三数之和为0的数
+  
+  function sumOfThree(arr){
+    arr=arr.sort((a,b)=&gt;a-b) //对输入数组排序
+    let res = [];
+    for(let i=0;i &lt; arr.length-2;i++){
+      if(i&gt;=1 &amp;&amp; arr[i] === arr[i-1]){ //对第一位i去重
+        continue; 
+      }
+      let j = i+1,
+          k = arr.length-1;
+      while(j &lt; k){
+        let sum = arr[i]+arr[j]+arr[k];//获取三数之和
+        if(sum ===0){
+          res.push(arr[i],arr[j],arr[k])
+          j++;
+          while(arr[j] === arr[j-1]){ //对第二位数j去重
+            j++;
+          }
+        }
+        else if(sum &lt; 0){
+          j++;
+        }
+        else if(sum &gt; 0){
+          k--;    
+        }
+      }    
+    }
+    return res;
+  }
+
+
+
+
+
+
+
+
+</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.6.</span> <span class="nav-text">两数之和
+
+  //需求：输入数组、目标和；返回和等于目标的两数下标
+  
+  function sumOfTwo(arr,target){
+    let res=[]; //维护一个hash-map
+    for(let i=0;i &lt; arr.length;i++){
+      if(res[arr[i]] === undefined){
+        res[target - arr[i]] = i
+      } else {
+          return [res[arr[i]],i]
+      }
+    }
+  }
+
+
+三数之和
+
+  //需求：输入数组；返回三数之和为0的数
+  
+  function sumOfThree(arr){
+    arr=arr.sort((a,b)=&gt;a-b) //对输入数组排序
+    let res = [];
+    for(let i=0;i &lt; arr.length-2;i++){
+      if(i&gt;=1 &amp;&amp; arr[i] === arr[i-1]){ //对第一位i去重
+        continue; 
+      }
+      let j = i+1,
+          k = arr.length-1;
+      while(j &lt; k){
+        let sum = arr[i]+arr[j]+arr[k];//获取三数之和
+        if(sum ===0){
+          res.push(arr[i],arr[j],arr[k])
+          j++;
+          while(arr[j] === arr[j-1]){ //对第二位数j去重
+            j++;
+          }
+        }
+        else if(sum &lt; 0){
+          j++;
+        }
+        else if(sum &gt; 0){
+          k--;    
+        }
+      }    
+    }
+    return res;
+  }
+
+
+
+
+
+
+
+
+</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.7.</span> <span class="nav-text">三数之和
+
+  //需求：输入数组；返回三数之和为0的数
+  
+  function sumOfThree(arr){
+    arr=arr.sort((a,b)=&gt;a-b) //对输入数组排序
+    let res = [];
+    for(let i=0;i &lt; arr.length-2;i++){
+      if(i&gt;=1 &amp;&amp; arr[i] === arr[i-1]){ //对第一位i去重
+        continue; 
+      }
+      let j = i+1,
+          k = arr.length-1;
+      while(j &lt; k){
+        let sum = arr[i]+arr[j]+arr[k];//获取三数之和
+        if(sum ===0){
+          res.push(arr[i],arr[j],arr[k])
+          j++;
+          while(arr[j] === arr[j-1]){ //对第二位数j去重
+            j++;
+          }
+        }
+        else if(sum &lt; 0){
+          j++;
+        }
+        else if(sum &gt; 0){
+          k--;    
+        }
+      }    
+    }
+    return res;
+  }
+
 
 
 
