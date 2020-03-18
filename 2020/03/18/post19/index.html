@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="原生js-封装一个单选/多选框 html部分   &amp;lt; div id=’jsCheckGroup’&amp;gt;      &amp;lt; div id=’checkgroup radius’&amp;gt;          &amp;lt; div data-val = ‘a’ class =’item’&amp;gt; 选项A &amp;lt; /div&amp;gt;          &amp;lt; div data-val = ‘b’ c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="post19">
+<meta property="og:url" content="http://yoursite.com/2020/03/18/post19/index.html">
+<meta property="og:site_name">
+<meta property="og:description" content="原生js-封装一个单选/多选框 html部分   &amp;lt; div id=’jsCheckGroup’&amp;gt;      &amp;lt; div id=’checkgroup radius’&amp;gt;          &amp;lt; div data-val = ‘a’ class =’item’&amp;gt; 选项A &amp;lt; /div&amp;gt;          &amp;lt; div data-val = ‘b’ c">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-03-18T14:32:06.656Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="post19">
+<meta name="twitter:description" content="原生js-封装一个单选/多选框 html部分   &amp;lt; div id=’jsCheckGroup’&amp;gt;      &amp;lt; div id=’checkgroup radius’&amp;gt;          &amp;lt; div data-val = ‘a’ class =’item’&amp;gt; 选项A &amp;lt; /div&amp;gt;          &amp;lt; div data-val = ‘b’ c">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/03/18/post19/">
+
+
+
+
+
+  <title>post19 | </title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title"></span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-nav">
+          <a href="/nav/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            站点导航
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/18/post19/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZJJ00">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/02.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">post19</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-18T21:30:48+08:00">
+                2020-03-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p></p><h1>原生js-封装一个单选/多选框</h1><br><br><p></p>
+<p></p><h3>html部分<br><br><p></p>
+<p><pre><br>  &lt; div id=’jsCheckGroup’&gt;<br>      &lt; div id=’checkgroup radius’&gt;<br>          &lt; div data-val = ‘a’ class =’item’&gt; 选项A &lt; /div&gt;<br>          &lt; div data-val = ‘b’ class =’item’&gt; 选项B &lt; /div&gt;<br>          &lt; div data-val = ‘c’ class =’item’&gt; 选项C &lt; /div&gt;<br>          &lt; div data-val = ‘d’ class =’item’&gt; 选项D &lt; /div&gt;<br>      &lt; /div&gt;<br>  &lt; /div&gt;  </pre></p>
+<p><br><br></p>
+<p></p><h3>css部分<br><br><p></p>
+<p><pre><br>  *{<br>    padding:0,<br>    marin:0;<br>  }  </pre></p>
+<p> .checkgroup .item {<br>    height: 42px<br>    line-height: 42px<br>    padding: 0 10px<br>    margin: 10px 0<br>    border: 1px solid #c7c7c7<br>    border-radius: 6px<br> }</p>
+<p>.checkgroup.radius .item{<br>    boder-radius:21px<br>}</p>
+<p>.checkoutgroup .item.selected{<br>    border:1px solid #08b292<br>    background: #08b292<br>    color: #ffffff<br>}</p>
+<p><br><br></p>
+<p></p><h3>js部分<br><br><p></p>
+<p><pre><br>    &lt; script type=’text/javascript’ src= ‘../js/1.js’&gt; &lt; /script&gt;<br>    &lt; script type=’text/javascript’ &gt;</pre></p>
+<pre><code>   var option = [
+       {text:&apos;a&apos;, value:&apos;选项一&apos;},
+       {text:&apos;b&apos;, value:&apos;选项二&apos;},
+       {text:&apos;c&apos;, value:&apos;选项三&apos;},
+       {text:&apos;d&apos;, value:&apos;选项四&apos;},
+   ]
+
+   function CheckGroup (renderTo,options,isMultiple){  //声明一个选择框的构造函数
+    //参数： renderTo用于获取Dom节点、 options赋予初始数据， isMultiple为true代表实现多选框
+      var that = this;
+      that.renderTo = renderTo
+      that.options = options
+      that.isMultiple = !! isMultiple //保存当前执行上下文
+      that.initHtml()  //初始化当前页面
+      that.initEvent() //初始化当前事件
+   }
+
+   CheckGroup.prototype.initHtml = fInitHtml;      //将全局作用域中的方法封装到构造函数的原型上
+   CheckGroup.prototype.initEvent = fInitEvent;  
+   CheckGroup.prototype.toggleEl = fToggleEl;      //处理当前点击选中的元素
+   CheckGroup.prototype.isSelected = fIsSelected;  //判断当前元素是否被选中
+   CheckGroup.prototype.val = fVal;                //提供一个供用户输入所选则元素的对外接口
+
+   function fInitHtml(){
+        //初始化页面
+     var that = this,
+         sHtml = &apos;&apos;
+     that.renderTo.innerHtml += sHtml
+     // 获取选择框的元素引用,方法封装在当前上下文中
+     that.el = null
+     that.el = document.getElementById(&apos;jsCheckGroup&apos;)
+   }
+
+   function fInitEvent(){
+    //初始化事件
+    var that = this;
+    that.el &amp;&amp; that.el.addEventListener(&apos;click&apos;,function(event){
+        var item = event.target   // 获取点击事件
+        item.classList.contain(&apos;item&apos;) &amp;&amp; that.toggleEl(item) //执行原型上的toggleEl方法 
+    })
+   }
+
+   function fToggleEl(){ 
+     //处理当前点击选中的元素
+     var that = this
+     if(that.isSelected (item,that.active)){
+             //判断当前处理的点击事件元素是否已选中，是的话清除样式、更新选中数组
+          item.classList.remove(&apos;selected&apos;)
+          that.active.forEach((e,i)=&gt;{
+              if(e === item.getAttribute(&apos;data-val&apos;)){
+                  that.active.splice(i,1)
+              }
+          })
+
+     } else if( that.isMultiple ){
+             //若未选中，且当前实例由‘多选框’构造，直接添加样式、更新选中数组
+             item.classList.add(&apos;selected&apos;)
+             that.active.push(item.getAttribute(&apos;data-val&apos;))
+
+     } else {
+             //若未选中，且当前实例由‘单选框’构造,先清除其余样式，再添加、并更新选中数组
+             document.querySelectorAll(&apos;#jsCheckGroup .item&apos;).forEach(E=&gt;{
+              E.classList.remove(&apos;selected&apos;)   
+             })
+             item.classList.add(&apos;selected&apos;)
+             that.active=[]
+             that.active.push(item.getAttribute(&apos;data-val&apos;))
+     } 
+   }
+
+   function fIsSelected(item,arr){
+     //判断当前元素是否被选中
+     if(arr.indexOf(item.getAttribute(&apos;data-val&apos;))!==-1){
+           return true
+     }
+     else {
+         return false
+     }
+   }
+
+   function fVal( values ){
+   //提供一个供用户输入所选则元素的对外接口,根据用户输入改变当前选中
+   var that = this 
+   //当前若是多选框，只接受第一个数据
+   !that.isMultiple &amp;&amp; values.length&gt;-1 &amp;&amp; (values.length = 1) 
+
+   let currentActive = []
+   document.querySelectorAll(&apos;.item&apos;)
+   let currentArr = []
+   all.forEach(e=&gt;{
+      if(values.indexOf(e.getAttribute(&apos;data-val&apos;))!==-1){
+          e.classList.add(&apos;selected&apos;)
+          currentActive.push(e.getAttribute(&apos;data-val&apos;))
+      }
+   })
+   that.active = currentActive // 在that作用域上进行封装当前的选中数组
+   }
+
+&lt; /script&gt;
+</code></pre><p><br><br></p>
+</h3></h3></h3>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/18/post18/" rel="next" title="post18">
+                <i class="fa fa-chevron-left"></i> post18
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/02.jpg" alt="ZJJ00">
+            
+              <p class="site-author-name" itemprop="name">ZJJ00</p>
+              <p class="site-description motion-element" itemprop="description">Heal the scars Change the stars</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">原生js-封装一个单选/多选框</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.1.</span> <span class="nav-text">html部分
+  &lt; div id=’jsCheckGroup’&gt;      &lt; div id=’checkgroup radius’&gt;          &lt; div data-val = ‘a’ class =’item’&gt; 选项A &lt; /div&gt;          &lt; div data-val = ‘b’ class =’item’&gt; 选项B &lt; /div&gt;          &lt; div data-val = ‘c’ class =’item’&gt; 选项C &lt; /div&gt;          &lt; div data-val = ‘d’ class =’item’&gt; 选项D &lt; /div&gt;      &lt; /div&gt;  &lt; /div&gt;  
+
+css部分
+  *{    padding:0,    marin:0;  }  
+ .checkgroup .item {    height: 42px    line-height: 42px    padding: 0 10px    margin: 10px 0    border: 1px solid #c7c7c7    border-radius: 6px }
+.checkgroup.radius .item{    boder-radius:21px}
+.checkoutgroup .item.selected{    border:1px solid #08b292    background: #08b292    color: #ffffff}
+
+js部分
+    &lt; script type=’text/javascript’ src= ‘../js/1.js’&gt; &lt; /script&gt;    &lt; script type=’text/javascript’ &gt;
+   var option = [
+       {text:&#39;a&#39;, value:&#39;选项一&#39;},
+       {text:&#39;b&#39;, value:&#39;选项二&#39;},
+       {text:&#39;c&#39;, value:&#39;选项三&#39;},
+       {text:&#39;d&#39;, value:&#39;选项四&#39;},
+   ]
+
+   function CheckGroup (renderTo,options,isMultiple){  //声明一个选择框的构造函数
+    //参数： renderTo用于获取Dom节点、 options赋予初始数据， isMultiple为true代表实现多选框
+      var that = this;
+      that.renderTo = renderTo
+      that.options = options
+      that.isMultiple = !! isMultiple //保存当前执行上下文
+      that.initHtml()  //初始化当前页面
+      that.initEvent() //初始化当前事件
+   }
+
+   CheckGroup.prototype.initHtml = fInitHtml;      //将全局作用域中的方法封装到构造函数的原型上
+   CheckGroup.prototype.initEvent = fInitEvent;  
+   CheckGroup.prototype.toggleEl = fToggleEl;      //处理当前点击选中的元素
+   CheckGroup.prototype.isSelected = fIsSelected;  //判断当前元素是否被选中
+   CheckGroup.prototype.val = fVal;                //提供一个供用户输入所选则元素的对外接口
+
+   function fInitHtml(){
+        //初始化页面
+     var that = this,
+         sHtml = &#39;&#39;
+     that.renderTo.innerHtml += sHtml
+     // 获取选择框的元素引用,方法封装在当前上下文中
+     that.el = null
+     that.el = document.getElementById(&#39;jsCheckGroup&#39;)
+   }
+
+   function fInitEvent(){
+    //初始化事件
+    var that = this;
+    that.el &amp;&amp; that.el.addEventListener(&#39;click&#39;,function(event){
+        var item = event.target   // 获取点击事件
+        item.classList.contain(&#39;item&#39;) &amp;&amp; that.toggleEl(item) //执行原型上的toggleEl方法 
+    })
+   }
+
+   function fToggleEl(){ 
+     //处理当前点击选中的元素
+     var that = this
+     if(that.isSelected (item,that.active)){
+             //判断当前处理的点击事件元素是否已选中，是的话清除样式、更新选中数组
+          item.classList.remove(&#39;selected&#39;)
+          that.active.forEach((e,i)=&gt;{
+              if(e === item.getAttribute(&#39;data-val&#39;)){
+                  that.active.splice(i,1)
+              }
+          })
+
+     } else if( that.isMultiple ){
+             //若未选中，且当前实例由‘多选框’构造，直接添加样式、更新选中数组
+             item.classList.add(&#39;selected&#39;)
+             that.active.push(item.getAttribute(&#39;data-val&#39;))
+
+     } else {
+             //若未选中，且当前实例由‘单选框’构造,先清除其余样式，再添加、并更新选中数组
+             document.querySelectorAll(&#39;#jsCheckGroup .item&#39;).forEach(E=&gt;{
+              E.classList.remove(&#39;selected&#39;)   
+             })
+             item.classList.add(&#39;selected&#39;)
+             that.active=[]
+             that.active.push(item.getAttribute(&#39;data-val&#39;))
+     } 
+   }
+
+   function fIsSelected(item,arr){
+     //判断当前元素是否被选中
+     if(arr.indexOf(item.getAttribute(&#39;data-val&#39;))!==-1){
+           return true
+     }
+     else {
+         return false
+     }
+   }
+
+   function fVal( values ){
+   //提供一个供用户输入所选则元素的对外接口,根据用户输入改变当前选中
+   var that = this 
+   //当前若是多选框，只接受第一个数据
+   !that.isMultiple &amp;&amp; values.length&gt;-1 &amp;&amp; (values.length = 1) 
+
+   let currentActive = []
+   document.querySelectorAll(&#39;.item&#39;)
+   let currentArr = []
+   all.forEach(e=&gt;{
+      if(values.indexOf(e.getAttribute(&#39;data-val&#39;))!==-1){
+          e.classList.add(&#39;selected&#39;)
+          currentActive.push(e.getAttribute(&#39;data-val&#39;))
+      }
+   })
+   that.active = currentActive // 在that作用域上进行封装当前的选中数组
+   }
+
+&lt; /script&gt;
+
+</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.2.</span> <span class="nav-text">css部分
+  *{    padding:0,    marin:0;  }  
+ .checkgroup .item {    height: 42px    line-height: 42px    padding: 0 10px    margin: 10px 0    border: 1px solid #c7c7c7    border-radius: 6px }
+.checkgroup.radius .item{    boder-radius:21px}
+.checkoutgroup .item.selected{    border:1px solid #08b292    background: #08b292    color: #ffffff}
+
+js部分
+    &lt; script type=’text/javascript’ src= ‘../js/1.js’&gt; &lt; /script&gt;    &lt; script type=’text/javascript’ &gt;
+   var option = [
+       {text:&#39;a&#39;, value:&#39;选项一&#39;},
+       {text:&#39;b&#39;, value:&#39;选项二&#39;},
+       {text:&#39;c&#39;, value:&#39;选项三&#39;},
+       {text:&#39;d&#39;, value:&#39;选项四&#39;},
+   ]
+
+   function CheckGroup (renderTo,options,isMultiple){  //声明一个选择框的构造函数
+    //参数： renderTo用于获取Dom节点、 options赋予初始数据， isMultiple为true代表实现多选框
+      var that = this;
+      that.renderTo = renderTo
+      that.options = options
+      that.isMultiple = !! isMultiple //保存当前执行上下文
+      that.initHtml()  //初始化当前页面
+      that.initEvent() //初始化当前事件
+   }
+
+   CheckGroup.prototype.initHtml = fInitHtml;      //将全局作用域中的方法封装到构造函数的原型上
+   CheckGroup.prototype.initEvent = fInitEvent;  
+   CheckGroup.prototype.toggleEl = fToggleEl;      //处理当前点击选中的元素
+   CheckGroup.prototype.isSelected = fIsSelected;  //判断当前元素是否被选中
+   CheckGroup.prototype.val = fVal;                //提供一个供用户输入所选则元素的对外接口
+
+   function fInitHtml(){
+        //初始化页面
+     var that = this,
+         sHtml = &#39;&#39;
+     that.renderTo.innerHtml += sHtml
+     // 获取选择框的元素引用,方法封装在当前上下文中
+     that.el = null
+     that.el = document.getElementById(&#39;jsCheckGroup&#39;)
+   }
+
+   function fInitEvent(){
+    //初始化事件
+    var that = this;
+    that.el &amp;&amp; that.el.addEventListener(&#39;click&#39;,function(event){
+        var item = event.target   // 获取点击事件
+        item.classList.contain(&#39;item&#39;) &amp;&amp; that.toggleEl(item) //执行原型上的toggleEl方法 
+    })
+   }
+
+   function fToggleEl(){ 
+     //处理当前点击选中的元素
+     var that = this
+     if(that.isSelected (item,that.active)){
+             //判断当前处理的点击事件元素是否已选中，是的话清除样式、更新选中数组
+          item.classList.remove(&#39;selected&#39;)
+          that.active.forEach((e,i)=&gt;{
+              if(e === item.getAttribute(&#39;data-val&#39;)){
+                  that.active.splice(i,1)
+              }
+          })
+
+     } else if( that.isMultiple ){
+             //若未选中，且当前实例由‘多选框’构造，直接添加样式、更新选中数组
+             item.classList.add(&#39;selected&#39;)
+             that.active.push(item.getAttribute(&#39;data-val&#39;))
+
+     } else {
+             //若未选中，且当前实例由‘单选框’构造,先清除其余样式，再添加、并更新选中数组
+             document.querySelectorAll(&#39;#jsCheckGroup .item&#39;).forEach(E=&gt;{
+              E.classList.remove(&#39;selected&#39;)   
+             })
+             item.classList.add(&#39;selected&#39;)
+             that.active=[]
+             that.active.push(item.getAttribute(&#39;data-val&#39;))
+     } 
+   }
+
+   function fIsSelected(item,arr){
+     //判断当前元素是否被选中
+     if(arr.indexOf(item.getAttribute(&#39;data-val&#39;))!==-1){
+           return true
+     }
+     else {
+         return false
+     }
+   }
+
+   function fVal( values ){
+   //提供一个供用户输入所选则元素的对外接口,根据用户输入改变当前选中
+   var that = this 
+   //当前若是多选框，只接受第一个数据
+   !that.isMultiple &amp;&amp; values.length&gt;-1 &amp;&amp; (values.length = 1) 
+
+   let currentActive = []
+   document.querySelectorAll(&#39;.item&#39;)
+   let currentArr = []
+   all.forEach(e=&gt;{
+      if(values.indexOf(e.getAttribute(&#39;data-val&#39;))!==-1){
+          e.classList.add(&#39;selected&#39;)
+          currentActive.push(e.getAttribute(&#39;data-val&#39;))
+      }
+   })
+   that.active = currentActive // 在that作用域上进行封装当前的选中数组
+   }
+
+&lt; /script&gt;
+
+</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.3.</span> <span class="nav-text">js部分
+    &lt; script type=’text/javascript’ src= ‘../js/1.js’&gt; &lt; /script&gt;    &lt; script type=’text/javascript’ &gt;
+   var option = [
+       {text:&#39;a&#39;, value:&#39;选项一&#39;},
+       {text:&#39;b&#39;, value:&#39;选项二&#39;},
+       {text:&#39;c&#39;, value:&#39;选项三&#39;},
+       {text:&#39;d&#39;, value:&#39;选项四&#39;},
+   ]
+
+   function CheckGroup (renderTo,options,isMultiple){  //声明一个选择框的构造函数
+    //参数： renderTo用于获取Dom节点、 options赋予初始数据， isMultiple为true代表实现多选框
+      var that = this;
+      that.renderTo = renderTo
+      that.options = options
+      that.isMultiple = !! isMultiple //保存当前执行上下文
+      that.initHtml()  //初始化当前页面
+      that.initEvent() //初始化当前事件
+   }
+
+   CheckGroup.prototype.initHtml = fInitHtml;      //将全局作用域中的方法封装到构造函数的原型上
+   CheckGroup.prototype.initEvent = fInitEvent;  
+   CheckGroup.prototype.toggleEl = fToggleEl;      //处理当前点击选中的元素
+   CheckGroup.prototype.isSelected = fIsSelected;  //判断当前元素是否被选中
+   CheckGroup.prototype.val = fVal;                //提供一个供用户输入所选则元素的对外接口
+
+   function fInitHtml(){
+        //初始化页面
+     var that = this,
+         sHtml = &#39;&#39;
+     that.renderTo.innerHtml += sHtml
+     // 获取选择框的元素引用,方法封装在当前上下文中
+     that.el = null
+     that.el = document.getElementById(&#39;jsCheckGroup&#39;)
+   }
+
+   function fInitEvent(){
+    //初始化事件
+    var that = this;
+    that.el &amp;&amp; that.el.addEventListener(&#39;click&#39;,function(event){
+        var item = event.target   // 获取点击事件
+        item.classList.contain(&#39;item&#39;) &amp;&amp; that.toggleEl(item) //执行原型上的toggleEl方法 
+    })
+   }
+
+   function fToggleEl(){ 
+     //处理当前点击选中的元素
+     var that = this
+     if(that.isSelected (item,that.active)){
+             //判断当前处理的点击事件元素是否已选中，是的话清除样式、更新选中数组
+          item.classList.remove(&#39;selected&#39;)
+          that.active.forEach((e,i)=&gt;{
+              if(e === item.getAttribute(&#39;data-val&#39;)){
+                  that.active.splice(i,1)
+              }
+          })
+
+     } else if( that.isMultiple ){
+             //若未选中，且当前实例由‘多选框’构造，直接添加样式、更新选中数组
+             item.classList.add(&#39;selected&#39;)
+             that.active.push(item.getAttribute(&#39;data-val&#39;))
+
+     } else {
+             //若未选中，且当前实例由‘单选框’构造,先清除其余样式，再添加、并更新选中数组
+             document.querySelectorAll(&#39;#jsCheckGroup .item&#39;).forEach(E=&gt;{
+              E.classList.remove(&#39;selected&#39;)   
+             })
+             item.classList.add(&#39;selected&#39;)
+             that.active=[]
+             that.active.push(item.getAttribute(&#39;data-val&#39;))
+     } 
+   }
+
+   function fIsSelected(item,arr){
+     //判断当前元素是否被选中
+     if(arr.indexOf(item.getAttribute(&#39;data-val&#39;))!==-1){
+           return true
+     }
+     else {
+         return false
+     }
+   }
+
+   function fVal( values ){
+   //提供一个供用户输入所选则元素的对外接口,根据用户输入改变当前选中
+   var that = this 
+   //当前若是多选框，只接受第一个数据
+   !that.isMultiple &amp;&amp; values.length&gt;-1 &amp;&amp; (values.length = 1) 
+
+   let currentActive = []
+   document.querySelectorAll(&#39;.item&#39;)
+   let currentArr = []
+   all.forEach(e=&gt;{
+      if(values.indexOf(e.getAttribute(&#39;data-val&#39;))!==-1){
+          e.classList.add(&#39;selected&#39;)
+          currentActive.push(e.getAttribute(&#39;data-val&#39;))
+      }
+   })
+   that.active = currentActive // 在that作用域上进行封装当前的选中数组
+   }
+
+&lt; /script&gt;
+
+</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZJJ00</span>
+
+  
+</div>
+
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+-->
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+ 
+</body>
+</html>
