@@ -107,14 +107,14 @@
 
 <meta name="description" content="原生js-封装一个单选/多选框 html部分   &amp;lt; div id=’jsCheckGroup’&amp;gt;      &amp;lt; div id=’checkgroup radius’&amp;gt;          &amp;lt; div data-val = ‘a’ class =’item’&amp;gt; 选项A &amp;lt; /div&amp;gt;          &amp;lt; div data-val = ‘b’ c">
 <meta property="og:type" content="article">
-<meta property="og:title" content="原生js实现单&#x2F;多选框组件">
+<meta property="og:title" content="笔记19原生js实现单&#x2F;多选框组件">
 <meta property="og:url" content="http://yoursite.com/2020/03/18/post19/index.html">
 <meta property="og:site_name">
 <meta property="og:description" content="原生js-封装一个单选/多选框 html部分   &amp;lt; div id=’jsCheckGroup’&amp;gt;      &amp;lt; div id=’checkgroup radius’&amp;gt;          &amp;lt; div data-val = ‘a’ class =’item’&amp;gt; 选项A &amp;lt; /div&amp;gt;          &amp;lt; div data-val = ‘b’ c">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-18T14:39:07.915Z">
+<meta property="og:updated_time" content="2020-03-18T14:50:30.911Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="原生js实现单&#x2F;多选框组件">
+<meta name="twitter:title" content="笔记19原生js实现单&#x2F;多选框组件">
 <meta name="twitter:description" content="原生js-封装一个单选/多选框 html部分   &amp;lt; div id=’jsCheckGroup’&amp;gt;      &amp;lt; div id=’checkgroup radius’&amp;gt;          &amp;lt; div data-val = ‘a’ class =’item’&amp;gt; 选项A &amp;lt; /div&amp;gt;          &amp;lt; div data-val = ‘b’ c">
 
 
@@ -151,7 +151,7 @@
 
 
 
-  <title>原生js实现单/多选框组件 | </title>
+  <title>笔记19原生js实现单/多选框组件 | </title>
   
 
 
@@ -285,7 +285,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">原生js实现单/多选框组件</h1>
+          <h1 class="post-title" itemprop="name headline">笔记19原生js实现单/多选框组件</h1>
         
 
         <div class="post-meta">
@@ -340,21 +340,13 @@
 <p><pre><br>  &lt; div id=’jsCheckGroup’&gt;<br>      &lt; div id=’checkgroup radius’&gt;<br>          &lt; div data-val = ‘a’ class =’item’&gt; 选项A &lt; /div&gt;<br>          &lt; div data-val = ‘b’ class =’item’&gt; 选项B &lt; /div&gt;<br>          &lt; div data-val = ‘c’ class =’item’&gt; 选项C &lt; /div&gt;<br>          &lt; div data-val = ‘d’ class =’item’&gt; 选项D &lt; /div&gt;<br>      &lt; /div&gt;<br>  &lt; /div&gt;  </pre></p>
 <p><br><br></p>
 <p></p><h3>css部分<br><br><p></p>
-<p><pre><br>  *{<br>    padding:0,<br>    marin:0;<br>  }  </pre></p>
-<p> .checkgroup .item {<br>    height: 42px<br>    line-height: 42px<br>    padding: 0 10px<br>    margin: 10px 0<br>    border: 1px solid #c7c7c7<br>    border-radius: 6px<br> }</p>
+<p><pre><br> .checkgroup .item {<br>    height: 42px<br>    line-height: 42px<br>    padding: 0 10px<br>    margin: 10px 0<br>    border: 1px solid #c7c7c7<br>    border-radius: 6px<br> }</pre></p>
 <p>.checkgroup.radius .item{<br>    boder-radius:21px<br>}</p>
 <p>.checkoutgroup .item.selected{<br>    border:1px solid #08b292<br>    background: #08b292<br>    color: #ffffff<br>}</p>
 <p><br><br></p>
 <p></p><h3>js部分<br><br><p></p>
-<p><pre><br>    &lt; script type=’text/javascript’ src= ‘../js/1.js’&gt; &lt; /script&gt;<br>    &lt; script type=’text/javascript’ &gt;</pre></p>
-<pre><code>   var option = [
-       {text:&apos;a&apos;, value:&apos;选项一&apos;},
-       {text:&apos;b&apos;, value:&apos;选项二&apos;},
-       {text:&apos;c&apos;, value:&apos;选项三&apos;},
-       {text:&apos;d&apos;, value:&apos;选项四&apos;},
-   ]
-
-   function CheckGroup (renderTo,options,isMultiple){  //声明一个选择框的构造函数
+<p><pre><br>    &lt; script type=’text/javascript’ src= ‘../js/1.js’&gt; &lt; /script&gt;<br>    &lt; script type=’text/javascript’ &gt;<br>       var option = [<br>           {text:’a’, value:’选项一’},<br>           {text:’b’, value:’选项二’},<br>           {text:’c’, value:’选项三’},<br>           {text:’d’, value:’选项四’},<br>       ]</pre></p>
+<pre><code>   function CheckGroup (renderTo,options,isMultiple){  //声明一个选择框的构造函数
     //参数： renderTo用于获取Dom节点、 options赋予初始数据， isMultiple为true代表实现多选框
       var that = this;
       that.renderTo = renderTo
@@ -471,8 +463,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/03/18/post18/" rel="next" title="Vue三级联动选择器组件">
-                <i class="fa fa-chevron-left"></i> Vue三级联动选择器组件
+              <a href="/2020/03/18/post18/" rel="next" title="笔记18Vue三级联动选择器组件">
+                <i class="fa fa-chevron-left"></i> 笔记18Vue三级联动选择器组件
               </a>
             
           </div>
@@ -599,20 +591,12 @@
   &lt; div id=’jsCheckGroup’&gt;      &lt; div id=’checkgroup radius’&gt;          &lt; div data-val = ‘a’ class =’item’&gt; 选项A &lt; /div&gt;          &lt; div data-val = ‘b’ class =’item’&gt; 选项B &lt; /div&gt;          &lt; div data-val = ‘c’ class =’item’&gt; 选项C &lt; /div&gt;          &lt; div data-val = ‘d’ class =’item’&gt; 选项D &lt; /div&gt;      &lt; /div&gt;  &lt; /div&gt;  
 
 css部分
-  *{    padding:0,    marin:0;  }  
  .checkgroup .item {    height: 42px    line-height: 42px    padding: 0 10px    margin: 10px 0    border: 1px solid #c7c7c7    border-radius: 6px }
 .checkgroup.radius .item{    boder-radius:21px}
 .checkoutgroup .item.selected{    border:1px solid #08b292    background: #08b292    color: #ffffff}
 
 js部分
-    &lt; script type=’text/javascript’ src= ‘../js/1.js’&gt; &lt; /script&gt;    &lt; script type=’text/javascript’ &gt;
-   var option = [
-       {text:&#39;a&#39;, value:&#39;选项一&#39;},
-       {text:&#39;b&#39;, value:&#39;选项二&#39;},
-       {text:&#39;c&#39;, value:&#39;选项三&#39;},
-       {text:&#39;d&#39;, value:&#39;选项四&#39;},
-   ]
-
+    &lt; script type=’text/javascript’ src= ‘../js/1.js’&gt; &lt; /script&gt;    &lt; script type=’text/javascript’ &gt;       var option = [           {text:’a’, value:’选项一’},           {text:’b’, value:’选项二’},           {text:’c’, value:’选项三’},           {text:’d’, value:’选项四’},       ]
    function CheckGroup (renderTo,options,isMultiple){  //声明一个选择框的构造函数
     //参数： renderTo用于获取Dom节点、 options赋予初始数据， isMultiple为true代表实现多选框
       var that = this;
@@ -707,20 +691,12 @@ js部分
 &lt; /script&gt;
 
 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.2.</span> <span class="nav-text">css部分
-  *{    padding:0,    marin:0;  }  
  .checkgroup .item {    height: 42px    line-height: 42px    padding: 0 10px    margin: 10px 0    border: 1px solid #c7c7c7    border-radius: 6px }
 .checkgroup.radius .item{    boder-radius:21px}
 .checkoutgroup .item.selected{    border:1px solid #08b292    background: #08b292    color: #ffffff}
 
 js部分
-    &lt; script type=’text/javascript’ src= ‘../js/1.js’&gt; &lt; /script&gt;    &lt; script type=’text/javascript’ &gt;
-   var option = [
-       {text:&#39;a&#39;, value:&#39;选项一&#39;},
-       {text:&#39;b&#39;, value:&#39;选项二&#39;},
-       {text:&#39;c&#39;, value:&#39;选项三&#39;},
-       {text:&#39;d&#39;, value:&#39;选项四&#39;},
-   ]
-
+    &lt; script type=’text/javascript’ src= ‘../js/1.js’&gt; &lt; /script&gt;    &lt; script type=’text/javascript’ &gt;       var option = [           {text:’a’, value:’选项一’},           {text:’b’, value:’选项二’},           {text:’c’, value:’选项三’},           {text:’d’, value:’选项四’},       ]
    function CheckGroup (renderTo,options,isMultiple){  //声明一个选择框的构造函数
     //参数： renderTo用于获取Dom节点、 options赋予初始数据， isMultiple为true代表实现多选框
       var that = this;
@@ -815,14 +791,7 @@ js部分
 &lt; /script&gt;
 
 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.3.</span> <span class="nav-text">js部分
-    &lt; script type=’text/javascript’ src= ‘../js/1.js’&gt; &lt; /script&gt;    &lt; script type=’text/javascript’ &gt;
-   var option = [
-       {text:&#39;a&#39;, value:&#39;选项一&#39;},
-       {text:&#39;b&#39;, value:&#39;选项二&#39;},
-       {text:&#39;c&#39;, value:&#39;选项三&#39;},
-       {text:&#39;d&#39;, value:&#39;选项四&#39;},
-   ]
-
+    &lt; script type=’text/javascript’ src= ‘../js/1.js’&gt; &lt; /script&gt;    &lt; script type=’text/javascript’ &gt;       var option = [           {text:’a’, value:’选项一’},           {text:’b’, value:’选项二’},           {text:’c’, value:’选项三’},           {text:’d’, value:’选项四’},       ]
    function CheckGroup (renderTo,options,isMultiple){  //声明一个选择框的构造函数
     //参数： renderTo用于获取Dom节点、 options赋予初始数据， isMultiple为true代表实现多选框
       var that = this;
