@@ -105,17 +105,17 @@
 
 
 
-<meta name="description" content="Vue-实现一个三级联动省市区选择器 思路：第一个选择器的影响改变第二个、第三个； 第二个选择器的改变影响第三个；第三个选择器的显示由其数据决定 html部分   &amp;lt; div id=’app’&amp;gt;      &amp;lt; div id=’box’&amp;gt;          &amp;lt; select @change =’update2();update3()’ v-model = ‘prov’&amp;">
+<meta name="description" content="Vue-实现一个三级联动省市区选择器 思路：第一个选择器的影响改变第二个、第三个； 第二个选择器的改变影响第三个；第三个选择器的显示由其数据决定 html部分   &amp;lt; div id=’app’&amp;gt;      &amp;lt; div class=’box’&amp;gt;          &amp;lt; select @change =’update2();update3()’ v-model = ‘pro">
 <meta property="og:type" content="article">
 <meta property="og:title" content="笔记18Vue三级联动选择器组件">
 <meta property="og:url" content="http://yoursite.com/2020/03/18/post18/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="Vue-实现一个三级联动省市区选择器 思路：第一个选择器的影响改变第二个、第三个； 第二个选择器的改变影响第三个；第三个选择器的显示由其数据决定 html部分   &amp;lt; div id=’app’&amp;gt;      &amp;lt; div id=’box’&amp;gt;          &amp;lt; select @change =’update2();update3()’ v-model = ‘prov’&amp;">
+<meta property="og:description" content="Vue-实现一个三级联动省市区选择器 思路：第一个选择器的影响改变第二个、第三个； 第二个选择器的改变影响第三个；第三个选择器的显示由其数据决定 html部分   &amp;lt; div id=’app’&amp;gt;      &amp;lt; div class=’box’&amp;gt;          &amp;lt; select @change =’update2();update3()’ v-model = ‘pro">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-18T14:49:42.480Z">
+<meta property="og:updated_time" content="2020-03-18T16:07:48.989Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="笔记18Vue三级联动选择器组件">
-<meta name="twitter:description" content="Vue-实现一个三级联动省市区选择器 思路：第一个选择器的影响改变第二个、第三个； 第二个选择器的改变影响第三个；第三个选择器的显示由其数据决定 html部分   &amp;lt; div id=’app’&amp;gt;      &amp;lt; div id=’box’&amp;gt;          &amp;lt; select @change =’update2();update3()’ v-model = ‘prov’&amp;">
+<meta name="twitter:description" content="Vue-实现一个三级联动省市区选择器 思路：第一个选择器的影响改变第二个、第三个； 第二个选择器的改变影响第三个；第三个选择器的显示由其数据决定 html部分   &amp;lt; div id=’app’&amp;gt;      &amp;lt; div class=’box’&amp;gt;          &amp;lt; select @change =’update2();update3()’ v-model = ‘pro">
 
 
 
@@ -338,29 +338,12 @@
         <p></p><h1>Vue-实现一个三级联动省市区选择器</h1><br><br><p></p>
 <p></p><h2>思路：第一个选择器的影响改变第二个、第三个； 第二个选择器的改变影响第三个；第三个选择器的显示由其数据决定<p></p>
 <p></p><h3>html部分<br><br><p></p>
-<p><pre><br>  &lt; div id=’app’&gt;<br>      &lt; div id=’box’&gt;<br>          &lt; select @change =’update2();update3()’ v-model = ‘prov’&gt;<br>              &lt; option v-for=’(v,i) in arr’ :key=’v.id’  &lt; /option&gt;<br>          &lt; /select&gt;<br>          &lt; select @change =’update3()’ v-model = ‘city’&gt;<br>              &lt; option v-for=’(v,i) in cityArr’ :key=’v.id’  &lt; /option&gt;<br>          &lt; /select&gt;<br>          &lt; select  v-model = ‘district’ v-show = ‘district’ &gt;<br>              &lt; option v-for=’(v,i) in districtArr’ :key=’v.id’  &lt; /option&gt;<br>          &lt; /select&gt;<br>      &lt; /div&gt;<br>  &lt; /div&gt;<br></pre><br><br></p>
+<p><pre><br>  &lt; div id=’app’&gt;<br>      &lt; div class=’box’&gt;<br>          &lt; select @change =’update2();update3()’ v-model = ‘prov’&gt;<br>              &lt; option v-for=’(v,i) in arr’ :key=’v.id’  &lt; /option&gt;<br>          &lt; /select&gt;<br>          &lt; select @change =’update3()’ v-model = ‘city’&gt;<br>              &lt; option v-for=’(v,i) in cityArr’ :key=’v.id’  &lt; /option&gt;<br>          &lt; /select&gt;<br>          &lt; select  v-model = ‘district’ v-show = ‘district’ &gt;<br>              &lt; option v-for=’(v,i) in districtArr’ :key=’v.id’  &lt; /option&gt;<br>          &lt; /select&gt;<br>      &lt; /div&gt;<br>  &lt; /div&gt;<br></pre><br><br></p>
 <p></p><h3>css部分<br><br><p></p>
-<p><pre></pre></p>
-<p>  #app{<br>  width:100%<br>  }</p>
-<p>  #box{<br>  width:100%<br>  display:flex<br>  flex-flow:row wrap<br>  }</p>
-<p>  #box&gt;select{<br>    flex : 0 0 33.3%;<br>    margin-left:10px;<br>  }<br><br><br></p>
+<p><pre><br>.app{<br>    width:100%}<br>.box{<br>    width:100%<br>    display:flex<br>    flex-flow:row wrap}<br>.box&gt;select{<br>    flex : 0 0 33.3%<br>    margin-left: 10px}<br></pre><br><br></p>
 <p></p><h3>js部分<br><br><p></p>
-<p><pre><br>    &lt; script type=’text/javascript’ src= ‘../js/vue.js’&gt; &lt; /script&gt;<br>    &lt; script type=’text/javascript’ &gt;<br>         new Vue({<br>            el:’#app’,<br>            data:{<br>                arr:[]          //存放总数据数组<br>                prov:’北京’         //当前选中的省的value<br>                cityArr:[]      //当前的市数据数组<br>                city:’’         //当前选中的市的value<br>                districtArr:[]  //当前的区数据数组<br>                district:’’     //当前选中的区的value<br>            }<br>            method:{</pre></p>
-<pre><code>            async getData(){
-             try{
-                 let res = await axios.get(&apos;/api&apos;,{})
-             }
-             catch(err){
-                 return Promise.reject(err)
-             }
-             if(res.code!==200){
-                 this.$toast({&apos;xxx&apos;})
-                 return
-             }
-             this.arr = res.data //请求成功后，初始化所有数据数组arr
-            }
-
-            update2(){  //改变市数据数组
+<p><pre><br>    &lt; script type=’text/javascript’ src= ‘../js/vue.js’&gt; &lt; /script&gt;<br>    &lt; script type=’text/javascript’ &gt;<br>         new Vue({<br>            el:’#app’,<br>            data:{<br>                arr:[]          //存放总数据数组<br>                prov:’北京’         //当前选中的省的value<br>                cityArr:[]      //当前的市数据数组<br>                city:’’         //当前选中的市的value<br>                districtArr:[]  //当前的区数据数组<br>                district:’’     //当前选中的区的value<br>            }<br>            method:{<br>                async getData(){<br>                 try{<br>                     let res = await axios.get(‘/api’,{})<br>                 }<br>                 catch(err){<br>                     return Promise.reject(err)<br>                 }<br>                 if(res.code!==200){<br>                     this.$toast({‘xxx’})<br>                     return<br>                 }<br>                 this.arr = res.data //请求成功后，初始化所有数据数组arr<br>                }</pre></p>
+<pre><code>            update2(){  //改变市数据数组
                 this.arr.forEach(e=&gt;{
                         if(e.name === this.prov){
                             this.cityArr = e.sub   
@@ -370,7 +353,6 @@
                     })
                 this.city = this.cityArr[1].name  //同步改变第二个选择器的value值
             }
-
             update3(){  //改变省数据数组 
                 this.cityArr.forEach(e=&gt;{
                   if(e.name === this.city){
@@ -542,28 +524,11 @@
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">Vue-实现一个三级联动省市区选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.</span> <span class="nav-text">思路：第一个选择器的影响改变第二个、第三个； 第二个选择器的改变影响第三个；第三个选择器的显示由其数据决定
 html部分
-  &lt; div id=’app’&gt;      &lt; div id=’box’&gt;          &lt; select @change =’update2();update3()’ v-model = ‘prov’&gt;              &lt; option v-for=’(v,i) in arr’ :key=’v.id’  &lt; /option&gt;          &lt; /select&gt;          &lt; select @change =’update3()’ v-model = ‘city’&gt;              &lt; option v-for=’(v,i) in cityArr’ :key=’v.id’  &lt; /option&gt;          &lt; /select&gt;          &lt; select  v-model = ‘district’ v-show = ‘district’ &gt;              &lt; option v-for=’(v,i) in districtArr’ :key=’v.id’  &lt; /option&gt;          &lt; /select&gt;      &lt; /div&gt;  &lt; /div&gt;
+  &lt; div id=’app’&gt;      &lt; div class=’box’&gt;          &lt; select @change =’update2();update3()’ v-model = ‘prov’&gt;              &lt; option v-for=’(v,i) in arr’ :key=’v.id’  &lt; /option&gt;          &lt; /select&gt;          &lt; select @change =’update3()’ v-model = ‘city’&gt;              &lt; option v-for=’(v,i) in cityArr’ :key=’v.id’  &lt; /option&gt;          &lt; /select&gt;          &lt; select  v-model = ‘district’ v-show = ‘district’ &gt;              &lt; option v-for=’(v,i) in districtArr’ :key=’v.id’  &lt; /option&gt;          &lt; /select&gt;      &lt; /div&gt;  &lt; /div&gt;
 css部分
-
-  #app{  width:100%  }
-  #box{  width:100%  display:flex  flex-flow:row wrap  }
-  #box&gt;select{    flex : 0 0 33.3%;    margin-left:10px;  }
+.app{    width:100%}.box{    width:100%    display:flex    flex-flow:row wrap}.box&gt;select{    flex : 0 0 33.3%    margin-left: 10px}
 js部分
-    &lt; script type=’text/javascript’ src= ‘../js/vue.js’&gt; &lt; /script&gt;    &lt; script type=’text/javascript’ &gt;         new Vue({            el:’#app’,            data:{                arr:[]          //存放总数据数组                prov:’北京’         //当前选中的省的value                cityArr:[]      //当前的市数据数组                city:’’         //当前选中的市的value                districtArr:[]  //当前的区数据数组                district:’’     //当前选中的区的value            }            method:{
-            async getData(){
-             try{
-                 let res = await axios.get(&#39;/api&#39;,{})
-             }
-             catch(err){
-                 return Promise.reject(err)
-             }
-             if(res.code!==200){
-                 this.$toast({&#39;xxx&#39;})
-                 return
-             }
-             this.arr = res.data //请求成功后，初始化所有数据数组arr
-            }
-
+    &lt; script type=’text/javascript’ src= ‘../js/vue.js’&gt; &lt; /script&gt;    &lt; script type=’text/javascript’ &gt;         new Vue({            el:’#app’,            data:{                arr:[]          //存放总数据数组                prov:’北京’         //当前选中的省的value                cityArr:[]      //当前的市数据数组                city:’’         //当前选中的市的value                districtArr:[]  //当前的区数据数组                district:’’     //当前选中的区的value            }            method:{                async getData(){                 try{                     let res = await axios.get(‘/api’,{})                 }                 catch(err){                     return Promise.reject(err)                 }                 if(res.code!==200){                     this.$toast({‘xxx’})                     return                 }                 this.arr = res.data //请求成功后，初始化所有数据数组arr                }
             update2(){  //改变市数据数组
                 this.arr.forEach(e=&gt;{
                         if(e.name === this.prov){
@@ -574,7 +539,6 @@ js部分
                     })
                 this.city = this.cityArr[1].name  //同步改变第二个选择器的value值
             }
-
             update3(){  //改变省数据数组 
                 this.cityArr.forEach(e=&gt;{
                   if(e.name === this.city){
@@ -593,28 +557,11 @@ js部分
 &lt; /script&gt;
 
 </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.1.</span> <span class="nav-text">html部分
-  &lt; div id=’app’&gt;      &lt; div id=’box’&gt;          &lt; select @change =’update2();update3()’ v-model = ‘prov’&gt;              &lt; option v-for=’(v,i) in arr’ :key=’v.id’  &lt; /option&gt;          &lt; /select&gt;          &lt; select @change =’update3()’ v-model = ‘city’&gt;              &lt; option v-for=’(v,i) in cityArr’ :key=’v.id’  &lt; /option&gt;          &lt; /select&gt;          &lt; select  v-model = ‘district’ v-show = ‘district’ &gt;              &lt; option v-for=’(v,i) in districtArr’ :key=’v.id’  &lt; /option&gt;          &lt; /select&gt;      &lt; /div&gt;  &lt; /div&gt;
+  &lt; div id=’app’&gt;      &lt; div class=’box’&gt;          &lt; select @change =’update2();update3()’ v-model = ‘prov’&gt;              &lt; option v-for=’(v,i) in arr’ :key=’v.id’  &lt; /option&gt;          &lt; /select&gt;          &lt; select @change =’update3()’ v-model = ‘city’&gt;              &lt; option v-for=’(v,i) in cityArr’ :key=’v.id’  &lt; /option&gt;          &lt; /select&gt;          &lt; select  v-model = ‘district’ v-show = ‘district’ &gt;              &lt; option v-for=’(v,i) in districtArr’ :key=’v.id’  &lt; /option&gt;          &lt; /select&gt;      &lt; /div&gt;  &lt; /div&gt;
 css部分
-
-  #app{  width:100%  }
-  #box{  width:100%  display:flex  flex-flow:row wrap  }
-  #box&gt;select{    flex : 0 0 33.3%;    margin-left:10px;  }
+.app{    width:100%}.box{    width:100%    display:flex    flex-flow:row wrap}.box&gt;select{    flex : 0 0 33.3%    margin-left: 10px}
 js部分
-    &lt; script type=’text/javascript’ src= ‘../js/vue.js’&gt; &lt; /script&gt;    &lt; script type=’text/javascript’ &gt;         new Vue({            el:’#app’,            data:{                arr:[]          //存放总数据数组                prov:’北京’         //当前选中的省的value                cityArr:[]      //当前的市数据数组                city:’’         //当前选中的市的value                districtArr:[]  //当前的区数据数组                district:’’     //当前选中的区的value            }            method:{
-            async getData(){
-             try{
-                 let res = await axios.get(&#39;/api&#39;,{})
-             }
-             catch(err){
-                 return Promise.reject(err)
-             }
-             if(res.code!==200){
-                 this.$toast({&#39;xxx&#39;})
-                 return
-             }
-             this.arr = res.data //请求成功后，初始化所有数据数组arr
-            }
-
+    &lt; script type=’text/javascript’ src= ‘../js/vue.js’&gt; &lt; /script&gt;    &lt; script type=’text/javascript’ &gt;         new Vue({            el:’#app’,            data:{                arr:[]          //存放总数据数组                prov:’北京’         //当前选中的省的value                cityArr:[]      //当前的市数据数组                city:’’         //当前选中的市的value                districtArr:[]  //当前的区数据数组                district:’’     //当前选中的区的value            }            method:{                async getData(){                 try{                     let res = await axios.get(‘/api’,{})                 }                 catch(err){                     return Promise.reject(err)                 }                 if(res.code!==200){                     this.$toast({‘xxx’})                     return                 }                 this.arr = res.data //请求成功后，初始化所有数据数组arr                }
             update2(){  //改变市数据数组
                 this.arr.forEach(e=&gt;{
                         if(e.name === this.prov){
@@ -625,7 +572,6 @@ js部分
                     })
                 this.city = this.cityArr[1].name  //同步改变第二个选择器的value值
             }
-
             update3(){  //改变省数据数组 
                 this.cityArr.forEach(e=&gt;{
                   if(e.name === this.city){
@@ -644,26 +590,9 @@ js部分
 &lt; /script&gt;
 
 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.2.</span> <span class="nav-text">css部分
-
-  #app{  width:100%  }
-  #box{  width:100%  display:flex  flex-flow:row wrap  }
-  #box&gt;select{    flex : 0 0 33.3%;    margin-left:10px;  }
+.app{    width:100%}.box{    width:100%    display:flex    flex-flow:row wrap}.box&gt;select{    flex : 0 0 33.3%    margin-left: 10px}
 js部分
-    &lt; script type=’text/javascript’ src= ‘../js/vue.js’&gt; &lt; /script&gt;    &lt; script type=’text/javascript’ &gt;         new Vue({            el:’#app’,            data:{                arr:[]          //存放总数据数组                prov:’北京’         //当前选中的省的value                cityArr:[]      //当前的市数据数组                city:’’         //当前选中的市的value                districtArr:[]  //当前的区数据数组                district:’’     //当前选中的区的value            }            method:{
-            async getData(){
-             try{
-                 let res = await axios.get(&#39;/api&#39;,{})
-             }
-             catch(err){
-                 return Promise.reject(err)
-             }
-             if(res.code!==200){
-                 this.$toast({&#39;xxx&#39;})
-                 return
-             }
-             this.arr = res.data //请求成功后，初始化所有数据数组arr
-            }
-
+    &lt; script type=’text/javascript’ src= ‘../js/vue.js’&gt; &lt; /script&gt;    &lt; script type=’text/javascript’ &gt;         new Vue({            el:’#app’,            data:{                arr:[]          //存放总数据数组                prov:’北京’         //当前选中的省的value                cityArr:[]      //当前的市数据数组                city:’’         //当前选中的市的value                districtArr:[]  //当前的区数据数组                district:’’     //当前选中的区的value            }            method:{                async getData(){                 try{                     let res = await axios.get(‘/api’,{})                 }                 catch(err){                     return Promise.reject(err)                 }                 if(res.code!==200){                     this.$toast({‘xxx’})                     return                 }                 this.arr = res.data //请求成功后，初始化所有数据数组arr                }
             update2(){  //改变市数据数组
                 this.arr.forEach(e=&gt;{
                         if(e.name === this.prov){
@@ -674,7 +603,6 @@ js部分
                     })
                 this.city = this.cityArr[1].name  //同步改变第二个选择器的value值
             }
-
             update3(){  //改变省数据数组 
                 this.cityArr.forEach(e=&gt;{
                   if(e.name === this.city){
@@ -693,21 +621,7 @@ js部分
 &lt; /script&gt;
 
 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.3.</span> <span class="nav-text">js部分
-    &lt; script type=’text/javascript’ src= ‘../js/vue.js’&gt; &lt; /script&gt;    &lt; script type=’text/javascript’ &gt;         new Vue({            el:’#app’,            data:{                arr:[]          //存放总数据数组                prov:’北京’         //当前选中的省的value                cityArr:[]      //当前的市数据数组                city:’’         //当前选中的市的value                districtArr:[]  //当前的区数据数组                district:’’     //当前选中的区的value            }            method:{
-            async getData(){
-             try{
-                 let res = await axios.get(&#39;/api&#39;,{})
-             }
-             catch(err){
-                 return Promise.reject(err)
-             }
-             if(res.code!==200){
-                 this.$toast({&#39;xxx&#39;})
-                 return
-             }
-             this.arr = res.data //请求成功后，初始化所有数据数组arr
-            }
-
+    &lt; script type=’text/javascript’ src= ‘../js/vue.js’&gt; &lt; /script&gt;    &lt; script type=’text/javascript’ &gt;         new Vue({            el:’#app’,            data:{                arr:[]          //存放总数据数组                prov:’北京’         //当前选中的省的value                cityArr:[]      //当前的市数据数组                city:’’         //当前选中的市的value                districtArr:[]  //当前的区数据数组                district:’’     //当前选中的区的value            }            method:{                async getData(){                 try{                     let res = await axios.get(‘/api’,{})                 }                 catch(err){                     return Promise.reject(err)                 }                 if(res.code!==200){                     this.$toast({‘xxx’})                     return                 }                 this.arr = res.data //请求成功后，初始化所有数据数组arr                }
             update2(){  //改变市数据数组
                 this.arr.forEach(e=&gt;{
                         if(e.name === this.prov){
@@ -718,7 +632,6 @@ js部分
                     })
                 this.city = this.cityArr[1].name  //同步改变第二个选择器的value值
             }
-
             update3(){  //改变省数据数组 
                 this.cityArr.forEach(e=&gt;{
                   if(e.name === this.city){
