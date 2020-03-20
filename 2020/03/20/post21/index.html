@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1、首先安装nginx所需要的依赖库 它们分别是：openssl、zlib、pcre &amp;nbsp;&amp;nbsp;①、安装pcre：sudo apt-get install libpcre3 libpcre3-dev&amp;nbsp;&amp;nbsp;②、安装zlib：sudo apt-get install zlib1g.dev&amp;nbsp;&amp;nbsp;③、安装openssl：sudo apt-get insta">
+<meta property="og:type" content="article">
+<meta property="og:title" content="笔记21阿里云搭建Nginx和反向代理配置">
+<meta property="og:url" content="http://yoursite.com/2020/03/20/post21/index.html">
+<meta property="og:site_name">
+<meta property="og:description" content="1、首先安装nginx所需要的依赖库 它们分别是：openssl、zlib、pcre &amp;nbsp;&amp;nbsp;①、安装pcre：sudo apt-get install libpcre3 libpcre3-dev&amp;nbsp;&amp;nbsp;②、安装zlib：sudo apt-get install zlib1g.dev&amp;nbsp;&amp;nbsp;③、安装openssl：sudo apt-get insta">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-03-20T10:10:16.038Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="笔记21阿里云搭建Nginx和反向代理配置">
+<meta name="twitter:description" content="1、首先安装nginx所需要的依赖库 它们分别是：openssl、zlib、pcre &amp;nbsp;&amp;nbsp;①、安装pcre：sudo apt-get install libpcre3 libpcre3-dev&amp;nbsp;&amp;nbsp;②、安装zlib：sudo apt-get install zlib1g.dev&amp;nbsp;&amp;nbsp;③、安装openssl：sudo apt-get insta">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/03/20/post21/">
+
+
+
+
+
+  <title>笔记21阿里云搭建Nginx和反向代理配置 | </title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title"></span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-nav">
+          <a href="/nav/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            站点导航
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/post21/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZJJ00">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/02.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">笔记21阿里云搭建Nginx和反向代理配置</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-20T17:17:39+08:00">
+                2020-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p></p><h2>1、首先安装nginx所需要的依赖库<p></p>
+<p></p><h3>它们分别是：openssl、zlib、pcre<br><br><p></p>
+<p><pre><br>&nbsp;&nbsp;①、安装pcre：sudo apt-get install libpcre3 libpcre3-dev<br>&nbsp;&nbsp;②、安装zlib：sudo apt-get install zlib1g.dev<br>&nbsp;&nbsp;③、安装openssl：sudo apt-get install openssl libssl-dev<br></pre><br><br></p>
+<p></p><h2>2、使用源码包安装nginx及配置<br><br><p></p>
+<p><pre><br>&nbsp;&nbsp;①、下载：wget -o nginx-1.12.0.tar.gz <a href="http://nginx.org/download/nginx-1.12.0.tag.gz" target="_blank" rel="noopener">http://nginx.org/download/nginx-1.12.0.tag.gz</a><br>&nbsp;&nbsp;②、解压安装包：tar -zxvf nginx-1.12.0.tar.gz （版本根据自己情况选择)<br>&nbsp;&nbsp;③、进入nginx目录安装,将nginx安装到home目录下的指定位置:cd nginx-1.12.0/<br>执行： ./configure –prefix=/home/program/nginx<br>&nbsp;&nbsp;④、make以及make i命令完成安装：make &amp;&amp; make install<br>&nbsp;&nbsp;⑤、现在nginx安装在了home/program下，我们可以进行一些配置如react项目的反向代理跨域;<br>执行 cd../home/program/nginx , 执行 cd conf , 修改配置文件: vim nginx.conf<br>我们如果不想备案，则可将nginx监听的端口改为非80等默认端口，如81端口，并在阿里云开启此端口；<br>&nbsp;&nbsp;⑥我们修改server下的location来实现反向代理跨域如：<br>location /api/ { proxy_pass http:xxx:8001; proxy_set_header Host &amp;host }<br>location /crontab/ { proxy_pass http:xxx:8070; proxy_set_header Host &amp;host }<br>&nbsp;&nbsp;⑦我们还可以通过配置error_page来进行客户端、内网服务器错误的nginx处理：<br>&nbsp;&nbsp;&nbsp;&nbsp;error_page 500 502 503 504 /50x.html;<br>&nbsp;&nbsp;&nbsp;&nbsp;location = /50x.html {  }<br>&nbsp;&nbsp;&nbsp;&nbsp;error_page 404 /40x.html;<br>&nbsp;&nbsp;&nbsp;&nbsp;location = /40x.html {  } </pre></p>
+<p><br><br></p>
+<p></p><h2>3、接下来我们可以把build的内容替换放在nginx的html下<br><br><p></p>
+<p><pre><br>&nbsp;&nbsp;①、我们可以备份html下原有的40x.html、50x.html 他们用于404、500、503错误时候的显示。<br>&nbsp;&nbsp;②、将react项目打包部署后的build文件内容放入nginxg的html下:<br>&nbsp;&nbsp;&nbsp;&nbsp;执行 git clone git地址拉取远程build文件<br>&nbsp;&nbsp;&nbsp;&nbsp;执行 cp -r /home/program/build/. /home/program/nginx/html 来复制react项目文件<br>&nbsp;&nbsp;③、nginx 每次更改配置后 记得重启nginx：<br>&nbsp;&nbsp;&nbsp;&nbsp;执行 cd /home/program/nginx/sbin进入nginx目录<br>&nbsp;&nbsp;&nbsp;&nbsp;测试nginx配置文件是否书写正确：./nginx -t<br>&nbsp;&nbsp;&nbsp;&nbsp;重启nginx： ./nginx -s reload<br>&nbsp;&nbsp;④、外网输入服务器域名：nginx端口，即可成功访问我们的项目。<br></pre><br><br></p>
+</h2></h2></h3></h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/20/post20/" rel="next" title="笔记20阿里云部署NodeJs项目">
+                <i class="fa fa-chevron-left"></i> 笔记20阿里云部署NodeJs项目
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/02.jpg" alt="ZJJ00">
+            
+              <p class="site-author-name" itemprop="name">ZJJ00</p>
+              <p class="site-description motion-element" itemprop="description">Heal the scars Change the stars</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">1、首先安装nginx所需要的依赖库
+它们分别是：openssl、zlib、pcre
+  ①、安装pcre：sudo apt-get install libpcre3 libpcre3-dev  ②、安装zlib：sudo apt-get install zlib1g.dev  ③、安装openssl：sudo apt-get install openssl libssl-dev
+2、使用源码包安装nginx及配置
+  ①、下载：wget -o nginx-1.12.0.tar.gz http://nginx.org/download/nginx-1.12.0.tag.gz  ②、解压安装包：tar -zxvf nginx-1.12.0.tar.gz （版本根据自己情况选择)  ③、进入nginx目录安装,将nginx安装到home目录下的指定位置:cd nginx-1.12.0/执行： ./configure –prefix=/home/program/nginx  ④、make以及make i命令完成安装：make &amp;&amp; make install  ⑤、现在nginx安装在了home/program下，我们可以进行一些配置如react项目的反向代理跨域;执行 cd../home/program/nginx , 执行 cd conf , 修改配置文件: vim nginx.conf我们如果不想备案，则可将nginx监听的端口改为非80等默认端口，如81端口，并在阿里云开启此端口；  ⑥我们修改server下的location来实现反向代理跨域如：location /api/ { proxy_pass http:xxx:8001; proxy_set_header Host &amp;host }location /crontab/ { proxy_pass http:xxx:8070; proxy_set_header Host &amp;host }  ⑦我们还可以通过配置error_page来进行客户端、内网服务器错误的nginx处理：    error_page 500 502 503 504 /50x.html;    location = /50x.html {  }    error_page 404 /40x.html;    location = /40x.html {  } 
+
+3、接下来我们可以把build的内容替换放在nginx的html下
+  ①、我们可以备份html下原有的40x.html、50x.html 他们用于404、500、503错误时候的显示。  ②、将react项目打包部署后的build文件内容放入nginxg的html下:    执行 git clone git地址拉取远程build文件    执行 cp -r /home/program/build/. /home/program/nginx/html 来复制react项目文件  ③、nginx 每次更改配置后 记得重启nginx：    执行 cd /home/program/nginx/sbin进入nginx目录    测试nginx配置文件是否书写正确：./nginx -t    重启nginx： ./nginx -s reload  ④、外网输入服务器域名：nginx端口，即可成功访问我们的项目。
+</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.</span> <span class="nav-text">它们分别是：openssl、zlib、pcre
+  ①、安装pcre：sudo apt-get install libpcre3 libpcre3-dev  ②、安装zlib：sudo apt-get install zlib1g.dev  ③、安装openssl：sudo apt-get install openssl libssl-dev
+2、使用源码包安装nginx及配置
+  ①、下载：wget -o nginx-1.12.0.tar.gz http://nginx.org/download/nginx-1.12.0.tag.gz  ②、解压安装包：tar -zxvf nginx-1.12.0.tar.gz （版本根据自己情况选择)  ③、进入nginx目录安装,将nginx安装到home目录下的指定位置:cd nginx-1.12.0/执行： ./configure –prefix=/home/program/nginx  ④、make以及make i命令完成安装：make &amp;&amp; make install  ⑤、现在nginx安装在了home/program下，我们可以进行一些配置如react项目的反向代理跨域;执行 cd../home/program/nginx , 执行 cd conf , 修改配置文件: vim nginx.conf我们如果不想备案，则可将nginx监听的端口改为非80等默认端口，如81端口，并在阿里云开启此端口；  ⑥我们修改server下的location来实现反向代理跨域如：location /api/ { proxy_pass http:xxx:8001; proxy_set_header Host &amp;host }location /crontab/ { proxy_pass http:xxx:8070; proxy_set_header Host &amp;host }  ⑦我们还可以通过配置error_page来进行客户端、内网服务器错误的nginx处理：    error_page 500 502 503 504 /50x.html;    location = /50x.html {  }    error_page 404 /40x.html;    location = /40x.html {  } 
+
+3、接下来我们可以把build的内容替换放在nginx的html下
+  ①、我们可以备份html下原有的40x.html、50x.html 他们用于404、500、503错误时候的显示。  ②、将react项目打包部署后的build文件内容放入nginxg的html下:    执行 git clone git地址拉取远程build文件    执行 cp -r /home/program/build/. /home/program/nginx/html 来复制react项目文件  ③、nginx 每次更改配置后 记得重启nginx：    执行 cd /home/program/nginx/sbin进入nginx目录    测试nginx配置文件是否书写正确：./nginx -t    重启nginx： ./nginx -s reload  ④、外网输入服务器域名：nginx端口，即可成功访问我们的项目。
+</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">2、使用源码包安装nginx及配置
+  ①、下载：wget -o nginx-1.12.0.tar.gz http://nginx.org/download/nginx-1.12.0.tag.gz  ②、解压安装包：tar -zxvf nginx-1.12.0.tar.gz （版本根据自己情况选择)  ③、进入nginx目录安装,将nginx安装到home目录下的指定位置:cd nginx-1.12.0/执行： ./configure –prefix=/home/program/nginx  ④、make以及make i命令完成安装：make &amp;&amp; make install  ⑤、现在nginx安装在了home/program下，我们可以进行一些配置如react项目的反向代理跨域;执行 cd../home/program/nginx , 执行 cd conf , 修改配置文件: vim nginx.conf我们如果不想备案，则可将nginx监听的端口改为非80等默认端口，如81端口，并在阿里云开启此端口；  ⑥我们修改server下的location来实现反向代理跨域如：location /api/ { proxy_pass http:xxx:8001; proxy_set_header Host &amp;host }location /crontab/ { proxy_pass http:xxx:8070; proxy_set_header Host &amp;host }  ⑦我们还可以通过配置error_page来进行客户端、内网服务器错误的nginx处理：    error_page 500 502 503 504 /50x.html;    location = /50x.html {  }    error_page 404 /40x.html;    location = /40x.html {  } 
+
+3、接下来我们可以把build的内容替换放在nginx的html下
+  ①、我们可以备份html下原有的40x.html、50x.html 他们用于404、500、503错误时候的显示。  ②、将react项目打包部署后的build文件内容放入nginxg的html下:    执行 git clone git地址拉取远程build文件    执行 cp -r /home/program/build/. /home/program/nginx/html 来复制react项目文件  ③、nginx 每次更改配置后 记得重启nginx：    执行 cd /home/program/nginx/sbin进入nginx目录    测试nginx配置文件是否书写正确：./nginx -t    重启nginx： ./nginx -s reload  ④、外网输入服务器域名：nginx端口，即可成功访问我们的项目。
+</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">3、接下来我们可以把build的内容替换放在nginx的html下
+  ①、我们可以备份html下原有的40x.html、50x.html 他们用于404、500、503错误时候的显示。  ②、将react项目打包部署后的build文件内容放入nginxg的html下:    执行 git clone git地址拉取远程build文件    执行 cp -r /home/program/build/. /home/program/nginx/html 来复制react项目文件  ③、nginx 每次更改配置后 记得重启nginx：    执行 cd /home/program/nginx/sbin进入nginx目录    测试nginx配置文件是否书写正确：./nginx -t    重启nginx： ./nginx -s reload  ④、外网输入服务器域名：nginx端口，即可成功访问我们的项目。
+</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZJJ00</span>
+
+  
+</div>
+
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+-->
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+ 
+</body>
+</html>
