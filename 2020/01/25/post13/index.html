@@ -105,17 +105,17 @@
 
 
 
-<meta name="description" content="常见js手写题1 函数防抖、函数节流、函数柯里化、二分查找、InstanceOf 函数防抖    function debounce(fn,wait){ //防抖：每次点击重置定时器     let timer = null     return (...arg)=&amp;gt;{       let self = this       clearTimeout(timer)       timer = se">
+<meta name="description" content="常见js手写题1 函数防抖、函数节流、函数柯里化、二分查找、InstanceOf、call、apply 函数防抖    function debounce(fn,wait){ //防抖：每次点击重置定时器     let timer = null     return (...arg)=&amp;gt;{       let self = this       clearTimeout(timer)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="笔记13常见js手写题(1)">
 <meta property="og:url" content="http://yoursite.com/2020/01/25/post13/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="常见js手写题1 函数防抖、函数节流、函数柯里化、二分查找、InstanceOf 函数防抖    function debounce(fn,wait){ //防抖：每次点击重置定时器     let timer = null     return (...arg)=&amp;gt;{       let self = this       clearTimeout(timer)       timer = se">
+<meta property="og:description" content="常见js手写题1 函数防抖、函数节流、函数柯里化、二分查找、InstanceOf、call、apply 函数防抖    function debounce(fn,wait){ //防抖：每次点击重置定时器     let timer = null     return (...arg)=&amp;gt;{       let self = this       clearTimeout(timer)">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-01-26T12:30:29.166Z">
+<meta property="og:updated_time" content="2020-03-22T09:01:20.448Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="笔记13常见js手写题(1)">
-<meta name="twitter:description" content="常见js手写题1 函数防抖、函数节流、函数柯里化、二分查找、InstanceOf 函数防抖    function debounce(fn,wait){ //防抖：每次点击重置定时器     let timer = null     return (...arg)=&amp;gt;{       let self = this       clearTimeout(timer)       timer = se">
+<meta name="twitter:description" content="常见js手写题1 函数防抖、函数节流、函数柯里化、二分查找、InstanceOf、call、apply 函数防抖    function debounce(fn,wait){ //防抖：每次点击重置定时器     let timer = null     return (...arg)=&amp;gt;{       let self = this       clearTimeout(timer)">
 
 
 
@@ -336,7 +336,7 @@
 
       
         <p></p><h1>常见js手写题1</h1><br><br><p></p>
-<p></p><h2>函数防抖、函数节流、函数柯里化、二分查找、InstanceOf</h2><br><br><p></p>
+<p></p><h2>函数防抖、函数节流、函数柯里化、二分查找、InstanceOf、call、apply</h2><br><br><p></p>
 <p></p><h3>函数防抖<p></p>
 <pre>
   function debounce(fn,wait){ //防抖：每次点击重置定时器
@@ -414,14 +414,36 @@ function curry(fn,arg=[]){ //传入一个函数，返回一个函数
     }
   }
 </pre>
+<br>
+<h3>call实现
+<pre>
+    Function.prototype.myCall = function(context,...args){
+    context = context || window //修改当前上下文的指向
+    //let fn = Symbol('fn') //保证fn为一个全局唯一的值
+    context.fn = this 
+    let res = eval('context.fn('...args')')
+    delete context.fn //fn是context的属性，调用后删除
+    return res
+  }
+</pre>
+<br>
+<h3>apply实现
+<pre>
+    Function.prototype.myMyapply = function(context,args){
+    context = context || window //修改当前上下文的指向
+    context.fn = this 
+    let res = eval('context.fn('...args')')
+    delete context.fn //fn是context的属性，调用后删除
+    return res
+  }
+</pre>      
 
 
 
 
 
 
-
-</h3></h3></h3></h3></h3>
+</h3></h3></h3></h3></h3></h3></h3>
       
     </div>
     
@@ -573,7 +595,7 @@ function curry(fn,arg=[]){ //传入一个函数，返回一个函数
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">常见js手写题1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.</span> <span class="nav-text">函数防抖、函数节流、函数柯里化、二分查找、InstanceOf</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.1.</span> <span class="nav-text">函数防抖
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">常见js手写题1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.</span> <span class="nav-text">函数防抖、函数节流、函数柯里化、二分查找、InstanceOf、call、apply</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.1.</span> <span class="nav-text">函数防抖
 
   function debounce(fn,wait){ //防抖：每次点击重置定时器
     let timer = null
@@ -651,6 +673,28 @@ InstanceOf实现
   }
 
 
+call实现
+
+    Function.prototype.myCall = function(context,...args){
+    context = context || window //修改当前上下文的指向
+    //let fn = Symbol(&#39;fn&#39;) //保证fn为一个全局唯一的值
+    context.fn = this 
+    let res = eval(&#39;context.fn(&#39;...args&#39;)&#39;)
+    delete context.fn //fn是context的属性，调用后删除
+    return res
+  }
+
+
+apply实现
+
+    Function.prototype.myMyapply = function(context,args){
+    context = context || window //修改当前上下文的指向
+    context.fn = this 
+    let res = eval(&#39;context.fn(&#39;...args&#39;)&#39;)
+    delete context.fn //fn是context的属性，调用后删除
+    return res
+  }
+      
 
 
 
@@ -721,6 +765,28 @@ InstanceOf实现
   }
 
 
+call实现
+
+    Function.prototype.myCall = function(context,...args){
+    context = context || window //修改当前上下文的指向
+    //let fn = Symbol(&#39;fn&#39;) //保证fn为一个全局唯一的值
+    context.fn = this 
+    let res = eval(&#39;context.fn(&#39;...args&#39;)&#39;)
+    delete context.fn //fn是context的属性，调用后删除
+    return res
+  }
+
+
+apply实现
+
+    Function.prototype.myMyapply = function(context,args){
+    context = context || window //修改当前上下文的指向
+    context.fn = this 
+    let res = eval(&#39;context.fn(&#39;...args&#39;)&#39;)
+    delete context.fn //fn是context的属性，调用后删除
+    return res
+  }
+      
 
 
 
@@ -776,6 +842,28 @@ InstanceOf实现
   }
 
 
+call实现
+
+    Function.prototype.myCall = function(context,...args){
+    context = context || window //修改当前上下文的指向
+    //let fn = Symbol(&#39;fn&#39;) //保证fn为一个全局唯一的值
+    context.fn = this 
+    let res = eval(&#39;context.fn(&#39;...args&#39;)&#39;)
+    delete context.fn //fn是context的属性，调用后删除
+    return res
+  }
+
+
+apply实现
+
+    Function.prototype.myMyapply = function(context,args){
+    context = context || window //修改当前上下文的指向
+    context.fn = this 
+    let res = eval(&#39;context.fn(&#39;...args&#39;)&#39;)
+    delete context.fn //fn是context的属性，调用后删除
+    return res
+  }
+      
 
 
 
@@ -816,6 +904,28 @@ InstanceOf实现
   }
 
 
+call实现
+
+    Function.prototype.myCall = function(context,...args){
+    context = context || window //修改当前上下文的指向
+    //let fn = Symbol(&#39;fn&#39;) //保证fn为一个全局唯一的值
+    context.fn = this 
+    let res = eval(&#39;context.fn(&#39;...args&#39;)&#39;)
+    delete context.fn //fn是context的属性，调用后删除
+    return res
+  }
+
+
+apply实现
+
+    Function.prototype.myMyapply = function(context,args){
+    context = context || window //修改当前上下文的指向
+    context.fn = this 
+    let res = eval(&#39;context.fn(&#39;...args&#39;)&#39;)
+    delete context.fn //fn是context的属性，调用后删除
+    return res
+  }
+      
 
 
 
@@ -835,6 +945,72 @@ InstanceOf实现
   }
 
 
+call实现
+
+    Function.prototype.myCall = function(context,...args){
+    context = context || window //修改当前上下文的指向
+    //let fn = Symbol(&#39;fn&#39;) //保证fn为一个全局唯一的值
+    context.fn = this 
+    let res = eval(&#39;context.fn(&#39;...args&#39;)&#39;)
+    delete context.fn //fn是context的属性，调用后删除
+    return res
+  }
+
+
+apply实现
+
+    Function.prototype.myMyapply = function(context,args){
+    context = context || window //修改当前上下文的指向
+    context.fn = this 
+    let res = eval(&#39;context.fn(&#39;...args&#39;)&#39;)
+    delete context.fn //fn是context的属性，调用后删除
+    return res
+  }
+      
+
+
+
+
+
+
+</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.6.</span> <span class="nav-text">call实现
+
+    Function.prototype.myCall = function(context,...args){
+    context = context || window //修改当前上下文的指向
+    //let fn = Symbol(&#39;fn&#39;) //保证fn为一个全局唯一的值
+    context.fn = this 
+    let res = eval(&#39;context.fn(&#39;...args&#39;)&#39;)
+    delete context.fn //fn是context的属性，调用后删除
+    return res
+  }
+
+
+apply实现
+
+    Function.prototype.myMyapply = function(context,args){
+    context = context || window //修改当前上下文的指向
+    context.fn = this 
+    let res = eval(&#39;context.fn(&#39;...args&#39;)&#39;)
+    delete context.fn //fn是context的属性，调用后删除
+    return res
+  }
+      
+
+
+
+
+
+
+</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.7.</span> <span class="nav-text">apply实现
+
+    Function.prototype.myMyapply = function(context,args){
+    context = context || window //修改当前上下文的指向
+    context.fn = this 
+    let res = eval(&#39;context.fn(&#39;...args&#39;)&#39;)
+    delete context.fn //fn是context的属性，调用后删除
+    return res
+  }
+      
 
 
 
