@@ -112,7 +112,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="常见js手写题1 函数防抖、函数节流、函数柯里化、二分查找、InstanceOf、call、apply,bind 函数防抖    function debounce(fn,wait){ //防抖：每次点击重置定时器     let timer = null     return (...arg)=&amp;gt;{       let self = this       clearTimeout(timer)">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-22T10:16:12.953Z">
+<meta property="og:updated_time" content="2020-03-22T12:46:09.286Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="笔记13常见js手写题(1)">
 <meta name="twitter:description" content="常见js手写题1 函数防抖、函数节流、函数柯里化、二分查找、InstanceOf、call、apply,bind 函数防抖    function debounce(fn,wait){ //防抖：每次点击重置定时器     let timer = null     return (...arg)=&amp;gt;{       let self = this       clearTimeout(timer)">
@@ -422,7 +422,7 @@ function curry(fn,arg=[]){ //传入一个函数，返回一个函数
     context = context || window //修改当前上下文的指向
     //let fn = Symbol('fn') //保证fn为一个全局唯一的值
     context.fn = this 
-    let res = eval('context.fn('...args')')
+    let res = eval('context.fn(...args)')
     delete context.fn //fn是context的属性，调用后删除
     return res
   }
@@ -442,7 +442,7 @@ function curry(fn,arg=[]){ //传入一个函数，返回一个函数
     Function.prototype.myApply = function(context,args){
     context = context || window //修改当前上下文的指向
     context.fn = this 
-    let res = eval('context.fn('...args')')
+    let res = eval('context.fn(...args)')
     delete context.fn //fn是context的属性，调用后删除
     return res
   }
@@ -464,7 +464,7 @@ function curry(fn,arg=[]){ //传入一个函数，返回一个函数
     context = context || window //修改当前上下文的指向
     context.fn = this 
     return (...rest)=>{
-       context.fn(...args,rest)
+       context.fn(...args,...rest)
       }
     }
 
@@ -725,7 +725,7 @@ call、apply修改函数作用域立即执行；不同的是apply接收一个参
     context = context || window //修改当前上下文的指向
     //let fn = Symbol(&#39;fn&#39;) //保证fn为一个全局唯一的值
     context.fn = this 
-    let res = eval(&#39;context.fn(&#39;...args&#39;)&#39;)
+    let res = eval(&#39;context.fn(...args)&#39;)
     delete context.fn //fn是context的属性，调用后删除
     return res
   }
@@ -745,7 +745,7 @@ apply实现
     Function.prototype.myApply = function(context,args){
     context = context || window //修改当前上下文的指向
     context.fn = this 
-    let res = eval(&#39;context.fn(&#39;...args&#39;)&#39;)
+    let res = eval(&#39;context.fn(...args)&#39;)
     delete context.fn //fn是context的属性，调用后删除
     return res
   }
@@ -767,7 +767,7 @@ bind返回一个闭包函数，通过再次调用来执行
     context = context || window //修改当前上下文的指向
     context.fn = this 
     return (...rest)=&gt;{
-       context.fn(...args,rest)
+       context.fn(...args,...rest)
       }
     }
 
@@ -862,7 +862,7 @@ call、apply修改函数作用域立即执行；不同的是apply接收一个参
     context = context || window //修改当前上下文的指向
     //let fn = Symbol(&#39;fn&#39;) //保证fn为一个全局唯一的值
     context.fn = this 
-    let res = eval(&#39;context.fn(&#39;...args&#39;)&#39;)
+    let res = eval(&#39;context.fn(...args)&#39;)
     delete context.fn //fn是context的属性，调用后删除
     return res
   }
@@ -882,7 +882,7 @@ apply实现
     Function.prototype.myApply = function(context,args){
     context = context || window //修改当前上下文的指向
     context.fn = this 
-    let res = eval(&#39;context.fn(&#39;...args&#39;)&#39;)
+    let res = eval(&#39;context.fn(...args)&#39;)
     delete context.fn //fn是context的属性，调用后删除
     return res
   }
@@ -904,7 +904,7 @@ bind返回一个闭包函数，通过再次调用来执行
     context = context || window //修改当前上下文的指向
     context.fn = this 
     return (...rest)=&gt;{
-       context.fn(...args,rest)
+       context.fn(...args,...rest)
       }
     }
 
@@ -984,7 +984,7 @@ call、apply修改函数作用域立即执行；不同的是apply接收一个参
     context = context || window //修改当前上下文的指向
     //let fn = Symbol(&#39;fn&#39;) //保证fn为一个全局唯一的值
     context.fn = this 
-    let res = eval(&#39;context.fn(&#39;...args&#39;)&#39;)
+    let res = eval(&#39;context.fn(...args)&#39;)
     delete context.fn //fn是context的属性，调用后删除
     return res
   }
@@ -1004,7 +1004,7 @@ apply实现
     Function.prototype.myApply = function(context,args){
     context = context || window //修改当前上下文的指向
     context.fn = this 
-    let res = eval(&#39;context.fn(&#39;...args&#39;)&#39;)
+    let res = eval(&#39;context.fn(...args)&#39;)
     delete context.fn //fn是context的属性，调用后删除
     return res
   }
@@ -1026,7 +1026,7 @@ bind返回一个闭包函数，通过再次调用来执行
     context = context || window //修改当前上下文的指向
     context.fn = this 
     return (...rest)=&gt;{
-       context.fn(...args,rest)
+       context.fn(...args,...rest)
       }
     }
 
@@ -1091,7 +1091,7 @@ call、apply修改函数作用域立即执行；不同的是apply接收一个参
     context = context || window //修改当前上下文的指向
     //let fn = Symbol(&#39;fn&#39;) //保证fn为一个全局唯一的值
     context.fn = this 
-    let res = eval(&#39;context.fn(&#39;...args&#39;)&#39;)
+    let res = eval(&#39;context.fn(...args)&#39;)
     delete context.fn //fn是context的属性，调用后删除
     return res
   }
@@ -1111,7 +1111,7 @@ apply实现
     Function.prototype.myApply = function(context,args){
     context = context || window //修改当前上下文的指向
     context.fn = this 
-    let res = eval(&#39;context.fn(&#39;...args&#39;)&#39;)
+    let res = eval(&#39;context.fn(...args)&#39;)
     delete context.fn //fn是context的属性，调用后删除
     return res
   }
@@ -1133,7 +1133,7 @@ bind返回一个闭包函数，通过再次调用来执行
     context = context || window //修改当前上下文的指向
     context.fn = this 
     return (...rest)=&gt;{
-       context.fn(...args,rest)
+       context.fn(...args,...rest)
       }
     }
 
@@ -1177,7 +1177,7 @@ call、apply修改函数作用域立即执行；不同的是apply接收一个参
     context = context || window //修改当前上下文的指向
     //let fn = Symbol(&#39;fn&#39;) //保证fn为一个全局唯一的值
     context.fn = this 
-    let res = eval(&#39;context.fn(&#39;...args&#39;)&#39;)
+    let res = eval(&#39;context.fn(...args)&#39;)
     delete context.fn //fn是context的属性，调用后删除
     return res
   }
@@ -1197,7 +1197,7 @@ apply实现
     Function.prototype.myApply = function(context,args){
     context = context || window //修改当前上下文的指向
     context.fn = this 
-    let res = eval(&#39;context.fn(&#39;...args&#39;)&#39;)
+    let res = eval(&#39;context.fn(...args)&#39;)
     delete context.fn //fn是context的属性，调用后删除
     return res
   }
@@ -1219,7 +1219,7 @@ bind返回一个闭包函数，通过再次调用来执行
     context = context || window //修改当前上下文的指向
     context.fn = this 
     return (...rest)=&gt;{
-       context.fn(...args,rest)
+       context.fn(...args,...rest)
       }
     }
 
@@ -1250,7 +1250,7 @@ call、apply修改函数作用域立即执行；不同的是apply接收一个参
     context = context || window //修改当前上下文的指向
     //let fn = Symbol(&#39;fn&#39;) //保证fn为一个全局唯一的值
     context.fn = this 
-    let res = eval(&#39;context.fn(&#39;...args&#39;)&#39;)
+    let res = eval(&#39;context.fn(...args)&#39;)
     delete context.fn //fn是context的属性，调用后删除
     return res
   }
@@ -1270,7 +1270,7 @@ apply实现
     Function.prototype.myApply = function(context,args){
     context = context || window //修改当前上下文的指向
     context.fn = this 
-    let res = eval(&#39;context.fn(&#39;...args&#39;)&#39;)
+    let res = eval(&#39;context.fn(...args)&#39;)
     delete context.fn //fn是context的属性，调用后删除
     return res
   }
@@ -1292,7 +1292,7 @@ bind返回一个闭包函数，通过再次调用来执行
     context = context || window //修改当前上下文的指向
     context.fn = this 
     return (...rest)=&gt;{
-       context.fn(...args,rest)
+       context.fn(...args,...rest)
       }
     }
 
@@ -1322,7 +1322,7 @@ bind返回一个闭包函数，通过再次调用来执行
     context = context || window //修改当前上下文的指向
     //let fn = Symbol(&#39;fn&#39;) //保证fn为一个全局唯一的值
     context.fn = this 
-    let res = eval(&#39;context.fn(&#39;...args&#39;)&#39;)
+    let res = eval(&#39;context.fn(...args)&#39;)
     delete context.fn //fn是context的属性，调用后删除
     return res
   }
@@ -1342,7 +1342,7 @@ apply实现
     Function.prototype.myApply = function(context,args){
     context = context || window //修改当前上下文的指向
     context.fn = this 
-    let res = eval(&#39;context.fn(&#39;...args&#39;)&#39;)
+    let res = eval(&#39;context.fn(...args)&#39;)
     delete context.fn //fn是context的属性，调用后删除
     return res
   }
@@ -1364,7 +1364,7 @@ bind返回一个闭包函数，通过再次调用来执行
     context = context || window //修改当前上下文的指向
     context.fn = this 
     return (...rest)=&gt;{
-       context.fn(...args,rest)
+       context.fn(...args,...rest)
       }
     }
 
@@ -1393,7 +1393,7 @@ bind返回一个闭包函数，通过再次调用来执行
     Function.prototype.myApply = function(context,args){
     context = context || window //修改当前上下文的指向
     context.fn = this 
-    let res = eval(&#39;context.fn(&#39;...args&#39;)&#39;)
+    let res = eval(&#39;context.fn(...args)&#39;)
     delete context.fn //fn是context的属性，调用后删除
     return res
   }
@@ -1415,7 +1415,7 @@ bind返回一个闭包函数，通过再次调用来执行
     context = context || window //修改当前上下文的指向
     context.fn = this 
     return (...rest)=&gt;{
-       context.fn(...args,rest)
+       context.fn(...args,...rest)
       }
     }
 
@@ -1446,7 +1446,7 @@ bind返回一个闭包函数，通过再次调用来执行
     context = context || window //修改当前上下文的指向
     context.fn = this 
     return (...rest)=&gt;{
-       context.fn(...args,rest)
+       context.fn(...args,...rest)
       }
     }
 
@@ -1476,7 +1476,7 @@ bind返回一个闭包函数，通过再次调用来执行
     context = context || window //修改当前上下文的指向
     context.fn = this 
     return (...rest)=&gt;{
-       context.fn(...args,rest)
+       context.fn(...args,...rest)
       }
     }
 
