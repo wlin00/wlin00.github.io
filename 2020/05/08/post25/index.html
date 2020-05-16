@@ -105,17 +105,17 @@
 
 
 
-<meta name="description" content="一、Css的模块化设计 需求分析：该项目基于webpack+vue,需要css模块化设计来防止style全局覆盖。    -全局的css样式设计：         1、全局的样式使用@import ‘./xxx.scss’来引入，每个组件都可以使用。   -局部的css样式设计：         1、局部的样式采用style上面加scoped或module属性，两者具备一定区别         2">
+<meta name="description" content="本项目是一个移动端vue+webpack项目，下面记录一些知识点 一、Css的模块化设计 需求分析：该项目基于webpack+vue,需要css模块化设计来防止style全局覆盖。    -全局的css样式设计：         1、全局的样式使用@import ‘./xxx.scss’来引入，每个组件都可以使用。   -局部的css样式设计：         1、局部的样式采用style上面加s">
 <meta property="og:type" content="article">
 <meta property="og:title" content="笔记25：vue项目的学习总结">
 <meta property="og:url" content="http://yoursite.com/2020/05/08/post25/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="一、Css的模块化设计 需求分析：该项目基于webpack+vue,需要css模块化设计来防止style全局覆盖。    -全局的css样式设计：         1、全局的样式使用@import ‘./xxx.scss’来引入，每个组件都可以使用。   -局部的css样式设计：         1、局部的样式采用style上面加scoped或module属性，两者具备一定区别         2">
+<meta property="og:description" content="本项目是一个移动端vue+webpack项目，下面记录一些知识点 一、Css的模块化设计 需求分析：该项目基于webpack+vue,需要css模块化设计来防止style全局覆盖。    -全局的css样式设计：         1、全局的样式使用@import ‘./xxx.scss’来引入，每个组件都可以使用。   -局部的css样式设计：         1、局部的样式采用style上面加s">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-08T03:54:22.899Z">
+<meta property="og:updated_time" content="2020-05-16T04:38:05.591Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="笔记25：vue项目的学习总结">
-<meta name="twitter:description" content="一、Css的模块化设计 需求分析：该项目基于webpack+vue,需要css模块化设计来防止style全局覆盖。    -全局的css样式设计：         1、全局的样式使用@import ‘./xxx.scss’来引入，每个组件都可以使用。   -局部的css样式设计：         1、局部的样式采用style上面加scoped或module属性，两者具备一定区别         2">
+<meta name="twitter:description" content="本项目是一个移动端vue+webpack项目，下面记录一些知识点 一、Css的模块化设计 需求分析：该项目基于webpack+vue,需要css模块化设计来防止style全局覆盖。    -全局的css样式设计：         1、全局的样式使用@import ‘./xxx.scss’来引入，每个组件都可以使用。   -局部的css样式设计：         1、局部的样式采用style上面加s">
 
 
 
@@ -335,39 +335,30 @@
       
 
       
-        <p></p><h2>一、Css的模块化设计<p></p>
+        <p></p><h1>本项目是一个移动端vue+webpack项目，下面记录一些知识点<br><br><p></p>
+<p></p><h2>一、Css的模块化设计<p></p>
 <p></p><h3>需求分析：该项目基于webpack+vue,需要css模块化设计来防止style全局覆盖。<br><br><p></p>
 <p><pre><br>   -全局的css样式设计：<br>         1、全局的样式使用@import ‘./xxx.scss’来引入，每个组件都可以使用。<br>   -局部的css样式设计：<br>         1、局部的样式采用style上面加scoped或module属性，两者具备一定区别<br>         2、scoped使用简单，只需加上属性，它会转换样式的命名，加上一些前缀。<br>         3、module则具备更灵活的特性和相对更多的学习成本。如module可以将样<br>         式传递给子组件，且所有的style会被保存在$style对象。并且在控制台<br>         打开时，module方式能帮助我们很快定位到要查找的组件。且module方式<br>         还可以导出变量供vue模板使用。<br></pre><br><br></p>
 <p></p><h2>二、Css全局样式的具体设计<br><br><p></p>
-<p><pre><br>   -全局的css样式设计：<br>         1、样式使用@import ‘./xxx.scss’来引入，下面介绍全局样式。<br>         2、reset.scss:用与消除浏览器默认padding、margin默认间距。<br>         3、layout.scss:用于布局的全局样式，本项目是移动端项目，所<br>         以需要使用flex布局，该样式代码如下。<br>             @charset ‘UTF-8’；<br>             @mixin flex($direction:column,$inline:block){<br>               display:if($inline == block,flex,inline-flex);<br>               flex-direction:$direction;<br>               flex-wrap:wrap;<br>             }<br>             //以上为一个flex布局的函数mixin，其flex方向、模式由<br>             参数决定，默认换行、块级元素、flex方向竖轴。<br>         4、element.scss:用与具体元素如按钮、列表和面板等style的统<br>         一定义，其中有一些样式引入并使用了layout.scss,实现了css<br>         设计中的继承特性，代码如下。<br>            @import ‘./layout.scss’;<br>            @mixin btn($fontSize:14px,$color:#fff,<br>                       $bgcolor:#F04752,<br>                       $padding:5px,$radius:5px<br>            ){<br>                  font-size:$fontSize;<br>                  padding:$padding;<br>                  border-radius:$radius;<br>                  background-color:$bgcolor;<br>                  color:#color;<br>                  text-align:center;<br>                  line-height:1;<br>                  display:inline-block;<br>                  border:1px solid $bgcolor;<br>            }<br>            //以上是一个按钮的全局样式mixin函数，使用时只需填入参数。</pre></p>
-<pre><code>@mixin list($direction){
-    flex($direction)
-}
-//以上为商品列表的组件的style，可以看到继承了layout样式。
-
-@mixin panel($bgcolor:#fff,$padding:0,
-             $margin:20px 0,$height:112px,
-             $textPadding:0 32px,$color:#333,
-             $fontSize:32px){
-                 background-color:$bgcolor;
-                 padding:$padding;
-                 margin:$margin;
-       &gt;h4{
-           height:$height;
-           line-height:$height;
-           text-align:center;
-           text-overflow:ellipsis;
-           white-space:nowrap;
-           over-flow:hidden;
-           color:$color;
-           padding:$textPadding;
-           font-size:$fontSize;
-       }
-}
-//以上是商品面板style的mixin函数，它对内部的基本间距、颜色
-进行了定义，以及对可能有的商品标题h4标签做了样式设计。
-</code></pre><p><br><br></p>
-</h2></h3></h2>
+<p><pre><br>   -全局的css样式设计：<br>         1、样式使用@import ‘./xxx.scss’来引入，下面介绍全局样式。<br>         2、reset.scss:用与消除浏览器默认padding、margin默认间距。<br>         3、layout.scss:用于布局的全局样式，本项目是移动端项目，所<br>         以需要使用flex布局，该样式代码如下。<br>             @charset ‘UTF-8’；<br>             @mixin flex($direction:column,$inline:block){<br>               display:if($inline == block,flex,inline-flex);<br>               flex-direction:$direction;<br>               flex-wrap:wrap;<br>             }<br>             //以上为一个flex布局的函数mixin，其flex方向、模式由<br>             参数决定，默认换行、块级元素、flex方向竖轴。<br>         4、element.scss:用与具体元素如按钮、列表和面板等style的统<br>         一定义，其中有一些样式引入并使用了layout.scss,实现了css<br>         设计中的继承特性，代码如下。<br>            @import ‘./layout.scss’;<br>            @mixin btn($fontSize:14px,$color:#fff,<br>                       $bgcolor:#F04752,<br>                       $padding:5px,$radius:5px<br>            ){<br>                  font-size:$fontSize;<br>                  padding:$padding;<br>                  border-radius:$radius;<br>                  background-color:$bgcolor;<br>                  color:#color;<br>                  text-align:center;<br>                  line-height:1;<br>                  display:inline-block;<br>                  border:1px solid $bgcolor;<br>            }<br>            //以上是一个按钮的全局样式mixin函数，使用时只需填入参数。<br>            @mixin list($direction:column){<br>                flex($direction)<br>            }<br>            //以上为商品列表的组件的style，可以看到继承了layout样式。<br>            @mixin panel($bgcolor:#fff,$padding:0,<br>                         $margin:20px 0,$height:112px,<br>                         $textPadding:0 32px,$color:#333,<br>                         $fontSize:32px){<br>                             background-color:$bgcolor;<br>                             padding:$padding;<br>                             margin:$margin;<br>                   &gt;h4{<br>                       height:$height;<br>                       line-height:$height;<br>                       text-align:center;<br>                       text-overflow:ellipsis;<br>                       white-space:nowrap;<br>                       over-flow:hidden;<br>                       color:$color;<br>                       padding:$textPadding;<br>                       font-size:$fontSize;<br>                   }<br>            }<br>            //以上是商品面板style的mixin函数，它对内部的基本间距、颜色<br>            进行了定义，以及对可能有的商品标题h4标签做了样式设计。</pre></p>
+<p><br><br></p>
+<p></p><h2>三、Spa与路由设计<p></p>
+<p></p><h3>设计思路：单页面应用，前后端分离、减轻服务器压力、增强用户体验。<br><br><p></p>
+<p><pre><br>   -路由设计-history模式：<br>         注：history的路由模式由pushState来改变url、popState监听。<br>         HTML部分：<br>             &lt; div&gt;<br>               &lt; button class=’btn’&gt;跳转按钮1&lt; /button&gt;<br>               &lt; button class=’btn’&gt;跳转按钮2&lt; /button&gt;<br>             &lt; /div&gt;<br>         Js部分：<br>             &lt; script type=’text/javascript’&gt;<br>                //注册路由<br>                document.querySelectorAll(‘.class’).forEach((e)=&gt;{<br>                e.addEventListener(‘click’,e=&gt;{<br>                let link = e.textContent;<br>                window.history.pushState({name:’URL’},link,link)<br>                },false)<br>                });<br>                //监听路由<br>                window.addEventListener(‘popstate’,(e)=&gt;{<br>                  //处理路由的变化，e.state即路由变化。<br>                  //react中可以通过jsx中进行状态判断渲染对应组件<br>                  console.log(<br>                     {<br>                     location:location.href,<br>                     state:e.state<br>                     }<br>                  )<br>                },false)<br>             &lt; /script&gt;<br>   -路由设计-hash模式：<br>         注:hash模式使用location.hash来注册路由，hashchange来监听改变。<br>                  HTML部分：<br>             &lt; div&gt;<br>               &lt; button class=’btn’&gt;跳转按钮1&lt; /button&gt;<br>               &lt; button class=’btn’&gt;跳转按钮2&lt; /button&gt;<br>             &lt; /div&gt;<br>         Js部分：<br>             &lt; script type=’text/javascript’&gt;<br>                //注册路由<br>                document.querySelectorAll(‘.class’).forEach((e)=&gt;{<br>                e.addEventListener(‘click’,e=&gt;{<br>                let link = e.textContent;<br>                location.hash = link;<br>                },false)<br>                });<br>                //监听路由<br>                window.addEventListener(‘popstate’,(e)=&gt;{<br>                  //处理路由的变化，location.hash即路由变化。<br>                  //react中可以通过jsx中进行状态判断渲染对应组件<br>                  console.log(<br>                     {<br>                     location:location.href,<br>                     hash:location.hash<br>                     }<br>                  )<br>                },false)<br>             &lt; /script&gt;<br></pre><br><br></p>
+<p></p><h2>四、自适应方案<p></p>
+<p></p><h3>需求分析：移动端项目需要适配不同设备，因其设备像素比不同。<br><br><p></p>
+<p><pre><br>   -设计方案：<br>         1、本项目用设备像素比为2的设计稿进行开发，开发时参考控制台的机型<br>         为Iphone5se。<br>         2、项目引入hotcss.js进行自适应调整，处理1px等问题。原理是用到了<br>         立即执行函数向外部暴露内部封装的方法，然后将这个文件由webpack<br>         在入口和main.js一起打包，如：<br>             entry:[‘./app/js/viewport.js’,’./app/js/main.js’]<br>         3、hotcss.jss使用到window.devicePixelRatio这个api来获取当前<br>         的设备像素比进行适配，并且向外暴露px2rem等方法供开发者使用。<br>         此文件的地址参考：<a href="https://github.com/imochen/hotcss" target="_blank" rel="noopener">https://github.com/imochen/hotcss</a><br>         4、以上为本项目的自适应方案。<br></pre><br><br></p>
+<p></p><h2>五、组件化设计<p></p>
+<p></p><h3>本项目设计时抽离出几个抽象组件供其他组件继承，其他组件之间又可组合使用<br><br><p></p>
+<p><pre><br>   -设计方案：<br>         1、首先在一个独立文件夹里存放抽象组件：btn、panel、slider等组件。<br>         2、抽象组件可以用于其他组件的继承，其它组件使用时，先在vue中引用<br>         并注册组件，然后使用即可。<br>         3、抽象组件设计时，用到：class来绑定一个样式列表如’[default,new]’<br>         然后继承抽象组件时，可以再传入一个class来改变之前组件的默认样式。<br>         4、组件的css模块化设计：想继承某个写好的样式模块直接@import引入，<br>         然后@include即可。注意第三方组件的样式不要写在css-module里而是单<br>         独写在一个style里。<br></pre><br><br></p>
+<p></p><h2>六、轮播图插件的使用<p></p>
+<p></p><h3>本项目使用到vue-awesome-swiper轮播图插件<br><br><p></p>
+<p><pre><br>   -设计方案：<br>         1、在抽象组件slider.vue中引入插件，填写一些默认配置:<br>             import {swiper,swiperSlide} from ‘vue-awesome-swiper’<br>         2、注册vue组件，给swiper绑定option、not-next-tick等配置，这些<br>         属性来自于props，内部的swiper-slide用于承载轮播图，可v-for使用。<br>         3、使用时，可以传给Slider抽象组件option，进行上层封装，来决定轮<br>         播的方式，如横向和纵向以及轮播是否自动进行等选项。<br></pre><br><br></p>
+<p></p><h2>七、构建工具的使用<p></p>
+<p></p><h3>本项目使用webpack来构建，下面记录一些配置和使用的插件<br><br><p></p>
+<p><pre><br>   -设计方案：<br>         1、项目上线时，需进行代码压缩，使用插件Uglifyjs-webpack-plugin<br>             1）npm i -D uglifyjs-webpack-plugin 安装插件<br>             2）const UglifyJsPlugin = require(‘uglify-webpack-plugin’)<br>             3) 在plugin部分添加：new UglifyJsPluin()<br>             4) css的压缩，在css-loader里添加minimize即可。<br>         2、开启source-map：devtool增加’source-map’,并在插件添加sourceMap。<br>         这样的话就可以对源码调试和测试提供帮助。    </pre></p>
+<p><br><br></p>
+</h3></h2></h3></h2></h3></h2></h3></h2></h3></h2></h2></h3></h2></h1>
       
     </div>
     
@@ -515,99 +506,187 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">一、Css的模块化设计
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">本项目是一个移动端vue+webpack项目，下面记录一些知识点
+一、Css的模块化设计
 需求分析：该项目基于webpack+vue,需要css模块化设计来防止style全局覆盖。
    -全局的css样式设计：         1、全局的样式使用@import ‘./xxx.scss’来引入，每个组件都可以使用。   -局部的css样式设计：         1、局部的样式采用style上面加scoped或module属性，两者具备一定区别         2、scoped使用简单，只需加上属性，它会转换样式的命名，加上一些前缀。         3、module则具备更灵活的特性和相对更多的学习成本。如module可以将样         式传递给子组件，且所有的style会被保存在$style对象。并且在控制台         打开时，module方式能帮助我们很快定位到要查找的组件。且module方式         还可以导出变量供vue模板使用。
 二、Css全局样式的具体设计
-   -全局的css样式设计：         1、样式使用@import ‘./xxx.scss’来引入，下面介绍全局样式。         2、reset.scss:用与消除浏览器默认padding、margin默认间距。         3、layout.scss:用于布局的全局样式，本项目是移动端项目，所         以需要使用flex布局，该样式代码如下。             @charset ‘UTF-8’；             @mixin flex($direction:column,$inline:block){               display:if($inline == block,flex,inline-flex);               flex-direction:$direction;               flex-wrap:wrap;             }             //以上为一个flex布局的函数mixin，其flex方向、模式由             参数决定，默认换行、块级元素、flex方向竖轴。         4、element.scss:用与具体元素如按钮、列表和面板等style的统         一定义，其中有一些样式引入并使用了layout.scss,实现了css         设计中的继承特性，代码如下。            @import ‘./layout.scss’;            @mixin btn($fontSize:14px,$color:#fff,                       $bgcolor:#F04752,                       $padding:5px,$radius:5px            ){                  font-size:$fontSize;                  padding:$padding;                  border-radius:$radius;                  background-color:$bgcolor;                  color:#color;                  text-align:center;                  line-height:1;                  display:inline-block;                  border:1px solid $bgcolor;            }            //以上是一个按钮的全局样式mixin函数，使用时只需填入参数。
-@mixin list($direction){
-    flex($direction)
-}
-//以上为商品列表的组件的style，可以看到继承了layout样式。
+   -全局的css样式设计：         1、样式使用@import ‘./xxx.scss’来引入，下面介绍全局样式。         2、reset.scss:用与消除浏览器默认padding、margin默认间距。         3、layout.scss:用于布局的全局样式，本项目是移动端项目，所         以需要使用flex布局，该样式代码如下。             @charset ‘UTF-8’；             @mixin flex($direction:column,$inline:block){               display:if($inline == block,flex,inline-flex);               flex-direction:$direction;               flex-wrap:wrap;             }             //以上为一个flex布局的函数mixin，其flex方向、模式由             参数决定，默认换行、块级元素、flex方向竖轴。         4、element.scss:用与具体元素如按钮、列表和面板等style的统         一定义，其中有一些样式引入并使用了layout.scss,实现了css         设计中的继承特性，代码如下。            @import ‘./layout.scss’;            @mixin btn($fontSize:14px,$color:#fff,                       $bgcolor:#F04752,                       $padding:5px,$radius:5px            ){                  font-size:$fontSize;                  padding:$padding;                  border-radius:$radius;                  background-color:$bgcolor;                  color:#color;                  text-align:center;                  line-height:1;                  display:inline-block;                  border:1px solid $bgcolor;            }            //以上是一个按钮的全局样式mixin函数，使用时只需填入参数。            @mixin list($direction:column){                flex($direction)            }            //以上为商品列表的组件的style，可以看到继承了layout样式。            @mixin panel($bgcolor:#fff,$padding:0,                         $margin:20px 0,$height:112px,                         $textPadding:0 32px,$color:#333,                         $fontSize:32px){                             background-color:$bgcolor;                             padding:$padding;                             margin:$margin;                   &gt;h4{                       height:$height;                       line-height:$height;                       text-align:center;                       text-overflow:ellipsis;                       white-space:nowrap;                       over-flow:hidden;                       color:$color;                       padding:$textPadding;                       font-size:$fontSize;                   }            }            //以上是商品面板style的mixin函数，它对内部的基本间距、颜色            进行了定义，以及对可能有的商品标题h4标签做了样式设计。
 
-@mixin panel($bgcolor:#fff,$padding:0,
-             $margin:20px 0,$height:112px,
-             $textPadding:0 32px,$color:#333,
-             $fontSize:32px){
-                 background-color:$bgcolor;
-                 padding:$padding;
-                 margin:$margin;
-       &gt;h4{
-           height:$height;
-           line-height:$height;
-           text-align:center;
-           text-overflow:ellipsis;
-           white-space:nowrap;
-           over-flow:hidden;
-           color:$color;
-           padding:$textPadding;
-           font-size:$fontSize;
-       }
-}
-//以上是商品面板style的mixin函数，它对内部的基本间距、颜色
-进行了定义，以及对可能有的商品标题h4标签做了样式设计。
+三、Spa与路由设计
+设计思路：单页面应用，前后端分离、减轻服务器压力、增强用户体验。
+   -路由设计-history模式：         注：history的路由模式由pushState来改变url、popState监听。         HTML部分：             &lt; div&gt;               &lt; button class=’btn’&gt;跳转按钮1&lt; /button&gt;               &lt; button class=’btn’&gt;跳转按钮2&lt; /button&gt;             &lt; /div&gt;         Js部分：             &lt; script type=’text/javascript’&gt;                //注册路由                document.querySelectorAll(‘.class’).forEach((e)=&gt;{                e.addEventListener(‘click’,e=&gt;{                let link = e.textContent;                window.history.pushState({name:’URL’},link,link)                },false)                });                //监听路由                window.addEventListener(‘popstate’,(e)=&gt;{                  //处理路由的变化，e.state即路由变化。                  //react中可以通过jsx中进行状态判断渲染对应组件                  console.log(                     {                     location:location.href,                     state:e.state                     }                  )                },false)             &lt; /script&gt;   -路由设计-hash模式：         注:hash模式使用location.hash来注册路由，hashchange来监听改变。                  HTML部分：             &lt; div&gt;               &lt; button class=’btn’&gt;跳转按钮1&lt; /button&gt;               &lt; button class=’btn’&gt;跳转按钮2&lt; /button&gt;             &lt; /div&gt;         Js部分：             &lt; script type=’text/javascript’&gt;                //注册路由                document.querySelectorAll(‘.class’).forEach((e)=&gt;{                e.addEventListener(‘click’,e=&gt;{                let link = e.textContent;                location.hash = link;                },false)                });                //监听路由                window.addEventListener(‘popstate’,(e)=&gt;{                  //处理路由的变化，location.hash即路由变化。                  //react中可以通过jsx中进行状态判断渲染对应组件                  console.log(                     {                     location:location.href,                     hash:location.hash                     }                  )                },false)             &lt; /script&gt;
+四、自适应方案
+需求分析：移动端项目需要适配不同设备，因其设备像素比不同。
+   -设计方案：         1、本项目用设备像素比为2的设计稿进行开发，开发时参考控制台的机型         为Iphone5se。         2、项目引入hotcss.js进行自适应调整，处理1px等问题。原理是用到了         立即执行函数向外部暴露内部封装的方法，然后将这个文件由webpack         在入口和main.js一起打包，如：             entry:[‘./app/js/viewport.js’,’./app/js/main.js’]         3、hotcss.jss使用到window.devicePixelRatio这个api来获取当前         的设备像素比进行适配，并且向外暴露px2rem等方法供开发者使用。         此文件的地址参考：https://github.com/imochen/hotcss         4、以上为本项目的自适应方案。
+五、组件化设计
+本项目设计时抽离出几个抽象组件供其他组件继承，其他组件之间又可组合使用
+   -设计方案：         1、首先在一个独立文件夹里存放抽象组件：btn、panel、slider等组件。         2、抽象组件可以用于其他组件的继承，其它组件使用时，先在vue中引用         并注册组件，然后使用即可。         3、抽象组件设计时，用到：class来绑定一个样式列表如’[default,new]’         然后继承抽象组件时，可以再传入一个class来改变之前组件的默认样式。         4、组件的css模块化设计：想继承某个写好的样式模块直接@import引入，         然后@include即可。注意第三方组件的样式不要写在css-module里而是单         独写在一个style里。
+六、轮播图插件的使用
+本项目使用到vue-awesome-swiper轮播图插件
+   -设计方案：         1、在抽象组件slider.vue中引入插件，填写一些默认配置:             import {swiper,swiperSlide} from ‘vue-awesome-swiper’         2、注册vue组件，给swiper绑定option、not-next-tick等配置，这些         属性来自于props，内部的swiper-slide用于承载轮播图，可v-for使用。         3、使用时，可以传给Slider抽象组件option，进行上层封装，来决定轮         播的方式，如横向和纵向以及轮播是否自动进行等选项。
+七、构建工具的使用
+本项目使用webpack来构建，下面记录一些配置和使用的插件
+   -设计方案：         1、项目上线时，需进行代码压缩，使用插件Uglifyjs-webpack-plugin             1）npm i -D uglifyjs-webpack-plugin 安装插件             2）const UglifyJsPlugin = require(‘uglify-webpack-plugin’)             3) 在plugin部分添加：new UglifyJsPluin()             4) css的压缩，在css-loader里添加minimize即可。         2、开启source-map：devtool增加’source-map’,并在插件添加sourceMap。         这样的话就可以对源码调试和测试提供帮助。    
 
-</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.</span> <span class="nav-text">需求分析：该项目基于webpack+vue,需要css模块化设计来防止style全局覆盖。
+</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.</span> <span class="nav-text">一、Css的模块化设计
+需求分析：该项目基于webpack+vue,需要css模块化设计来防止style全局覆盖。
    -全局的css样式设计：         1、全局的样式使用@import ‘./xxx.scss’来引入，每个组件都可以使用。   -局部的css样式设计：         1、局部的样式采用style上面加scoped或module属性，两者具备一定区别         2、scoped使用简单，只需加上属性，它会转换样式的命名，加上一些前缀。         3、module则具备更灵活的特性和相对更多的学习成本。如module可以将样         式传递给子组件，且所有的style会被保存在$style对象。并且在控制台         打开时，module方式能帮助我们很快定位到要查找的组件。且module方式         还可以导出变量供vue模板使用。
 二、Css全局样式的具体设计
-   -全局的css样式设计：         1、样式使用@import ‘./xxx.scss’来引入，下面介绍全局样式。         2、reset.scss:用与消除浏览器默认padding、margin默认间距。         3、layout.scss:用于布局的全局样式，本项目是移动端项目，所         以需要使用flex布局，该样式代码如下。             @charset ‘UTF-8’；             @mixin flex($direction:column,$inline:block){               display:if($inline == block,flex,inline-flex);               flex-direction:$direction;               flex-wrap:wrap;             }             //以上为一个flex布局的函数mixin，其flex方向、模式由             参数决定，默认换行、块级元素、flex方向竖轴。         4、element.scss:用与具体元素如按钮、列表和面板等style的统         一定义，其中有一些样式引入并使用了layout.scss,实现了css         设计中的继承特性，代码如下。            @import ‘./layout.scss’;            @mixin btn($fontSize:14px,$color:#fff,                       $bgcolor:#F04752,                       $padding:5px,$radius:5px            ){                  font-size:$fontSize;                  padding:$padding;                  border-radius:$radius;                  background-color:$bgcolor;                  color:#color;                  text-align:center;                  line-height:1;                  display:inline-block;                  border:1px solid $bgcolor;            }            //以上是一个按钮的全局样式mixin函数，使用时只需填入参数。
-@mixin list($direction){
-    flex($direction)
-}
-//以上为商品列表的组件的style，可以看到继承了layout样式。
+   -全局的css样式设计：         1、样式使用@import ‘./xxx.scss’来引入，下面介绍全局样式。         2、reset.scss:用与消除浏览器默认padding、margin默认间距。         3、layout.scss:用于布局的全局样式，本项目是移动端项目，所         以需要使用flex布局，该样式代码如下。             @charset ‘UTF-8’；             @mixin flex($direction:column,$inline:block){               display:if($inline == block,flex,inline-flex);               flex-direction:$direction;               flex-wrap:wrap;             }             //以上为一个flex布局的函数mixin，其flex方向、模式由             参数决定，默认换行、块级元素、flex方向竖轴。         4、element.scss:用与具体元素如按钮、列表和面板等style的统         一定义，其中有一些样式引入并使用了layout.scss,实现了css         设计中的继承特性，代码如下。            @import ‘./layout.scss’;            @mixin btn($fontSize:14px,$color:#fff,                       $bgcolor:#F04752,                       $padding:5px,$radius:5px            ){                  font-size:$fontSize;                  padding:$padding;                  border-radius:$radius;                  background-color:$bgcolor;                  color:#color;                  text-align:center;                  line-height:1;                  display:inline-block;                  border:1px solid $bgcolor;            }            //以上是一个按钮的全局样式mixin函数，使用时只需填入参数。            @mixin list($direction:column){                flex($direction)            }            //以上为商品列表的组件的style，可以看到继承了layout样式。            @mixin panel($bgcolor:#fff,$padding:0,                         $margin:20px 0,$height:112px,                         $textPadding:0 32px,$color:#333,                         $fontSize:32px){                             background-color:$bgcolor;                             padding:$padding;                             margin:$margin;                   &gt;h4{                       height:$height;                       line-height:$height;                       text-align:center;                       text-overflow:ellipsis;                       white-space:nowrap;                       over-flow:hidden;                       color:$color;                       padding:$textPadding;                       font-size:$fontSize;                   }            }            //以上是商品面板style的mixin函数，它对内部的基本间距、颜色            进行了定义，以及对可能有的商品标题h4标签做了样式设计。
 
-@mixin panel($bgcolor:#fff,$padding:0,
-             $margin:20px 0,$height:112px,
-             $textPadding:0 32px,$color:#333,
-             $fontSize:32px){
-                 background-color:$bgcolor;
-                 padding:$padding;
-                 margin:$margin;
-       &gt;h4{
-           height:$height;
-           line-height:$height;
-           text-align:center;
-           text-overflow:ellipsis;
-           white-space:nowrap;
-           over-flow:hidden;
-           color:$color;
-           padding:$textPadding;
-           font-size:$fontSize;
-       }
-}
-//以上是商品面板style的mixin函数，它对内部的基本间距、颜色
-进行了定义，以及对可能有的商品标题h4标签做了样式设计。
+三、Spa与路由设计
+设计思路：单页面应用，前后端分离、减轻服务器压力、增强用户体验。
+   -路由设计-history模式：         注：history的路由模式由pushState来改变url、popState监听。         HTML部分：             &lt; div&gt;               &lt; button class=’btn’&gt;跳转按钮1&lt; /button&gt;               &lt; button class=’btn’&gt;跳转按钮2&lt; /button&gt;             &lt; /div&gt;         Js部分：             &lt; script type=’text/javascript’&gt;                //注册路由                document.querySelectorAll(‘.class’).forEach((e)=&gt;{                e.addEventListener(‘click’,e=&gt;{                let link = e.textContent;                window.history.pushState({name:’URL’},link,link)                },false)                });                //监听路由                window.addEventListener(‘popstate’,(e)=&gt;{                  //处理路由的变化，e.state即路由变化。                  //react中可以通过jsx中进行状态判断渲染对应组件                  console.log(                     {                     location:location.href,                     state:e.state                     }                  )                },false)             &lt; /script&gt;   -路由设计-hash模式：         注:hash模式使用location.hash来注册路由，hashchange来监听改变。                  HTML部分：             &lt; div&gt;               &lt; button class=’btn’&gt;跳转按钮1&lt; /button&gt;               &lt; button class=’btn’&gt;跳转按钮2&lt; /button&gt;             &lt; /div&gt;         Js部分：             &lt; script type=’text/javascript’&gt;                //注册路由                document.querySelectorAll(‘.class’).forEach((e)=&gt;{                e.addEventListener(‘click’,e=&gt;{                let link = e.textContent;                location.hash = link;                },false)                });                //监听路由                window.addEventListener(‘popstate’,(e)=&gt;{                  //处理路由的变化，location.hash即路由变化。                  //react中可以通过jsx中进行状态判断渲染对应组件                  console.log(                     {                     location:location.href,                     hash:location.hash                     }                  )                },false)             &lt; /script&gt;
+四、自适应方案
+需求分析：移动端项目需要适配不同设备，因其设备像素比不同。
+   -设计方案：         1、本项目用设备像素比为2的设计稿进行开发，开发时参考控制台的机型         为Iphone5se。         2、项目引入hotcss.js进行自适应调整，处理1px等问题。原理是用到了         立即执行函数向外部暴露内部封装的方法，然后将这个文件由webpack         在入口和main.js一起打包，如：             entry:[‘./app/js/viewport.js’,’./app/js/main.js’]         3、hotcss.jss使用到window.devicePixelRatio这个api来获取当前         的设备像素比进行适配，并且向外暴露px2rem等方法供开发者使用。         此文件的地址参考：https://github.com/imochen/hotcss         4、以上为本项目的自适应方案。
+五、组件化设计
+本项目设计时抽离出几个抽象组件供其他组件继承，其他组件之间又可组合使用
+   -设计方案：         1、首先在一个独立文件夹里存放抽象组件：btn、panel、slider等组件。         2、抽象组件可以用于其他组件的继承，其它组件使用时，先在vue中引用         并注册组件，然后使用即可。         3、抽象组件设计时，用到：class来绑定一个样式列表如’[default,new]’         然后继承抽象组件时，可以再传入一个class来改变之前组件的默认样式。         4、组件的css模块化设计：想继承某个写好的样式模块直接@import引入，         然后@include即可。注意第三方组件的样式不要写在css-module里而是单         独写在一个style里。
+六、轮播图插件的使用
+本项目使用到vue-awesome-swiper轮播图插件
+   -设计方案：         1、在抽象组件slider.vue中引入插件，填写一些默认配置:             import {swiper,swiperSlide} from ‘vue-awesome-swiper’         2、注册vue组件，给swiper绑定option、not-next-tick等配置，这些         属性来自于props，内部的swiper-slide用于承载轮播图，可v-for使用。         3、使用时，可以传给Slider抽象组件option，进行上层封装，来决定轮         播的方式，如横向和纵向以及轮播是否自动进行等选项。
+七、构建工具的使用
+本项目使用webpack来构建，下面记录一些配置和使用的插件
+   -设计方案：         1、项目上线时，需进行代码压缩，使用插件Uglifyjs-webpack-plugin             1）npm i -D uglifyjs-webpack-plugin 安装插件             2）const UglifyJsPlugin = require(‘uglify-webpack-plugin’)             3) 在plugin部分添加：new UglifyJsPluin()             4) css的压缩，在css-loader里添加minimize即可。         2、开启source-map：devtool增加’source-map’,并在插件添加sourceMap。         这样的话就可以对源码调试和测试提供帮助。    
 
-</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">二、Css全局样式的具体设计
-   -全局的css样式设计：         1、样式使用@import ‘./xxx.scss’来引入，下面介绍全局样式。         2、reset.scss:用与消除浏览器默认padding、margin默认间距。         3、layout.scss:用于布局的全局样式，本项目是移动端项目，所         以需要使用flex布局，该样式代码如下。             @charset ‘UTF-8’；             @mixin flex($direction:column,$inline:block){               display:if($inline == block,flex,inline-flex);               flex-direction:$direction;               flex-wrap:wrap;             }             //以上为一个flex布局的函数mixin，其flex方向、模式由             参数决定，默认换行、块级元素、flex方向竖轴。         4、element.scss:用与具体元素如按钮、列表和面板等style的统         一定义，其中有一些样式引入并使用了layout.scss,实现了css         设计中的继承特性，代码如下。            @import ‘./layout.scss’;            @mixin btn($fontSize:14px,$color:#fff,                       $bgcolor:#F04752,                       $padding:5px,$radius:5px            ){                  font-size:$fontSize;                  padding:$padding;                  border-radius:$radius;                  background-color:$bgcolor;                  color:#color;                  text-align:center;                  line-height:1;                  display:inline-block;                  border:1px solid $bgcolor;            }            //以上是一个按钮的全局样式mixin函数，使用时只需填入参数。
-@mixin list($direction){
-    flex($direction)
-}
-//以上为商品列表的组件的style，可以看到继承了layout样式。
+</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.1.</span> <span class="nav-text">需求分析：该项目基于webpack+vue,需要css模块化设计来防止style全局覆盖。
+   -全局的css样式设计：         1、全局的样式使用@import ‘./xxx.scss’来引入，每个组件都可以使用。   -局部的css样式设计：         1、局部的样式采用style上面加scoped或module属性，两者具备一定区别         2、scoped使用简单，只需加上属性，它会转换样式的命名，加上一些前缀。         3、module则具备更灵活的特性和相对更多的学习成本。如module可以将样         式传递给子组件，且所有的style会被保存在$style对象。并且在控制台         打开时，module方式能帮助我们很快定位到要查找的组件。且module方式         还可以导出变量供vue模板使用。
+二、Css全局样式的具体设计
+   -全局的css样式设计：         1、样式使用@import ‘./xxx.scss’来引入，下面介绍全局样式。         2、reset.scss:用与消除浏览器默认padding、margin默认间距。         3、layout.scss:用于布局的全局样式，本项目是移动端项目，所         以需要使用flex布局，该样式代码如下。             @charset ‘UTF-8’；             @mixin flex($direction:column,$inline:block){               display:if($inline == block,flex,inline-flex);               flex-direction:$direction;               flex-wrap:wrap;             }             //以上为一个flex布局的函数mixin，其flex方向、模式由             参数决定，默认换行、块级元素、flex方向竖轴。         4、element.scss:用与具体元素如按钮、列表和面板等style的统         一定义，其中有一些样式引入并使用了layout.scss,实现了css         设计中的继承特性，代码如下。            @import ‘./layout.scss’;            @mixin btn($fontSize:14px,$color:#fff,                       $bgcolor:#F04752,                       $padding:5px,$radius:5px            ){                  font-size:$fontSize;                  padding:$padding;                  border-radius:$radius;                  background-color:$bgcolor;                  color:#color;                  text-align:center;                  line-height:1;                  display:inline-block;                  border:1px solid $bgcolor;            }            //以上是一个按钮的全局样式mixin函数，使用时只需填入参数。            @mixin list($direction:column){                flex($direction)            }            //以上为商品列表的组件的style，可以看到继承了layout样式。            @mixin panel($bgcolor:#fff,$padding:0,                         $margin:20px 0,$height:112px,                         $textPadding:0 32px,$color:#333,                         $fontSize:32px){                             background-color:$bgcolor;                             padding:$padding;                             margin:$margin;                   &gt;h4{                       height:$height;                       line-height:$height;                       text-align:center;                       text-overflow:ellipsis;                       white-space:nowrap;                       over-flow:hidden;                       color:$color;                       padding:$textPadding;                       font-size:$fontSize;                   }            }            //以上是商品面板style的mixin函数，它对内部的基本间距、颜色            进行了定义，以及对可能有的商品标题h4标签做了样式设计。
 
-@mixin panel($bgcolor:#fff,$padding:0,
-             $margin:20px 0,$height:112px,
-             $textPadding:0 32px,$color:#333,
-             $fontSize:32px){
-                 background-color:$bgcolor;
-                 padding:$padding;
-                 margin:$margin;
-       &gt;h4{
-           height:$height;
-           line-height:$height;
-           text-align:center;
-           text-overflow:ellipsis;
-           white-space:nowrap;
-           over-flow:hidden;
-           color:$color;
-           padding:$textPadding;
-           font-size:$fontSize;
-       }
-}
-//以上是商品面板style的mixin函数，它对内部的基本间距、颜色
-进行了定义，以及对可能有的商品标题h4标签做了样式设计。
+三、Spa与路由设计
+设计思路：单页面应用，前后端分离、减轻服务器压力、增强用户体验。
+   -路由设计-history模式：         注：history的路由模式由pushState来改变url、popState监听。         HTML部分：             &lt; div&gt;               &lt; button class=’btn’&gt;跳转按钮1&lt; /button&gt;               &lt; button class=’btn’&gt;跳转按钮2&lt; /button&gt;             &lt; /div&gt;         Js部分：             &lt; script type=’text/javascript’&gt;                //注册路由                document.querySelectorAll(‘.class’).forEach((e)=&gt;{                e.addEventListener(‘click’,e=&gt;{                let link = e.textContent;                window.history.pushState({name:’URL’},link,link)                },false)                });                //监听路由                window.addEventListener(‘popstate’,(e)=&gt;{                  //处理路由的变化，e.state即路由变化。                  //react中可以通过jsx中进行状态判断渲染对应组件                  console.log(                     {                     location:location.href,                     state:e.state                     }                  )                },false)             &lt; /script&gt;   -路由设计-hash模式：         注:hash模式使用location.hash来注册路由，hashchange来监听改变。                  HTML部分：             &lt; div&gt;               &lt; button class=’btn’&gt;跳转按钮1&lt; /button&gt;               &lt; button class=’btn’&gt;跳转按钮2&lt; /button&gt;             &lt; /div&gt;         Js部分：             &lt; script type=’text/javascript’&gt;                //注册路由                document.querySelectorAll(‘.class’).forEach((e)=&gt;{                e.addEventListener(‘click’,e=&gt;{                let link = e.textContent;                location.hash = link;                },false)                });                //监听路由                window.addEventListener(‘popstate’,(e)=&gt;{                  //处理路由的变化，location.hash即路由变化。                  //react中可以通过jsx中进行状态判断渲染对应组件                  console.log(                     {                     location:location.href,                     hash:location.hash                     }                  )                },false)             &lt; /script&gt;
+四、自适应方案
+需求分析：移动端项目需要适配不同设备，因其设备像素比不同。
+   -设计方案：         1、本项目用设备像素比为2的设计稿进行开发，开发时参考控制台的机型         为Iphone5se。         2、项目引入hotcss.js进行自适应调整，处理1px等问题。原理是用到了         立即执行函数向外部暴露内部封装的方法，然后将这个文件由webpack         在入口和main.js一起打包，如：             entry:[‘./app/js/viewport.js’,’./app/js/main.js’]         3、hotcss.jss使用到window.devicePixelRatio这个api来获取当前         的设备像素比进行适配，并且向外暴露px2rem等方法供开发者使用。         此文件的地址参考：https://github.com/imochen/hotcss         4、以上为本项目的自适应方案。
+五、组件化设计
+本项目设计时抽离出几个抽象组件供其他组件继承，其他组件之间又可组合使用
+   -设计方案：         1、首先在一个独立文件夹里存放抽象组件：btn、panel、slider等组件。         2、抽象组件可以用于其他组件的继承，其它组件使用时，先在vue中引用         并注册组件，然后使用即可。         3、抽象组件设计时，用到：class来绑定一个样式列表如’[default,new]’         然后继承抽象组件时，可以再传入一个class来改变之前组件的默认样式。         4、组件的css模块化设计：想继承某个写好的样式模块直接@import引入，         然后@include即可。注意第三方组件的样式不要写在css-module里而是单         独写在一个style里。
+六、轮播图插件的使用
+本项目使用到vue-awesome-swiper轮播图插件
+   -设计方案：         1、在抽象组件slider.vue中引入插件，填写一些默认配置:             import {swiper,swiperSlide} from ‘vue-awesome-swiper’         2、注册vue组件，给swiper绑定option、not-next-tick等配置，这些         属性来自于props，内部的swiper-slide用于承载轮播图，可v-for使用。         3、使用时，可以传给Slider抽象组件option，进行上层封装，来决定轮         播的方式，如横向和纵向以及轮播是否自动进行等选项。
+七、构建工具的使用
+本项目使用webpack来构建，下面记录一些配置和使用的插件
+   -设计方案：         1、项目上线时，需进行代码压缩，使用插件Uglifyjs-webpack-plugin             1）npm i -D uglifyjs-webpack-plugin 安装插件             2）const UglifyJsPlugin = require(‘uglify-webpack-plugin’)             3) 在plugin部分添加：new UglifyJsPluin()             4) css的压缩，在css-loader里添加minimize即可。         2、开启source-map：devtool增加’source-map’,并在插件添加sourceMap。         这样的话就可以对源码调试和测试提供帮助。    
 
-</span></a></li></ol></div>
+</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.2.</span> <span class="nav-text">二、Css全局样式的具体设计
+   -全局的css样式设计：         1、样式使用@import ‘./xxx.scss’来引入，下面介绍全局样式。         2、reset.scss:用与消除浏览器默认padding、margin默认间距。         3、layout.scss:用于布局的全局样式，本项目是移动端项目，所         以需要使用flex布局，该样式代码如下。             @charset ‘UTF-8’；             @mixin flex($direction:column,$inline:block){               display:if($inline == block,flex,inline-flex);               flex-direction:$direction;               flex-wrap:wrap;             }             //以上为一个flex布局的函数mixin，其flex方向、模式由             参数决定，默认换行、块级元素、flex方向竖轴。         4、element.scss:用与具体元素如按钮、列表和面板等style的统         一定义，其中有一些样式引入并使用了layout.scss,实现了css         设计中的继承特性，代码如下。            @import ‘./layout.scss’;            @mixin btn($fontSize:14px,$color:#fff,                       $bgcolor:#F04752,                       $padding:5px,$radius:5px            ){                  font-size:$fontSize;                  padding:$padding;                  border-radius:$radius;                  background-color:$bgcolor;                  color:#color;                  text-align:center;                  line-height:1;                  display:inline-block;                  border:1px solid $bgcolor;            }            //以上是一个按钮的全局样式mixin函数，使用时只需填入参数。            @mixin list($direction:column){                flex($direction)            }            //以上为商品列表的组件的style，可以看到继承了layout样式。            @mixin panel($bgcolor:#fff,$padding:0,                         $margin:20px 0,$height:112px,                         $textPadding:0 32px,$color:#333,                         $fontSize:32px){                             background-color:$bgcolor;                             padding:$padding;                             margin:$margin;                   &gt;h4{                       height:$height;                       line-height:$height;                       text-align:center;                       text-overflow:ellipsis;                       white-space:nowrap;                       over-flow:hidden;                       color:$color;                       padding:$textPadding;                       font-size:$fontSize;                   }            }            //以上是商品面板style的mixin函数，它对内部的基本间距、颜色            进行了定义，以及对可能有的商品标题h4标签做了样式设计。
+
+三、Spa与路由设计
+设计思路：单页面应用，前后端分离、减轻服务器压力、增强用户体验。
+   -路由设计-history模式：         注：history的路由模式由pushState来改变url、popState监听。         HTML部分：             &lt; div&gt;               &lt; button class=’btn’&gt;跳转按钮1&lt; /button&gt;               &lt; button class=’btn’&gt;跳转按钮2&lt; /button&gt;             &lt; /div&gt;         Js部分：             &lt; script type=’text/javascript’&gt;                //注册路由                document.querySelectorAll(‘.class’).forEach((e)=&gt;{                e.addEventListener(‘click’,e=&gt;{                let link = e.textContent;                window.history.pushState({name:’URL’},link,link)                },false)                });                //监听路由                window.addEventListener(‘popstate’,(e)=&gt;{                  //处理路由的变化，e.state即路由变化。                  //react中可以通过jsx中进行状态判断渲染对应组件                  console.log(                     {                     location:location.href,                     state:e.state                     }                  )                },false)             &lt; /script&gt;   -路由设计-hash模式：         注:hash模式使用location.hash来注册路由，hashchange来监听改变。                  HTML部分：             &lt; div&gt;               &lt; button class=’btn’&gt;跳转按钮1&lt; /button&gt;               &lt; button class=’btn’&gt;跳转按钮2&lt; /button&gt;             &lt; /div&gt;         Js部分：             &lt; script type=’text/javascript’&gt;                //注册路由                document.querySelectorAll(‘.class’).forEach((e)=&gt;{                e.addEventListener(‘click’,e=&gt;{                let link = e.textContent;                location.hash = link;                },false)                });                //监听路由                window.addEventListener(‘popstate’,(e)=&gt;{                  //处理路由的变化，location.hash即路由变化。                  //react中可以通过jsx中进行状态判断渲染对应组件                  console.log(                     {                     location:location.href,                     hash:location.hash                     }                  )                },false)             &lt; /script&gt;
+四、自适应方案
+需求分析：移动端项目需要适配不同设备，因其设备像素比不同。
+   -设计方案：         1、本项目用设备像素比为2的设计稿进行开发，开发时参考控制台的机型         为Iphone5se。         2、项目引入hotcss.js进行自适应调整，处理1px等问题。原理是用到了         立即执行函数向外部暴露内部封装的方法，然后将这个文件由webpack         在入口和main.js一起打包，如：             entry:[‘./app/js/viewport.js’,’./app/js/main.js’]         3、hotcss.jss使用到window.devicePixelRatio这个api来获取当前         的设备像素比进行适配，并且向外暴露px2rem等方法供开发者使用。         此文件的地址参考：https://github.com/imochen/hotcss         4、以上为本项目的自适应方案。
+五、组件化设计
+本项目设计时抽离出几个抽象组件供其他组件继承，其他组件之间又可组合使用
+   -设计方案：         1、首先在一个独立文件夹里存放抽象组件：btn、panel、slider等组件。         2、抽象组件可以用于其他组件的继承，其它组件使用时，先在vue中引用         并注册组件，然后使用即可。         3、抽象组件设计时，用到：class来绑定一个样式列表如’[default,new]’         然后继承抽象组件时，可以再传入一个class来改变之前组件的默认样式。         4、组件的css模块化设计：想继承某个写好的样式模块直接@import引入，         然后@include即可。注意第三方组件的样式不要写在css-module里而是单         独写在一个style里。
+六、轮播图插件的使用
+本项目使用到vue-awesome-swiper轮播图插件
+   -设计方案：         1、在抽象组件slider.vue中引入插件，填写一些默认配置:             import {swiper,swiperSlide} from ‘vue-awesome-swiper’         2、注册vue组件，给swiper绑定option、not-next-tick等配置，这些         属性来自于props，内部的swiper-slide用于承载轮播图，可v-for使用。         3、使用时，可以传给Slider抽象组件option，进行上层封装，来决定轮         播的方式，如横向和纵向以及轮播是否自动进行等选项。
+七、构建工具的使用
+本项目使用webpack来构建，下面记录一些配置和使用的插件
+   -设计方案：         1、项目上线时，需进行代码压缩，使用插件Uglifyjs-webpack-plugin             1）npm i -D uglifyjs-webpack-plugin 安装插件             2）const UglifyJsPlugin = require(‘uglify-webpack-plugin’)             3) 在plugin部分添加：new UglifyJsPluin()             4) css的压缩，在css-loader里添加minimize即可。         2、开启source-map：devtool增加’source-map’,并在插件添加sourceMap。         这样的话就可以对源码调试和测试提供帮助。    
+
+</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.3.</span> <span class="nav-text">三、Spa与路由设计
+设计思路：单页面应用，前后端分离、减轻服务器压力、增强用户体验。
+   -路由设计-history模式：         注：history的路由模式由pushState来改变url、popState监听。         HTML部分：             &lt; div&gt;               &lt; button class=’btn’&gt;跳转按钮1&lt; /button&gt;               &lt; button class=’btn’&gt;跳转按钮2&lt; /button&gt;             &lt; /div&gt;         Js部分：             &lt; script type=’text/javascript’&gt;                //注册路由                document.querySelectorAll(‘.class’).forEach((e)=&gt;{                e.addEventListener(‘click’,e=&gt;{                let link = e.textContent;                window.history.pushState({name:’URL’},link,link)                },false)                });                //监听路由                window.addEventListener(‘popstate’,(e)=&gt;{                  //处理路由的变化，e.state即路由变化。                  //react中可以通过jsx中进行状态判断渲染对应组件                  console.log(                     {                     location:location.href,                     state:e.state                     }                  )                },false)             &lt; /script&gt;   -路由设计-hash模式：         注:hash模式使用location.hash来注册路由，hashchange来监听改变。                  HTML部分：             &lt; div&gt;               &lt; button class=’btn’&gt;跳转按钮1&lt; /button&gt;               &lt; button class=’btn’&gt;跳转按钮2&lt; /button&gt;             &lt; /div&gt;         Js部分：             &lt; script type=’text/javascript’&gt;                //注册路由                document.querySelectorAll(‘.class’).forEach((e)=&gt;{                e.addEventListener(‘click’,e=&gt;{                let link = e.textContent;                location.hash = link;                },false)                });                //监听路由                window.addEventListener(‘popstate’,(e)=&gt;{                  //处理路由的变化，location.hash即路由变化。                  //react中可以通过jsx中进行状态判断渲染对应组件                  console.log(                     {                     location:location.href,                     hash:location.hash                     }                  )                },false)             &lt; /script&gt;
+四、自适应方案
+需求分析：移动端项目需要适配不同设备，因其设备像素比不同。
+   -设计方案：         1、本项目用设备像素比为2的设计稿进行开发，开发时参考控制台的机型         为Iphone5se。         2、项目引入hotcss.js进行自适应调整，处理1px等问题。原理是用到了         立即执行函数向外部暴露内部封装的方法，然后将这个文件由webpack         在入口和main.js一起打包，如：             entry:[‘./app/js/viewport.js’,’./app/js/main.js’]         3、hotcss.jss使用到window.devicePixelRatio这个api来获取当前         的设备像素比进行适配，并且向外暴露px2rem等方法供开发者使用。         此文件的地址参考：https://github.com/imochen/hotcss         4、以上为本项目的自适应方案。
+五、组件化设计
+本项目设计时抽离出几个抽象组件供其他组件继承，其他组件之间又可组合使用
+   -设计方案：         1、首先在一个独立文件夹里存放抽象组件：btn、panel、slider等组件。         2、抽象组件可以用于其他组件的继承，其它组件使用时，先在vue中引用         并注册组件，然后使用即可。         3、抽象组件设计时，用到：class来绑定一个样式列表如’[default,new]’         然后继承抽象组件时，可以再传入一个class来改变之前组件的默认样式。         4、组件的css模块化设计：想继承某个写好的样式模块直接@import引入，         然后@include即可。注意第三方组件的样式不要写在css-module里而是单         独写在一个style里。
+六、轮播图插件的使用
+本项目使用到vue-awesome-swiper轮播图插件
+   -设计方案：         1、在抽象组件slider.vue中引入插件，填写一些默认配置:             import {swiper,swiperSlide} from ‘vue-awesome-swiper’         2、注册vue组件，给swiper绑定option、not-next-tick等配置，这些         属性来自于props，内部的swiper-slide用于承载轮播图，可v-for使用。         3、使用时，可以传给Slider抽象组件option，进行上层封装，来决定轮         播的方式，如横向和纵向以及轮播是否自动进行等选项。
+七、构建工具的使用
+本项目使用webpack来构建，下面记录一些配置和使用的插件
+   -设计方案：         1、项目上线时，需进行代码压缩，使用插件Uglifyjs-webpack-plugin             1）npm i -D uglifyjs-webpack-plugin 安装插件             2）const UglifyJsPlugin = require(‘uglify-webpack-plugin’)             3) 在plugin部分添加：new UglifyJsPluin()             4) css的压缩，在css-loader里添加minimize即可。         2、开启source-map：devtool增加’source-map’,并在插件添加sourceMap。         这样的话就可以对源码调试和测试提供帮助。    
+
+</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.3.1.</span> <span class="nav-text">设计思路：单页面应用，前后端分离、减轻服务器压力、增强用户体验。
+   -路由设计-history模式：         注：history的路由模式由pushState来改变url、popState监听。         HTML部分：             &lt; div&gt;               &lt; button class=’btn’&gt;跳转按钮1&lt; /button&gt;               &lt; button class=’btn’&gt;跳转按钮2&lt; /button&gt;             &lt; /div&gt;         Js部分：             &lt; script type=’text/javascript’&gt;                //注册路由                document.querySelectorAll(‘.class’).forEach((e)=&gt;{                e.addEventListener(‘click’,e=&gt;{                let link = e.textContent;                window.history.pushState({name:’URL’},link,link)                },false)                });                //监听路由                window.addEventListener(‘popstate’,(e)=&gt;{                  //处理路由的变化，e.state即路由变化。                  //react中可以通过jsx中进行状态判断渲染对应组件                  console.log(                     {                     location:location.href,                     state:e.state                     }                  )                },false)             &lt; /script&gt;   -路由设计-hash模式：         注:hash模式使用location.hash来注册路由，hashchange来监听改变。                  HTML部分：             &lt; div&gt;               &lt; button class=’btn’&gt;跳转按钮1&lt; /button&gt;               &lt; button class=’btn’&gt;跳转按钮2&lt; /button&gt;             &lt; /div&gt;         Js部分：             &lt; script type=’text/javascript’&gt;                //注册路由                document.querySelectorAll(‘.class’).forEach((e)=&gt;{                e.addEventListener(‘click’,e=&gt;{                let link = e.textContent;                location.hash = link;                },false)                });                //监听路由                window.addEventListener(‘popstate’,(e)=&gt;{                  //处理路由的变化，location.hash即路由变化。                  //react中可以通过jsx中进行状态判断渲染对应组件                  console.log(                     {                     location:location.href,                     hash:location.hash                     }                  )                },false)             &lt; /script&gt;
+四、自适应方案
+需求分析：移动端项目需要适配不同设备，因其设备像素比不同。
+   -设计方案：         1、本项目用设备像素比为2的设计稿进行开发，开发时参考控制台的机型         为Iphone5se。         2、项目引入hotcss.js进行自适应调整，处理1px等问题。原理是用到了         立即执行函数向外部暴露内部封装的方法，然后将这个文件由webpack         在入口和main.js一起打包，如：             entry:[‘./app/js/viewport.js’,’./app/js/main.js’]         3、hotcss.jss使用到window.devicePixelRatio这个api来获取当前         的设备像素比进行适配，并且向外暴露px2rem等方法供开发者使用。         此文件的地址参考：https://github.com/imochen/hotcss         4、以上为本项目的自适应方案。
+五、组件化设计
+本项目设计时抽离出几个抽象组件供其他组件继承，其他组件之间又可组合使用
+   -设计方案：         1、首先在一个独立文件夹里存放抽象组件：btn、panel、slider等组件。         2、抽象组件可以用于其他组件的继承，其它组件使用时，先在vue中引用         并注册组件，然后使用即可。         3、抽象组件设计时，用到：class来绑定一个样式列表如’[default,new]’         然后继承抽象组件时，可以再传入一个class来改变之前组件的默认样式。         4、组件的css模块化设计：想继承某个写好的样式模块直接@import引入，         然后@include即可。注意第三方组件的样式不要写在css-module里而是单         独写在一个style里。
+六、轮播图插件的使用
+本项目使用到vue-awesome-swiper轮播图插件
+   -设计方案：         1、在抽象组件slider.vue中引入插件，填写一些默认配置:             import {swiper,swiperSlide} from ‘vue-awesome-swiper’         2、注册vue组件，给swiper绑定option、not-next-tick等配置，这些         属性来自于props，内部的swiper-slide用于承载轮播图，可v-for使用。         3、使用时，可以传给Slider抽象组件option，进行上层封装，来决定轮         播的方式，如横向和纵向以及轮播是否自动进行等选项。
+七、构建工具的使用
+本项目使用webpack来构建，下面记录一些配置和使用的插件
+   -设计方案：         1、项目上线时，需进行代码压缩，使用插件Uglifyjs-webpack-plugin             1）npm i -D uglifyjs-webpack-plugin 安装插件             2）const UglifyJsPlugin = require(‘uglify-webpack-plugin’)             3) 在plugin部分添加：new UglifyJsPluin()             4) css的压缩，在css-loader里添加minimize即可。         2、开启source-map：devtool增加’source-map’,并在插件添加sourceMap。         这样的话就可以对源码调试和测试提供帮助。    
+
+</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.4.</span> <span class="nav-text">四、自适应方案
+需求分析：移动端项目需要适配不同设备，因其设备像素比不同。
+   -设计方案：         1、本项目用设备像素比为2的设计稿进行开发，开发时参考控制台的机型         为Iphone5se。         2、项目引入hotcss.js进行自适应调整，处理1px等问题。原理是用到了         立即执行函数向外部暴露内部封装的方法，然后将这个文件由webpack         在入口和main.js一起打包，如：             entry:[‘./app/js/viewport.js’,’./app/js/main.js’]         3、hotcss.jss使用到window.devicePixelRatio这个api来获取当前         的设备像素比进行适配，并且向外暴露px2rem等方法供开发者使用。         此文件的地址参考：https://github.com/imochen/hotcss         4、以上为本项目的自适应方案。
+五、组件化设计
+本项目设计时抽离出几个抽象组件供其他组件继承，其他组件之间又可组合使用
+   -设计方案：         1、首先在一个独立文件夹里存放抽象组件：btn、panel、slider等组件。         2、抽象组件可以用于其他组件的继承，其它组件使用时，先在vue中引用         并注册组件，然后使用即可。         3、抽象组件设计时，用到：class来绑定一个样式列表如’[default,new]’         然后继承抽象组件时，可以再传入一个class来改变之前组件的默认样式。         4、组件的css模块化设计：想继承某个写好的样式模块直接@import引入，         然后@include即可。注意第三方组件的样式不要写在css-module里而是单         独写在一个style里。
+六、轮播图插件的使用
+本项目使用到vue-awesome-swiper轮播图插件
+   -设计方案：         1、在抽象组件slider.vue中引入插件，填写一些默认配置:             import {swiper,swiperSlide} from ‘vue-awesome-swiper’         2、注册vue组件，给swiper绑定option、not-next-tick等配置，这些         属性来自于props，内部的swiper-slide用于承载轮播图，可v-for使用。         3、使用时，可以传给Slider抽象组件option，进行上层封装，来决定轮         播的方式，如横向和纵向以及轮播是否自动进行等选项。
+七、构建工具的使用
+本项目使用webpack来构建，下面记录一些配置和使用的插件
+   -设计方案：         1、项目上线时，需进行代码压缩，使用插件Uglifyjs-webpack-plugin             1）npm i -D uglifyjs-webpack-plugin 安装插件             2）const UglifyJsPlugin = require(‘uglify-webpack-plugin’)             3) 在plugin部分添加：new UglifyJsPluin()             4) css的压缩，在css-loader里添加minimize即可。         2、开启source-map：devtool增加’source-map’,并在插件添加sourceMap。         这样的话就可以对源码调试和测试提供帮助。    
+
+</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.4.1.</span> <span class="nav-text">需求分析：移动端项目需要适配不同设备，因其设备像素比不同。
+   -设计方案：         1、本项目用设备像素比为2的设计稿进行开发，开发时参考控制台的机型         为Iphone5se。         2、项目引入hotcss.js进行自适应调整，处理1px等问题。原理是用到了         立即执行函数向外部暴露内部封装的方法，然后将这个文件由webpack         在入口和main.js一起打包，如：             entry:[‘./app/js/viewport.js’,’./app/js/main.js’]         3、hotcss.jss使用到window.devicePixelRatio这个api来获取当前         的设备像素比进行适配，并且向外暴露px2rem等方法供开发者使用。         此文件的地址参考：https://github.com/imochen/hotcss         4、以上为本项目的自适应方案。
+五、组件化设计
+本项目设计时抽离出几个抽象组件供其他组件继承，其他组件之间又可组合使用
+   -设计方案：         1、首先在一个独立文件夹里存放抽象组件：btn、panel、slider等组件。         2、抽象组件可以用于其他组件的继承，其它组件使用时，先在vue中引用         并注册组件，然后使用即可。         3、抽象组件设计时，用到：class来绑定一个样式列表如’[default,new]’         然后继承抽象组件时，可以再传入一个class来改变之前组件的默认样式。         4、组件的css模块化设计：想继承某个写好的样式模块直接@import引入，         然后@include即可。注意第三方组件的样式不要写在css-module里而是单         独写在一个style里。
+六、轮播图插件的使用
+本项目使用到vue-awesome-swiper轮播图插件
+   -设计方案：         1、在抽象组件slider.vue中引入插件，填写一些默认配置:             import {swiper,swiperSlide} from ‘vue-awesome-swiper’         2、注册vue组件，给swiper绑定option、not-next-tick等配置，这些         属性来自于props，内部的swiper-slide用于承载轮播图，可v-for使用。         3、使用时，可以传给Slider抽象组件option，进行上层封装，来决定轮         播的方式，如横向和纵向以及轮播是否自动进行等选项。
+七、构建工具的使用
+本项目使用webpack来构建，下面记录一些配置和使用的插件
+   -设计方案：         1、项目上线时，需进行代码压缩，使用插件Uglifyjs-webpack-plugin             1）npm i -D uglifyjs-webpack-plugin 安装插件             2）const UglifyJsPlugin = require(‘uglify-webpack-plugin’)             3) 在plugin部分添加：new UglifyJsPluin()             4) css的压缩，在css-loader里添加minimize即可。         2、开启source-map：devtool增加’source-map’,并在插件添加sourceMap。         这样的话就可以对源码调试和测试提供帮助。    
+
+</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.5.</span> <span class="nav-text">五、组件化设计
+本项目设计时抽离出几个抽象组件供其他组件继承，其他组件之间又可组合使用
+   -设计方案：         1、首先在一个独立文件夹里存放抽象组件：btn、panel、slider等组件。         2、抽象组件可以用于其他组件的继承，其它组件使用时，先在vue中引用         并注册组件，然后使用即可。         3、抽象组件设计时，用到：class来绑定一个样式列表如’[default,new]’         然后继承抽象组件时，可以再传入一个class来改变之前组件的默认样式。         4、组件的css模块化设计：想继承某个写好的样式模块直接@import引入，         然后@include即可。注意第三方组件的样式不要写在css-module里而是单         独写在一个style里。
+六、轮播图插件的使用
+本项目使用到vue-awesome-swiper轮播图插件
+   -设计方案：         1、在抽象组件slider.vue中引入插件，填写一些默认配置:             import {swiper,swiperSlide} from ‘vue-awesome-swiper’         2、注册vue组件，给swiper绑定option、not-next-tick等配置，这些         属性来自于props，内部的swiper-slide用于承载轮播图，可v-for使用。         3、使用时，可以传给Slider抽象组件option，进行上层封装，来决定轮         播的方式，如横向和纵向以及轮播是否自动进行等选项。
+七、构建工具的使用
+本项目使用webpack来构建，下面记录一些配置和使用的插件
+   -设计方案：         1、项目上线时，需进行代码压缩，使用插件Uglifyjs-webpack-plugin             1）npm i -D uglifyjs-webpack-plugin 安装插件             2）const UglifyJsPlugin = require(‘uglify-webpack-plugin’)             3) 在plugin部分添加：new UglifyJsPluin()             4) css的压缩，在css-loader里添加minimize即可。         2、开启source-map：devtool增加’source-map’,并在插件添加sourceMap。         这样的话就可以对源码调试和测试提供帮助。    
+
+</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.5.1.</span> <span class="nav-text">本项目设计时抽离出几个抽象组件供其他组件继承，其他组件之间又可组合使用
+   -设计方案：         1、首先在一个独立文件夹里存放抽象组件：btn、panel、slider等组件。         2、抽象组件可以用于其他组件的继承，其它组件使用时，先在vue中引用         并注册组件，然后使用即可。         3、抽象组件设计时，用到：class来绑定一个样式列表如’[default,new]’         然后继承抽象组件时，可以再传入一个class来改变之前组件的默认样式。         4、组件的css模块化设计：想继承某个写好的样式模块直接@import引入，         然后@include即可。注意第三方组件的样式不要写在css-module里而是单         独写在一个style里。
+六、轮播图插件的使用
+本项目使用到vue-awesome-swiper轮播图插件
+   -设计方案：         1、在抽象组件slider.vue中引入插件，填写一些默认配置:             import {swiper,swiperSlide} from ‘vue-awesome-swiper’         2、注册vue组件，给swiper绑定option、not-next-tick等配置，这些         属性来自于props，内部的swiper-slide用于承载轮播图，可v-for使用。         3、使用时，可以传给Slider抽象组件option，进行上层封装，来决定轮         播的方式，如横向和纵向以及轮播是否自动进行等选项。
+七、构建工具的使用
+本项目使用webpack来构建，下面记录一些配置和使用的插件
+   -设计方案：         1、项目上线时，需进行代码压缩，使用插件Uglifyjs-webpack-plugin             1）npm i -D uglifyjs-webpack-plugin 安装插件             2）const UglifyJsPlugin = require(‘uglify-webpack-plugin’)             3) 在plugin部分添加：new UglifyJsPluin()             4) css的压缩，在css-loader里添加minimize即可。         2、开启source-map：devtool增加’source-map’,并在插件添加sourceMap。         这样的话就可以对源码调试和测试提供帮助。    
+
+</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.6.</span> <span class="nav-text">六、轮播图插件的使用
+本项目使用到vue-awesome-swiper轮播图插件
+   -设计方案：         1、在抽象组件slider.vue中引入插件，填写一些默认配置:             import {swiper,swiperSlide} from ‘vue-awesome-swiper’         2、注册vue组件，给swiper绑定option、not-next-tick等配置，这些         属性来自于props，内部的swiper-slide用于承载轮播图，可v-for使用。         3、使用时，可以传给Slider抽象组件option，进行上层封装，来决定轮         播的方式，如横向和纵向以及轮播是否自动进行等选项。
+七、构建工具的使用
+本项目使用webpack来构建，下面记录一些配置和使用的插件
+   -设计方案：         1、项目上线时，需进行代码压缩，使用插件Uglifyjs-webpack-plugin             1）npm i -D uglifyjs-webpack-plugin 安装插件             2）const UglifyJsPlugin = require(‘uglify-webpack-plugin’)             3) 在plugin部分添加：new UglifyJsPluin()             4) css的压缩，在css-loader里添加minimize即可。         2、开启source-map：devtool增加’source-map’,并在插件添加sourceMap。         这样的话就可以对源码调试和测试提供帮助。    
+
+</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.6.1.</span> <span class="nav-text">本项目使用到vue-awesome-swiper轮播图插件
+   -设计方案：         1、在抽象组件slider.vue中引入插件，填写一些默认配置:             import {swiper,swiperSlide} from ‘vue-awesome-swiper’         2、注册vue组件，给swiper绑定option、not-next-tick等配置，这些         属性来自于props，内部的swiper-slide用于承载轮播图，可v-for使用。         3、使用时，可以传给Slider抽象组件option，进行上层封装，来决定轮         播的方式，如横向和纵向以及轮播是否自动进行等选项。
+七、构建工具的使用
+本项目使用webpack来构建，下面记录一些配置和使用的插件
+   -设计方案：         1、项目上线时，需进行代码压缩，使用插件Uglifyjs-webpack-plugin             1）npm i -D uglifyjs-webpack-plugin 安装插件             2）const UglifyJsPlugin = require(‘uglify-webpack-plugin’)             3) 在plugin部分添加：new UglifyJsPluin()             4) css的压缩，在css-loader里添加minimize即可。         2、开启source-map：devtool增加’source-map’,并在插件添加sourceMap。         这样的话就可以对源码调试和测试提供帮助。    
+
+</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.7.</span> <span class="nav-text">七、构建工具的使用
+本项目使用webpack来构建，下面记录一些配置和使用的插件
+   -设计方案：         1、项目上线时，需进行代码压缩，使用插件Uglifyjs-webpack-plugin             1）npm i -D uglifyjs-webpack-plugin 安装插件             2）const UglifyJsPlugin = require(‘uglify-webpack-plugin’)             3) 在plugin部分添加：new UglifyJsPluin()             4) css的压缩，在css-loader里添加minimize即可。         2、开启source-map：devtool增加’source-map’,并在插件添加sourceMap。         这样的话就可以对源码调试和测试提供帮助。    
+
+</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.7.1.</span> <span class="nav-text">本项目使用webpack来构建，下面记录一些配置和使用的插件
+   -设计方案：         1、项目上线时，需进行代码压缩，使用插件Uglifyjs-webpack-plugin             1）npm i -D uglifyjs-webpack-plugin 安装插件             2）const UglifyJsPlugin = require(‘uglify-webpack-plugin’)             3) 在plugin部分添加：new UglifyJsPluin()             4) css的压缩，在css-loader里添加minimize即可。         2、开启source-map：devtool增加’source-map’,并在插件添加sourceMap。         这样的话就可以对源码调试和测试提供帮助。    
+
+</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
