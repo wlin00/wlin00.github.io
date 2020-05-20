@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="webpack是一个现代JavaScript应用程序的静态模块打包器。它会递归的构建一个依赖关系图，其中包含应用程序需要的每个模块，并将这些模块打包成一个或多个的bundle 一、Vue+Webpack项目的搭建    -所需环境和搭建步骤：         1、全局的样式使用@import ‘./xxx.scss’来引入，每个组件都可以使用。         1、mkdir创建一个最外层的文件夹">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack学习总结">
+<meta property="og:url" content="http://yoursite.com/2020/05/18/post26/index.html">
+<meta property="og:site_name">
+<meta property="og:description" content="webpack是一个现代JavaScript应用程序的静态模块打包器。它会递归的构建一个依赖关系图，其中包含应用程序需要的每个模块，并将这些模块打包成一个或多个的bundle 一、Vue+Webpack项目的搭建    -所需环境和搭建步骤：         1、全局的样式使用@import ‘./xxx.scss’来引入，每个组件都可以使用。         1、mkdir创建一个最外层的文件夹">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-05-20T16:53:10.972Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="webpack学习总结">
+<meta name="twitter:description" content="webpack是一个现代JavaScript应用程序的静态模块打包器。它会递归的构建一个依赖关系图，其中包含应用程序需要的每个模块，并将这些模块打包成一个或多个的bundle 一、Vue+Webpack项目的搭建    -所需环境和搭建步骤：         1、全局的样式使用@import ‘./xxx.scss’来引入，每个组件都可以使用。         1、mkdir创建一个最外层的文件夹">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/05/18/post26/">
+
+
+
+
+
+  <title>webpack学习总结 | </title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title"></span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-nav">
+          <a href="/nav/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            站点导航
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/18/post26/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZJJ00">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/02.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">webpack学习总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-18T12:24:49+08:00">
+                2020-05-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p></p><h1>webpack是一个现代JavaScript应用程序的静态模块打包器。它会递归的构建一个依赖关系图，其中包含应用程序需要的每个模块，并将这些模块打包成一个或多个的bundle<br><br><p></p>
+<p></p><h2>一、Vue+Webpack项目的搭建<br><br><p></p>
+<p><pre><br>   -所需环境和搭建步骤：<br>         1、全局的样式使用@import ‘./xxx.scss’来引入，每个组件都可以使用。<br>         1、mkdir创建一个最外层的文件夹，使用npm init来初始化项目。<br>         2、创建webpack.config.js文件，在其中编写配置项。<br>         3、创建文件夹app,在其中创建项目需要的文件：<br>            1）css/reset.scss，用与清空默认样式；<br>            2) js/router/index.js,用与存放路由表；<br>               js/App.vue、js/main.js、js/test.vue等项目核心文件<br>               js/组件名/…, 用与存放后续各个组件；<br>            3) views/index.html,存放视图模板。<br></pre><br><br></p>
+<p></p><h2>二、Webpack的初始化配置<br><br><p></p>
+<p><pre><br>   -配置信息：<br>         1、全局的样式使用@import ‘./xxx.scss’来引入，每个组件都可以使用。<br>         1、webpack环境基于nodeJs，可以在顶部require引入需要的模块如：<br>           const path = require(‘path’)<br>         2、该文件使用module.exports语法向外暴露模块。<br>         3、基础配置如下：<br>            module.exports = {<br>              entry:{app:’./app/js/main.js’}, //单入口用{}多入口用[]<br>              module:{<br>              rules:[<br>              {<br>                 test:/.html$/,      //正则匹配对应文件<br>                 loader:’html-loader’ //使用对应loader去识别对应文件<br>              },<br>              {<br>                 test:/.vue$/,<br>                 loader:’vue-loader’<br>              },<br>              {<br>                 test:/.scss/,  //多个loader用！连接，从右往左识别<br>                 loader:’style-loader!css-loader!sass-loader’<br>              }]<br>              },<br>              plugin:[],<br>              output:{<br>                 filename:’[name].min.js’ ,         //输出文件名<br>                 path: path.resolve(_dirname,’dist’)//输出具体信息<br>              }<br>            }  </pre></p>
+<p><br><br></p>
+<p></p><h2>三、让前端项目启动的配置<br><br><p></p>
+<p><pre><br>   -设计步骤：npm i 安装需要的各个依赖，保证其版本正确，使用到的依赖有：<br>       1） 配置相应的loader，loader是让webpack能够去处理非JavaScript<br>       文件，因为其自身只理解JavaScript，loader则是可以将所有类型的文<br>       件转换为webpack能够处理的有效模块，然后开发者就可以利用webpack<br>       的打包能力，对它们进行处理。项目启动前需要配置如下loader：<br>       vue-loader、style-loader、sass-loader、css-loader、<br>       html-loader等loader。<br>       2） 配置devServer，首先npm i -D来安装依赖，然后加入以下配置项：<br>         devServer{<br>           contentBase: path.join(__dirname,’dist’),//定位到首页<br>           compress: true,  //是否开启Gzip压缩，开启后页面大小压缩<br>           port: 9000       //前端服务占用的端口<br>         }<br>       3） 配置html-webpack-plugin和clean-webpack-plugin插件：<br>       首先安装和引入模块：<br>       const HtmlWebpackPlugin = require(‘html-webpack-plubin’)<br>       const CleanWebpackPlugin = require(‘clean-webpack-plubin’)<br>       然后在plugins中加入配置：<br>       plugins: [<br>          new CleanWebpackPlugin([‘dist’]),<br>          new HtmlWebpackPlugin({<br>              template: ‘./app/views/index.html’  //加入html模板<br>          })<br>       ]<br>       HtmlWebpackPlugin插件的作用：打包输出html模板文件、为输出的模<br>       版文件加上hash值的文件名，推崇浏览器强缓存策略防止读取过期缓存;<br>       CleanWebpackPlugin插件的作用：定时清空devServer指定的隐藏目录<br>       4）配置resolve.alias，来确保正确的模块引入：<br>       resolve:{<br>       alias:{<br>       ‘vue$’:’vue/dist/vue.min.js’<br>         }<br>       }</pre></p>
+<p><br><br></p>
+<p></p><h2>四、自适应配置<p></p>
+<p></p><h3>需求分析：移动端项目需要适配不同设备，因其设备像素比不同。<br><br><p></p>
+<p><pre><br>   -设计方案：<br>         1、本项目用设备像素比为2的设计稿进行开发，开发时参考控制台的机型<br>         1、自适应的设计使用到px2rem的loader，配置如下:<br>             1)安装步骤：npm i px2rem-loader；<br>             2）在vue-loader中添加options选项：<br>               给项目样式中用到的两种css语言做配置,scss需先转css：<br>               options:{<br>                 css:  ‘vue-style-loader!css-loader!px2rem-loader<br>                        ?remUnit=75&amp;remPrecision=8’,<br>                 scss: ‘vue-style-loader!css-loader!px2rem-loader<br>                        ?remUnit=75&amp;remPrecision=8!sass-loader’<br>               }<br>               注意：参数remUnit代表1个rem默认转75px，<br>                    参数remPrecision代表精度最多保留小数点后8位。<br>            3）自适应的适配：<br>              引入viewport.js文件存放在js文件夹根目录，文件内容是<br>              引入github上的hotcss.js向外暴露px2rem的各个方法。<br>            4）使用webpack将viewport.js打至入口,多入口文件写法：<br>              entry:[‘./app/js/viewport.js’,<br>                     ‘./app/js/main.js’]          </pre></p>
+<p><br><br></p>
+<p></p><h2>五、css模块化设计<br><br><p></p>
+<p><pre><br>   -设计方案：<br>         1、vue项目中在style标签上加module，模板中绑定”$style.类名”，<br>         这样做后可以做到css的模块化。<br>         2、webpack的配置，在vue-loader的options里适配：<br>         cssModules:{ //注意webpack使用版本会影响以下配置的写法<br>          localIdentName:’[path][name]—[local]—[hash:base64:5]’<br>          ,camelCase: true<br>         }<br>         3、提取css为单个css文件的配置:<br>           使用ExtractTextPlugin：<br>           1）安装并引入插件：<br>             const ExtractTextPlugin = require(‘<br>             extract-text-webpack-plugin’)<br>           2)修改vue-loader里options的loaders写法：<br>             options:{<br>               loaders:{ //vue-style-loader改为fallback的形式引入<br>                 css: ExtractTextPlugin.extract({<br>                   use:’css-loader!px2rem-loader<br>                        ?remUnit=75&amp;remPrecision=8’,<br>                   fallback: ‘vue-style-loader’<br>                 }),<br>                 scss: ExtractTextPlugin.extract({<br>                   use:’css-loader!px2rem-loader<br>                        ?remUnit=75&amp;remPrecision=8!sass-loader’,<br>                   fallback: ‘vue-style-loader’<br>                 })<br>               }<br>             }<br>           3）插件plugins加入配置：<br>             plugins:[<br>                …<br>                new ExtractTextPlugin(‘style.css’)<br>             ]<br>           4)适配好后，可看见页面模板中的css变为link引入的文件。<br><br></pre></p>
+<p></p><h2>六、根据当前环境是开发环境或者生产环境改变webpack配置<br><br><p></p>
+<p><pre><br>   -设计方案：<br>         1、使用DefinePlugin来创建一个在编译时可以配置的全局常量，这<br>         个常量可以用于定义当前是开发模式或者是生产模式。<br>         2、首先修改webpack的module.exports写法，默认是向外暴露一个对象，<br>         但是我们需要根据环境变量的不同来填写配置项，所以用如下写法：<br>           module.exports = env =&gt;{ //ES6写法<br>             return {…}<br>           }<br>         3、我们可以根据环境变量不同，添加更多插件，并修改webpack本身Node环境。<br>           例如：如果当前是生产环境，则添加更完善的插件和功能配置；<br>                如果当前是开发环境，则可以更加轻量级，不添加太多插件。<br>         4、配置如下：<br>           1)引入webpack模块<br>             cosnt webpack = require(‘webpack’)<br>           2)给env参数做空值的错误处理<br>             if(!env){ env = {} }<br>           3）定义通用插件：<br>             let plugins = [<br>                new CleanWebpackPlugin([‘dist’]),<br>                new HtmlWebpackPlugin({<br>                  template: ‘./app/views/index.html’<br>                })<br>             ]<br>           4)配置生产环境时的额外插件和功能：<br>             即只有当env.production参数存在的时候，才完善生产环境的配置。<br>             if(env.production){<br>               plugins.push(<br>                  new webpack.DefinePlugin({<br>                    ‘process.env’:{<br>                      NODE_ENV: ‘“production”‘<br>                    }<br>                  }),<br>                  new ExtractTextPlugin(‘style.css’)<br>               )<br>             }<br>          5）vue-loader中options的loaders也需要根据env变量进行变化，<br>          即对使用到插件的loader配置也进行处理，这里可以使用三元表达式：<br>            loaders: env.production ? {<br>              css: ExtractTextPlugin.extract({<br>                 use: ‘css-loader!px2rem-loader<br>                       ?remUnit=75&amp;remPrecision=8’,<br>                 fallback: ‘vue-style-loader’<br>              }),<br>              scss: ExtractTextPlugin.extract({<br>                 use: ‘css-loader!px2rem-loader<br>                       ?remUnit=75&amp;remPrecision=8!sass-loader’,<br>                 fallback: ‘vue-style-loader’<br>              })<br>            } : {<br>              css:’vue-style-loader!css-loader!px2rem-loader<br>                   ?remUnit=75&amp;remPrecision=8’,<br>              scss:’vue-style-loader!css-loader!px2rem-loader<br>                   ?remUnit=75&amp;remPrecision=8!sass-loader’,<br>            }<br></pre><br><br></p>
+</h2></h2></h3></h2></h2></h2></h2></h1>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/08/post25/" rel="next" title="笔记25：vue项目的学习总结">
+                <i class="fa fa-chevron-left"></i> 笔记25：vue项目的学习总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/02.jpg" alt="ZJJ00">
+            
+              <p class="site-author-name" itemprop="name">ZJJ00</p>
+              <p class="site-description motion-element" itemprop="description">Heal the scars Change the stars</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">webpack是一个现代JavaScript应用程序的静态模块打包器。它会递归的构建一个依赖关系图，其中包含应用程序需要的每个模块，并将这些模块打包成一个或多个的bundle
+一、Vue+Webpack项目的搭建
+   -所需环境和搭建步骤：         1、全局的样式使用@import ‘./xxx.scss’来引入，每个组件都可以使用。         1、mkdir创建一个最外层的文件夹，使用npm init来初始化项目。         2、创建webpack.config.js文件，在其中编写配置项。         3、创建文件夹app,在其中创建项目需要的文件：            1）css/reset.scss，用与清空默认样式；            2) js/router/index.js,用与存放路由表；               js/App.vue、js/main.js、js/test.vue等项目核心文件               js/组件名/…, 用与存放后续各个组件；            3) views/index.html,存放视图模板。
+二、Webpack的初始化配置
+   -配置信息：         1、全局的样式使用@import ‘./xxx.scss’来引入，每个组件都可以使用。         1、webpack环境基于nodeJs，可以在顶部require引入需要的模块如：           const path = require(‘path’)         2、该文件使用module.exports语法向外暴露模块。         3、基础配置如下：            module.exports = {              entry:{app:’./app/js/main.js’}, //单入口用{}多入口用[]              module:{              rules:[              {                 test:/.html$/,      //正则匹配对应文件                 loader:’html-loader’ //使用对应loader去识别对应文件              },              {                 test:/.vue$/,                 loader:’vue-loader’              },              {                 test:/.scss/,  //多个loader用！连接，从右往左识别                 loader:’style-loader!css-loader!sass-loader’              }]              },              plugin:[],              output:{                 filename:’[name].min.js’ ,         //输出文件名                 path: path.resolve(_dirname,’dist’)//输出具体信息              }            }  
+
+三、让前端项目启动的配置
+   -设计步骤：npm i 安装需要的各个依赖，保证其版本正确，使用到的依赖有：       1） 配置相应的loader，loader是让webpack能够去处理非JavaScript       文件，因为其自身只理解JavaScript，loader则是可以将所有类型的文       件转换为webpack能够处理的有效模块，然后开发者就可以利用webpack       的打包能力，对它们进行处理。项目启动前需要配置如下loader：       vue-loader、style-loader、sass-loader、css-loader、       html-loader等loader。       2） 配置devServer，首先npm i -D来安装依赖，然后加入以下配置项：         devServer{           contentBase: path.join(__dirname,’dist’),//定位到首页           compress: true,  //是否开启Gzip压缩，开启后页面大小压缩           port: 9000       //前端服务占用的端口         }       3） 配置html-webpack-plugin和clean-webpack-plugin插件：       首先安装和引入模块：       const HtmlWebpackPlugin = require(‘html-webpack-plubin’)       const CleanWebpackPlugin = require(‘clean-webpack-plubin’)       然后在plugins中加入配置：       plugins: [          new CleanWebpackPlugin([‘dist’]),          new HtmlWebpackPlugin({              template: ‘./app/views/index.html’  //加入html模板          })       ]       HtmlWebpackPlugin插件的作用：打包输出html模板文件、为输出的模       版文件加上hash值的文件名，推崇浏览器强缓存策略防止读取过期缓存;       CleanWebpackPlugin插件的作用：定时清空devServer指定的隐藏目录       4）配置resolve.alias，来确保正确的模块引入：       resolve:{       alias:{       ‘vue$’:’vue/dist/vue.min.js’         }       }
+
+四、自适应配置
+需求分析：移动端项目需要适配不同设备，因其设备像素比不同。
+   -设计方案：         1、本项目用设备像素比为2的设计稿进行开发，开发时参考控制台的机型         1、自适应的设计使用到px2rem的loader，配置如下:             1)安装步骤：npm i px2rem-loader；             2）在vue-loader中添加options选项：               给项目样式中用到的两种css语言做配置,scss需先转css：               options:{                 css:  ‘vue-style-loader!css-loader!px2rem-loader                        ?remUnit=75&amp;remPrecision=8’,                 scss: ‘vue-style-loader!css-loader!px2rem-loader                        ?remUnit=75&amp;remPrecision=8!sass-loader’               }               注意：参数remUnit代表1个rem默认转75px，                    参数remPrecision代表精度最多保留小数点后8位。            3）自适应的适配：              引入viewport.js文件存放在js文件夹根目录，文件内容是              引入github上的hotcss.js向外暴露px2rem的各个方法。            4）使用webpack将viewport.js打至入口,多入口文件写法：              entry:[‘./app/js/viewport.js’,                     ‘./app/js/main.js’]          
+
+五、css模块化设计
+   -设计方案：         1、vue项目中在style标签上加module，模板中绑定”$style.类名”，         这样做后可以做到css的模块化。         2、webpack的配置，在vue-loader的options里适配：         cssModules:{ //注意webpack使用版本会影响以下配置的写法          localIdentName:’[path][name]—[local]—[hash:base64:5]’          ,camelCase: true         }         3、提取css为单个css文件的配置:           使用ExtractTextPlugin：           1）安装并引入插件：             const ExtractTextPlugin = require(‘             extract-text-webpack-plugin’)           2)修改vue-loader里options的loaders写法：             options:{               loaders:{ //vue-style-loader改为fallback的形式引入                 css: ExtractTextPlugin.extract({                   use:’css-loader!px2rem-loader                        ?remUnit=75&amp;remPrecision=8’,                   fallback: ‘vue-style-loader’                 }),                 scss: ExtractTextPlugin.extract({                   use:’css-loader!px2rem-loader                        ?remUnit=75&amp;remPrecision=8!sass-loader’,                   fallback: ‘vue-style-loader’                 })               }             }           3）插件plugins加入配置：             plugins:[                …                new ExtractTextPlugin(‘style.css’)             ]           4)适配好后，可看见页面模板中的css变为link引入的文件。
+六、根据当前环境是开发环境或者生产环境改变webpack配置
+   -设计方案：         1、使用DefinePlugin来创建一个在编译时可以配置的全局常量，这         个常量可以用于定义当前是开发模式或者是生产模式。         2、首先修改webpack的module.exports写法，默认是向外暴露一个对象，         但是我们需要根据环境变量的不同来填写配置项，所以用如下写法：           module.exports = env =&gt;{ //ES6写法             return {…}           }         3、我们可以根据环境变量不同，添加更多插件，并修改webpack本身Node环境。           例如：如果当前是生产环境，则添加更完善的插件和功能配置；                如果当前是开发环境，则可以更加轻量级，不添加太多插件。         4、配置如下：           1)引入webpack模块             cosnt webpack = require(‘webpack’)           2)给env参数做空值的错误处理             if(!env){ env = {} }           3）定义通用插件：             let plugins = [                new CleanWebpackPlugin([‘dist’]),                new HtmlWebpackPlugin({                  template: ‘./app/views/index.html’                })             ]           4)配置生产环境时的额外插件和功能：             即只有当env.production参数存在的时候，才完善生产环境的配置。             if(env.production){               plugins.push(                  new webpack.DefinePlugin({                    ‘process.env’:{                      NODE_ENV: ‘“production”‘                    }                  }),                  new ExtractTextPlugin(‘style.css’)               )             }          5）vue-loader中options的loaders也需要根据env变量进行变化，          即对使用到插件的loader配置也进行处理，这里可以使用三元表达式：            loaders: env.production ? {              css: ExtractTextPlugin.extract({                 use: ‘css-loader!px2rem-loader                       ?remUnit=75&amp;remPrecision=8’,                 fallback: ‘vue-style-loader’              }),              scss: ExtractTextPlugin.extract({                 use: ‘css-loader!px2rem-loader                       ?remUnit=75&amp;remPrecision=8!sass-loader’,                 fallback: ‘vue-style-loader’              })            } : {              css:’vue-style-loader!css-loader!px2rem-loader                   ?remUnit=75&amp;remPrecision=8’,              scss:’vue-style-loader!css-loader!px2rem-loader                   ?remUnit=75&amp;remPrecision=8!sass-loader’,            }
+</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.</span> <span class="nav-text">一、Vue+Webpack项目的搭建
+   -所需环境和搭建步骤：         1、全局的样式使用@import ‘./xxx.scss’来引入，每个组件都可以使用。         1、mkdir创建一个最外层的文件夹，使用npm init来初始化项目。         2、创建webpack.config.js文件，在其中编写配置项。         3、创建文件夹app,在其中创建项目需要的文件：            1）css/reset.scss，用与清空默认样式；            2) js/router/index.js,用与存放路由表；               js/App.vue、js/main.js、js/test.vue等项目核心文件               js/组件名/…, 用与存放后续各个组件；            3) views/index.html,存放视图模板。
+二、Webpack的初始化配置
+   -配置信息：         1、全局的样式使用@import ‘./xxx.scss’来引入，每个组件都可以使用。         1、webpack环境基于nodeJs，可以在顶部require引入需要的模块如：           const path = require(‘path’)         2、该文件使用module.exports语法向外暴露模块。         3、基础配置如下：            module.exports = {              entry:{app:’./app/js/main.js’}, //单入口用{}多入口用[]              module:{              rules:[              {                 test:/.html$/,      //正则匹配对应文件                 loader:’html-loader’ //使用对应loader去识别对应文件              },              {                 test:/.vue$/,                 loader:’vue-loader’              },              {                 test:/.scss/,  //多个loader用！连接，从右往左识别                 loader:’style-loader!css-loader!sass-loader’              }]              },              plugin:[],              output:{                 filename:’[name].min.js’ ,         //输出文件名                 path: path.resolve(_dirname,’dist’)//输出具体信息              }            }  
+
+三、让前端项目启动的配置
+   -设计步骤：npm i 安装需要的各个依赖，保证其版本正确，使用到的依赖有：       1） 配置相应的loader，loader是让webpack能够去处理非JavaScript       文件，因为其自身只理解JavaScript，loader则是可以将所有类型的文       件转换为webpack能够处理的有效模块，然后开发者就可以利用webpack       的打包能力，对它们进行处理。项目启动前需要配置如下loader：       vue-loader、style-loader、sass-loader、css-loader、       html-loader等loader。       2） 配置devServer，首先npm i -D来安装依赖，然后加入以下配置项：         devServer{           contentBase: path.join(__dirname,’dist’),//定位到首页           compress: true,  //是否开启Gzip压缩，开启后页面大小压缩           port: 9000       //前端服务占用的端口         }       3） 配置html-webpack-plugin和clean-webpack-plugin插件：       首先安装和引入模块：       const HtmlWebpackPlugin = require(‘html-webpack-plubin’)       const CleanWebpackPlugin = require(‘clean-webpack-plubin’)       然后在plugins中加入配置：       plugins: [          new CleanWebpackPlugin([‘dist’]),          new HtmlWebpackPlugin({              template: ‘./app/views/index.html’  //加入html模板          })       ]       HtmlWebpackPlugin插件的作用：打包输出html模板文件、为输出的模       版文件加上hash值的文件名，推崇浏览器强缓存策略防止读取过期缓存;       CleanWebpackPlugin插件的作用：定时清空devServer指定的隐藏目录       4）配置resolve.alias，来确保正确的模块引入：       resolve:{       alias:{       ‘vue$’:’vue/dist/vue.min.js’         }       }
+
+四、自适应配置
+需求分析：移动端项目需要适配不同设备，因其设备像素比不同。
+   -设计方案：         1、本项目用设备像素比为2的设计稿进行开发，开发时参考控制台的机型         1、自适应的设计使用到px2rem的loader，配置如下:             1)安装步骤：npm i px2rem-loader；             2）在vue-loader中添加options选项：               给项目样式中用到的两种css语言做配置,scss需先转css：               options:{                 css:  ‘vue-style-loader!css-loader!px2rem-loader                        ?remUnit=75&amp;remPrecision=8’,                 scss: ‘vue-style-loader!css-loader!px2rem-loader                        ?remUnit=75&amp;remPrecision=8!sass-loader’               }               注意：参数remUnit代表1个rem默认转75px，                    参数remPrecision代表精度最多保留小数点后8位。            3）自适应的适配：              引入viewport.js文件存放在js文件夹根目录，文件内容是              引入github上的hotcss.js向外暴露px2rem的各个方法。            4）使用webpack将viewport.js打至入口,多入口文件写法：              entry:[‘./app/js/viewport.js’,                     ‘./app/js/main.js’]          
+
+五、css模块化设计
+   -设计方案：         1、vue项目中在style标签上加module，模板中绑定”$style.类名”，         这样做后可以做到css的模块化。         2、webpack的配置，在vue-loader的options里适配：         cssModules:{ //注意webpack使用版本会影响以下配置的写法          localIdentName:’[path][name]—[local]—[hash:base64:5]’          ,camelCase: true         }         3、提取css为单个css文件的配置:           使用ExtractTextPlugin：           1）安装并引入插件：             const ExtractTextPlugin = require(‘             extract-text-webpack-plugin’)           2)修改vue-loader里options的loaders写法：             options:{               loaders:{ //vue-style-loader改为fallback的形式引入                 css: ExtractTextPlugin.extract({                   use:’css-loader!px2rem-loader                        ?remUnit=75&amp;remPrecision=8’,                   fallback: ‘vue-style-loader’                 }),                 scss: ExtractTextPlugin.extract({                   use:’css-loader!px2rem-loader                        ?remUnit=75&amp;remPrecision=8!sass-loader’,                   fallback: ‘vue-style-loader’                 })               }             }           3）插件plugins加入配置：             plugins:[                …                new ExtractTextPlugin(‘style.css’)             ]           4)适配好后，可看见页面模板中的css变为link引入的文件。
+六、根据当前环境是开发环境或者生产环境改变webpack配置
+   -设计方案：         1、使用DefinePlugin来创建一个在编译时可以配置的全局常量，这         个常量可以用于定义当前是开发模式或者是生产模式。         2、首先修改webpack的module.exports写法，默认是向外暴露一个对象，         但是我们需要根据环境变量的不同来填写配置项，所以用如下写法：           module.exports = env =&gt;{ //ES6写法             return {…}           }         3、我们可以根据环境变量不同，添加更多插件，并修改webpack本身Node环境。           例如：如果当前是生产环境，则添加更完善的插件和功能配置；                如果当前是开发环境，则可以更加轻量级，不添加太多插件。         4、配置如下：           1)引入webpack模块             cosnt webpack = require(‘webpack’)           2)给env参数做空值的错误处理             if(!env){ env = {} }           3）定义通用插件：             let plugins = [                new CleanWebpackPlugin([‘dist’]),                new HtmlWebpackPlugin({                  template: ‘./app/views/index.html’                })             ]           4)配置生产环境时的额外插件和功能：             即只有当env.production参数存在的时候，才完善生产环境的配置。             if(env.production){               plugins.push(                  new webpack.DefinePlugin({                    ‘process.env’:{                      NODE_ENV: ‘“production”‘                    }                  }),                  new ExtractTextPlugin(‘style.css’)               )             }          5）vue-loader中options的loaders也需要根据env变量进行变化，          即对使用到插件的loader配置也进行处理，这里可以使用三元表达式：            loaders: env.production ? {              css: ExtractTextPlugin.extract({                 use: ‘css-loader!px2rem-loader                       ?remUnit=75&amp;remPrecision=8’,                 fallback: ‘vue-style-loader’              }),              scss: ExtractTextPlugin.extract({                 use: ‘css-loader!px2rem-loader                       ?remUnit=75&amp;remPrecision=8!sass-loader’,                 fallback: ‘vue-style-loader’              })            } : {              css:’vue-style-loader!css-loader!px2rem-loader                   ?remUnit=75&amp;remPrecision=8’,              scss:’vue-style-loader!css-loader!px2rem-loader                   ?remUnit=75&amp;remPrecision=8!sass-loader’,            }
+</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.2.</span> <span class="nav-text">二、Webpack的初始化配置
+   -配置信息：         1、全局的样式使用@import ‘./xxx.scss’来引入，每个组件都可以使用。         1、webpack环境基于nodeJs，可以在顶部require引入需要的模块如：           const path = require(‘path’)         2、该文件使用module.exports语法向外暴露模块。         3、基础配置如下：            module.exports = {              entry:{app:’./app/js/main.js’}, //单入口用{}多入口用[]              module:{              rules:[              {                 test:/.html$/,      //正则匹配对应文件                 loader:’html-loader’ //使用对应loader去识别对应文件              },              {                 test:/.vue$/,                 loader:’vue-loader’              },              {                 test:/.scss/,  //多个loader用！连接，从右往左识别                 loader:’style-loader!css-loader!sass-loader’              }]              },              plugin:[],              output:{                 filename:’[name].min.js’ ,         //输出文件名                 path: path.resolve(_dirname,’dist’)//输出具体信息              }            }  
+
+三、让前端项目启动的配置
+   -设计步骤：npm i 安装需要的各个依赖，保证其版本正确，使用到的依赖有：       1） 配置相应的loader，loader是让webpack能够去处理非JavaScript       文件，因为其自身只理解JavaScript，loader则是可以将所有类型的文       件转换为webpack能够处理的有效模块，然后开发者就可以利用webpack       的打包能力，对它们进行处理。项目启动前需要配置如下loader：       vue-loader、style-loader、sass-loader、css-loader、       html-loader等loader。       2） 配置devServer，首先npm i -D来安装依赖，然后加入以下配置项：         devServer{           contentBase: path.join(__dirname,’dist’),//定位到首页           compress: true,  //是否开启Gzip压缩，开启后页面大小压缩           port: 9000       //前端服务占用的端口         }       3） 配置html-webpack-plugin和clean-webpack-plugin插件：       首先安装和引入模块：       const HtmlWebpackPlugin = require(‘html-webpack-plubin’)       const CleanWebpackPlugin = require(‘clean-webpack-plubin’)       然后在plugins中加入配置：       plugins: [          new CleanWebpackPlugin([‘dist’]),          new HtmlWebpackPlugin({              template: ‘./app/views/index.html’  //加入html模板          })       ]       HtmlWebpackPlugin插件的作用：打包输出html模板文件、为输出的模       版文件加上hash值的文件名，推崇浏览器强缓存策略防止读取过期缓存;       CleanWebpackPlugin插件的作用：定时清空devServer指定的隐藏目录       4）配置resolve.alias，来确保正确的模块引入：       resolve:{       alias:{       ‘vue$’:’vue/dist/vue.min.js’         }       }
+
+四、自适应配置
+需求分析：移动端项目需要适配不同设备，因其设备像素比不同。
+   -设计方案：         1、本项目用设备像素比为2的设计稿进行开发，开发时参考控制台的机型         1、自适应的设计使用到px2rem的loader，配置如下:             1)安装步骤：npm i px2rem-loader；             2）在vue-loader中添加options选项：               给项目样式中用到的两种css语言做配置,scss需先转css：               options:{                 css:  ‘vue-style-loader!css-loader!px2rem-loader                        ?remUnit=75&amp;remPrecision=8’,                 scss: ‘vue-style-loader!css-loader!px2rem-loader                        ?remUnit=75&amp;remPrecision=8!sass-loader’               }               注意：参数remUnit代表1个rem默认转75px，                    参数remPrecision代表精度最多保留小数点后8位。            3）自适应的适配：              引入viewport.js文件存放在js文件夹根目录，文件内容是              引入github上的hotcss.js向外暴露px2rem的各个方法。            4）使用webpack将viewport.js打至入口,多入口文件写法：              entry:[‘./app/js/viewport.js’,                     ‘./app/js/main.js’]          
+
+五、css模块化设计
+   -设计方案：         1、vue项目中在style标签上加module，模板中绑定”$style.类名”，         这样做后可以做到css的模块化。         2、webpack的配置，在vue-loader的options里适配：         cssModules:{ //注意webpack使用版本会影响以下配置的写法          localIdentName:’[path][name]—[local]—[hash:base64:5]’          ,camelCase: true         }         3、提取css为单个css文件的配置:           使用ExtractTextPlugin：           1）安装并引入插件：             const ExtractTextPlugin = require(‘             extract-text-webpack-plugin’)           2)修改vue-loader里options的loaders写法：             options:{               loaders:{ //vue-style-loader改为fallback的形式引入                 css: ExtractTextPlugin.extract({                   use:’css-loader!px2rem-loader                        ?remUnit=75&amp;remPrecision=8’,                   fallback: ‘vue-style-loader’                 }),                 scss: ExtractTextPlugin.extract({                   use:’css-loader!px2rem-loader                        ?remUnit=75&amp;remPrecision=8!sass-loader’,                   fallback: ‘vue-style-loader’                 })               }             }           3）插件plugins加入配置：             plugins:[                …                new ExtractTextPlugin(‘style.css’)             ]           4)适配好后，可看见页面模板中的css变为link引入的文件。
+六、根据当前环境是开发环境或者生产环境改变webpack配置
+   -设计方案：         1、使用DefinePlugin来创建一个在编译时可以配置的全局常量，这         个常量可以用于定义当前是开发模式或者是生产模式。         2、首先修改webpack的module.exports写法，默认是向外暴露一个对象，         但是我们需要根据环境变量的不同来填写配置项，所以用如下写法：           module.exports = env =&gt;{ //ES6写法             return {…}           }         3、我们可以根据环境变量不同，添加更多插件，并修改webpack本身Node环境。           例如：如果当前是生产环境，则添加更完善的插件和功能配置；                如果当前是开发环境，则可以更加轻量级，不添加太多插件。         4、配置如下：           1)引入webpack模块             cosnt webpack = require(‘webpack’)           2)给env参数做空值的错误处理             if(!env){ env = {} }           3）定义通用插件：             let plugins = [                new CleanWebpackPlugin([‘dist’]),                new HtmlWebpackPlugin({                  template: ‘./app/views/index.html’                })             ]           4)配置生产环境时的额外插件和功能：             即只有当env.production参数存在的时候，才完善生产环境的配置。             if(env.production){               plugins.push(                  new webpack.DefinePlugin({                    ‘process.env’:{                      NODE_ENV: ‘“production”‘                    }                  }),                  new ExtractTextPlugin(‘style.css’)               )             }          5）vue-loader中options的loaders也需要根据env变量进行变化，          即对使用到插件的loader配置也进行处理，这里可以使用三元表达式：            loaders: env.production ? {              css: ExtractTextPlugin.extract({                 use: ‘css-loader!px2rem-loader                       ?remUnit=75&amp;remPrecision=8’,                 fallback: ‘vue-style-loader’              }),              scss: ExtractTextPlugin.extract({                 use: ‘css-loader!px2rem-loader                       ?remUnit=75&amp;remPrecision=8!sass-loader’,                 fallback: ‘vue-style-loader’              })            } : {              css:’vue-style-loader!css-loader!px2rem-loader                   ?remUnit=75&amp;remPrecision=8’,              scss:’vue-style-loader!css-loader!px2rem-loader                   ?remUnit=75&amp;remPrecision=8!sass-loader’,            }
+</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.3.</span> <span class="nav-text">三、让前端项目启动的配置
+   -设计步骤：npm i 安装需要的各个依赖，保证其版本正确，使用到的依赖有：       1） 配置相应的loader，loader是让webpack能够去处理非JavaScript       文件，因为其自身只理解JavaScript，loader则是可以将所有类型的文       件转换为webpack能够处理的有效模块，然后开发者就可以利用webpack       的打包能力，对它们进行处理。项目启动前需要配置如下loader：       vue-loader、style-loader、sass-loader、css-loader、       html-loader等loader。       2） 配置devServer，首先npm i -D来安装依赖，然后加入以下配置项：         devServer{           contentBase: path.join(__dirname,’dist’),//定位到首页           compress: true,  //是否开启Gzip压缩，开启后页面大小压缩           port: 9000       //前端服务占用的端口         }       3） 配置html-webpack-plugin和clean-webpack-plugin插件：       首先安装和引入模块：       const HtmlWebpackPlugin = require(‘html-webpack-plubin’)       const CleanWebpackPlugin = require(‘clean-webpack-plubin’)       然后在plugins中加入配置：       plugins: [          new CleanWebpackPlugin([‘dist’]),          new HtmlWebpackPlugin({              template: ‘./app/views/index.html’  //加入html模板          })       ]       HtmlWebpackPlugin插件的作用：打包输出html模板文件、为输出的模       版文件加上hash值的文件名，推崇浏览器强缓存策略防止读取过期缓存;       CleanWebpackPlugin插件的作用：定时清空devServer指定的隐藏目录       4）配置resolve.alias，来确保正确的模块引入：       resolve:{       alias:{       ‘vue$’:’vue/dist/vue.min.js’         }       }
+
+四、自适应配置
+需求分析：移动端项目需要适配不同设备，因其设备像素比不同。
+   -设计方案：         1、本项目用设备像素比为2的设计稿进行开发，开发时参考控制台的机型         1、自适应的设计使用到px2rem的loader，配置如下:             1)安装步骤：npm i px2rem-loader；             2）在vue-loader中添加options选项：               给项目样式中用到的两种css语言做配置,scss需先转css：               options:{                 css:  ‘vue-style-loader!css-loader!px2rem-loader                        ?remUnit=75&amp;remPrecision=8’,                 scss: ‘vue-style-loader!css-loader!px2rem-loader                        ?remUnit=75&amp;remPrecision=8!sass-loader’               }               注意：参数remUnit代表1个rem默认转75px，                    参数remPrecision代表精度最多保留小数点后8位。            3）自适应的适配：              引入viewport.js文件存放在js文件夹根目录，文件内容是              引入github上的hotcss.js向外暴露px2rem的各个方法。            4）使用webpack将viewport.js打至入口,多入口文件写法：              entry:[‘./app/js/viewport.js’,                     ‘./app/js/main.js’]          
+
+五、css模块化设计
+   -设计方案：         1、vue项目中在style标签上加module，模板中绑定”$style.类名”，         这样做后可以做到css的模块化。         2、webpack的配置，在vue-loader的options里适配：         cssModules:{ //注意webpack使用版本会影响以下配置的写法          localIdentName:’[path][name]—[local]—[hash:base64:5]’          ,camelCase: true         }         3、提取css为单个css文件的配置:           使用ExtractTextPlugin：           1）安装并引入插件：             const ExtractTextPlugin = require(‘             extract-text-webpack-plugin’)           2)修改vue-loader里options的loaders写法：             options:{               loaders:{ //vue-style-loader改为fallback的形式引入                 css: ExtractTextPlugin.extract({                   use:’css-loader!px2rem-loader                        ?remUnit=75&amp;remPrecision=8’,                   fallback: ‘vue-style-loader’                 }),                 scss: ExtractTextPlugin.extract({                   use:’css-loader!px2rem-loader                        ?remUnit=75&amp;remPrecision=8!sass-loader’,                   fallback: ‘vue-style-loader’                 })               }             }           3）插件plugins加入配置：             plugins:[                …                new ExtractTextPlugin(‘style.css’)             ]           4)适配好后，可看见页面模板中的css变为link引入的文件。
+六、根据当前环境是开发环境或者生产环境改变webpack配置
+   -设计方案：         1、使用DefinePlugin来创建一个在编译时可以配置的全局常量，这         个常量可以用于定义当前是开发模式或者是生产模式。         2、首先修改webpack的module.exports写法，默认是向外暴露一个对象，         但是我们需要根据环境变量的不同来填写配置项，所以用如下写法：           module.exports = env =&gt;{ //ES6写法             return {…}           }         3、我们可以根据环境变量不同，添加更多插件，并修改webpack本身Node环境。           例如：如果当前是生产环境，则添加更完善的插件和功能配置；                如果当前是开发环境，则可以更加轻量级，不添加太多插件。         4、配置如下：           1)引入webpack模块             cosnt webpack = require(‘webpack’)           2)给env参数做空值的错误处理             if(!env){ env = {} }           3）定义通用插件：             let plugins = [                new CleanWebpackPlugin([‘dist’]),                new HtmlWebpackPlugin({                  template: ‘./app/views/index.html’                })             ]           4)配置生产环境时的额外插件和功能：             即只有当env.production参数存在的时候，才完善生产环境的配置。             if(env.production){               plugins.push(                  new webpack.DefinePlugin({                    ‘process.env’:{                      NODE_ENV: ‘“production”‘                    }                  }),                  new ExtractTextPlugin(‘style.css’)               )             }          5）vue-loader中options的loaders也需要根据env变量进行变化，          即对使用到插件的loader配置也进行处理，这里可以使用三元表达式：            loaders: env.production ? {              css: ExtractTextPlugin.extract({                 use: ‘css-loader!px2rem-loader                       ?remUnit=75&amp;remPrecision=8’,                 fallback: ‘vue-style-loader’              }),              scss: ExtractTextPlugin.extract({                 use: ‘css-loader!px2rem-loader                       ?remUnit=75&amp;remPrecision=8!sass-loader’,                 fallback: ‘vue-style-loader’              })            } : {              css:’vue-style-loader!css-loader!px2rem-loader                   ?remUnit=75&amp;remPrecision=8’,              scss:’vue-style-loader!css-loader!px2rem-loader                   ?remUnit=75&amp;remPrecision=8!sass-loader’,            }
+</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.4.</span> <span class="nav-text">四、自适应配置
+需求分析：移动端项目需要适配不同设备，因其设备像素比不同。
+   -设计方案：         1、本项目用设备像素比为2的设计稿进行开发，开发时参考控制台的机型         1、自适应的设计使用到px2rem的loader，配置如下:             1)安装步骤：npm i px2rem-loader；             2）在vue-loader中添加options选项：               给项目样式中用到的两种css语言做配置,scss需先转css：               options:{                 css:  ‘vue-style-loader!css-loader!px2rem-loader                        ?remUnit=75&amp;remPrecision=8’,                 scss: ‘vue-style-loader!css-loader!px2rem-loader                        ?remUnit=75&amp;remPrecision=8!sass-loader’               }               注意：参数remUnit代表1个rem默认转75px，                    参数remPrecision代表精度最多保留小数点后8位。            3）自适应的适配：              引入viewport.js文件存放在js文件夹根目录，文件内容是              引入github上的hotcss.js向外暴露px2rem的各个方法。            4）使用webpack将viewport.js打至入口,多入口文件写法：              entry:[‘./app/js/viewport.js’,                     ‘./app/js/main.js’]          
+
+五、css模块化设计
+   -设计方案：         1、vue项目中在style标签上加module，模板中绑定”$style.类名”，         这样做后可以做到css的模块化。         2、webpack的配置，在vue-loader的options里适配：         cssModules:{ //注意webpack使用版本会影响以下配置的写法          localIdentName:’[path][name]—[local]—[hash:base64:5]’          ,camelCase: true         }         3、提取css为单个css文件的配置:           使用ExtractTextPlugin：           1）安装并引入插件：             const ExtractTextPlugin = require(‘             extract-text-webpack-plugin’)           2)修改vue-loader里options的loaders写法：             options:{               loaders:{ //vue-style-loader改为fallback的形式引入                 css: ExtractTextPlugin.extract({                   use:’css-loader!px2rem-loader                        ?remUnit=75&amp;remPrecision=8’,                   fallback: ‘vue-style-loader’                 }),                 scss: ExtractTextPlugin.extract({                   use:’css-loader!px2rem-loader                        ?remUnit=75&amp;remPrecision=8!sass-loader’,                   fallback: ‘vue-style-loader’                 })               }             }           3）插件plugins加入配置：             plugins:[                …                new ExtractTextPlugin(‘style.css’)             ]           4)适配好后，可看见页面模板中的css变为link引入的文件。
+六、根据当前环境是开发环境或者生产环境改变webpack配置
+   -设计方案：         1、使用DefinePlugin来创建一个在编译时可以配置的全局常量，这         个常量可以用于定义当前是开发模式或者是生产模式。         2、首先修改webpack的module.exports写法，默认是向外暴露一个对象，         但是我们需要根据环境变量的不同来填写配置项，所以用如下写法：           module.exports = env =&gt;{ //ES6写法             return {…}           }         3、我们可以根据环境变量不同，添加更多插件，并修改webpack本身Node环境。           例如：如果当前是生产环境，则添加更完善的插件和功能配置；                如果当前是开发环境，则可以更加轻量级，不添加太多插件。         4、配置如下：           1)引入webpack模块             cosnt webpack = require(‘webpack’)           2)给env参数做空值的错误处理             if(!env){ env = {} }           3）定义通用插件：             let plugins = [                new CleanWebpackPlugin([‘dist’]),                new HtmlWebpackPlugin({                  template: ‘./app/views/index.html’                })             ]           4)配置生产环境时的额外插件和功能：             即只有当env.production参数存在的时候，才完善生产环境的配置。             if(env.production){               plugins.push(                  new webpack.DefinePlugin({                    ‘process.env’:{                      NODE_ENV: ‘“production”‘                    }                  }),                  new ExtractTextPlugin(‘style.css’)               )             }          5）vue-loader中options的loaders也需要根据env变量进行变化，          即对使用到插件的loader配置也进行处理，这里可以使用三元表达式：            loaders: env.production ? {              css: ExtractTextPlugin.extract({                 use: ‘css-loader!px2rem-loader                       ?remUnit=75&amp;remPrecision=8’,                 fallback: ‘vue-style-loader’              }),              scss: ExtractTextPlugin.extract({                 use: ‘css-loader!px2rem-loader                       ?remUnit=75&amp;remPrecision=8!sass-loader’,                 fallback: ‘vue-style-loader’              })            } : {              css:’vue-style-loader!css-loader!px2rem-loader                   ?remUnit=75&amp;remPrecision=8’,              scss:’vue-style-loader!css-loader!px2rem-loader                   ?remUnit=75&amp;remPrecision=8!sass-loader’,            }
+</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.4.1.</span> <span class="nav-text">需求分析：移动端项目需要适配不同设备，因其设备像素比不同。
+   -设计方案：         1、本项目用设备像素比为2的设计稿进行开发，开发时参考控制台的机型         1、自适应的设计使用到px2rem的loader，配置如下:             1)安装步骤：npm i px2rem-loader；             2）在vue-loader中添加options选项：               给项目样式中用到的两种css语言做配置,scss需先转css：               options:{                 css:  ‘vue-style-loader!css-loader!px2rem-loader                        ?remUnit=75&amp;remPrecision=8’,                 scss: ‘vue-style-loader!css-loader!px2rem-loader                        ?remUnit=75&amp;remPrecision=8!sass-loader’               }               注意：参数remUnit代表1个rem默认转75px，                    参数remPrecision代表精度最多保留小数点后8位。            3）自适应的适配：              引入viewport.js文件存放在js文件夹根目录，文件内容是              引入github上的hotcss.js向外暴露px2rem的各个方法。            4）使用webpack将viewport.js打至入口,多入口文件写法：              entry:[‘./app/js/viewport.js’,                     ‘./app/js/main.js’]          
+
+五、css模块化设计
+   -设计方案：         1、vue项目中在style标签上加module，模板中绑定”$style.类名”，         这样做后可以做到css的模块化。         2、webpack的配置，在vue-loader的options里适配：         cssModules:{ //注意webpack使用版本会影响以下配置的写法          localIdentName:’[path][name]—[local]—[hash:base64:5]’          ,camelCase: true         }         3、提取css为单个css文件的配置:           使用ExtractTextPlugin：           1）安装并引入插件：             const ExtractTextPlugin = require(‘             extract-text-webpack-plugin’)           2)修改vue-loader里options的loaders写法：             options:{               loaders:{ //vue-style-loader改为fallback的形式引入                 css: ExtractTextPlugin.extract({                   use:’css-loader!px2rem-loader                        ?remUnit=75&amp;remPrecision=8’,                   fallback: ‘vue-style-loader’                 }),                 scss: ExtractTextPlugin.extract({                   use:’css-loader!px2rem-loader                        ?remUnit=75&amp;remPrecision=8!sass-loader’,                   fallback: ‘vue-style-loader’                 })               }             }           3）插件plugins加入配置：             plugins:[                …                new ExtractTextPlugin(‘style.css’)             ]           4)适配好后，可看见页面模板中的css变为link引入的文件。
+六、根据当前环境是开发环境或者生产环境改变webpack配置
+   -设计方案：         1、使用DefinePlugin来创建一个在编译时可以配置的全局常量，这         个常量可以用于定义当前是开发模式或者是生产模式。         2、首先修改webpack的module.exports写法，默认是向外暴露一个对象，         但是我们需要根据环境变量的不同来填写配置项，所以用如下写法：           module.exports = env =&gt;{ //ES6写法             return {…}           }         3、我们可以根据环境变量不同，添加更多插件，并修改webpack本身Node环境。           例如：如果当前是生产环境，则添加更完善的插件和功能配置；                如果当前是开发环境，则可以更加轻量级，不添加太多插件。         4、配置如下：           1)引入webpack模块             cosnt webpack = require(‘webpack’)           2)给env参数做空值的错误处理             if(!env){ env = {} }           3）定义通用插件：             let plugins = [                new CleanWebpackPlugin([‘dist’]),                new HtmlWebpackPlugin({                  template: ‘./app/views/index.html’                })             ]           4)配置生产环境时的额外插件和功能：             即只有当env.production参数存在的时候，才完善生产环境的配置。             if(env.production){               plugins.push(                  new webpack.DefinePlugin({                    ‘process.env’:{                      NODE_ENV: ‘“production”‘                    }                  }),                  new ExtractTextPlugin(‘style.css’)               )             }          5）vue-loader中options的loaders也需要根据env变量进行变化，          即对使用到插件的loader配置也进行处理，这里可以使用三元表达式：            loaders: env.production ? {              css: ExtractTextPlugin.extract({                 use: ‘css-loader!px2rem-loader                       ?remUnit=75&amp;remPrecision=8’,                 fallback: ‘vue-style-loader’              }),              scss: ExtractTextPlugin.extract({                 use: ‘css-loader!px2rem-loader                       ?remUnit=75&amp;remPrecision=8!sass-loader’,                 fallback: ‘vue-style-loader’              })            } : {              css:’vue-style-loader!css-loader!px2rem-loader                   ?remUnit=75&amp;remPrecision=8’,              scss:’vue-style-loader!css-loader!px2rem-loader                   ?remUnit=75&amp;remPrecision=8!sass-loader’,            }
+</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.5.</span> <span class="nav-text">五、css模块化设计
+   -设计方案：         1、vue项目中在style标签上加module，模板中绑定”$style.类名”，         这样做后可以做到css的模块化。         2、webpack的配置，在vue-loader的options里适配：         cssModules:{ //注意webpack使用版本会影响以下配置的写法          localIdentName:’[path][name]—[local]—[hash:base64:5]’          ,camelCase: true         }         3、提取css为单个css文件的配置:           使用ExtractTextPlugin：           1）安装并引入插件：             const ExtractTextPlugin = require(‘             extract-text-webpack-plugin’)           2)修改vue-loader里options的loaders写法：             options:{               loaders:{ //vue-style-loader改为fallback的形式引入                 css: ExtractTextPlugin.extract({                   use:’css-loader!px2rem-loader                        ?remUnit=75&amp;remPrecision=8’,                   fallback: ‘vue-style-loader’                 }),                 scss: ExtractTextPlugin.extract({                   use:’css-loader!px2rem-loader                        ?remUnit=75&amp;remPrecision=8!sass-loader’,                   fallback: ‘vue-style-loader’                 })               }             }           3）插件plugins加入配置：             plugins:[                …                new ExtractTextPlugin(‘style.css’)             ]           4)适配好后，可看见页面模板中的css变为link引入的文件。
+六、根据当前环境是开发环境或者生产环境改变webpack配置
+   -设计方案：         1、使用DefinePlugin来创建一个在编译时可以配置的全局常量，这         个常量可以用于定义当前是开发模式或者是生产模式。         2、首先修改webpack的module.exports写法，默认是向外暴露一个对象，         但是我们需要根据环境变量的不同来填写配置项，所以用如下写法：           module.exports = env =&gt;{ //ES6写法             return {…}           }         3、我们可以根据环境变量不同，添加更多插件，并修改webpack本身Node环境。           例如：如果当前是生产环境，则添加更完善的插件和功能配置；                如果当前是开发环境，则可以更加轻量级，不添加太多插件。         4、配置如下：           1)引入webpack模块             cosnt webpack = require(‘webpack’)           2)给env参数做空值的错误处理             if(!env){ env = {} }           3）定义通用插件：             let plugins = [                new CleanWebpackPlugin([‘dist’]),                new HtmlWebpackPlugin({                  template: ‘./app/views/index.html’                })             ]           4)配置生产环境时的额外插件和功能：             即只有当env.production参数存在的时候，才完善生产环境的配置。             if(env.production){               plugins.push(                  new webpack.DefinePlugin({                    ‘process.env’:{                      NODE_ENV: ‘“production”‘                    }                  }),                  new ExtractTextPlugin(‘style.css’)               )             }          5）vue-loader中options的loaders也需要根据env变量进行变化，          即对使用到插件的loader配置也进行处理，这里可以使用三元表达式：            loaders: env.production ? {              css: ExtractTextPlugin.extract({                 use: ‘css-loader!px2rem-loader                       ?remUnit=75&amp;remPrecision=8’,                 fallback: ‘vue-style-loader’              }),              scss: ExtractTextPlugin.extract({                 use: ‘css-loader!px2rem-loader                       ?remUnit=75&amp;remPrecision=8!sass-loader’,                 fallback: ‘vue-style-loader’              })            } : {              css:’vue-style-loader!css-loader!px2rem-loader                   ?remUnit=75&amp;remPrecision=8’,              scss:’vue-style-loader!css-loader!px2rem-loader                   ?remUnit=75&amp;remPrecision=8!sass-loader’,            }
+</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.6.</span> <span class="nav-text">六、根据当前环境是开发环境或者生产环境改变webpack配置
+   -设计方案：         1、使用DefinePlugin来创建一个在编译时可以配置的全局常量，这         个常量可以用于定义当前是开发模式或者是生产模式。         2、首先修改webpack的module.exports写法，默认是向外暴露一个对象，         但是我们需要根据环境变量的不同来填写配置项，所以用如下写法：           module.exports = env =&gt;{ //ES6写法             return {…}           }         3、我们可以根据环境变量不同，添加更多插件，并修改webpack本身Node环境。           例如：如果当前是生产环境，则添加更完善的插件和功能配置；                如果当前是开发环境，则可以更加轻量级，不添加太多插件。         4、配置如下：           1)引入webpack模块             cosnt webpack = require(‘webpack’)           2)给env参数做空值的错误处理             if(!env){ env = {} }           3）定义通用插件：             let plugins = [                new CleanWebpackPlugin([‘dist’]),                new HtmlWebpackPlugin({                  template: ‘./app/views/index.html’                })             ]           4)配置生产环境时的额外插件和功能：             即只有当env.production参数存在的时候，才完善生产环境的配置。             if(env.production){               plugins.push(                  new webpack.DefinePlugin({                    ‘process.env’:{                      NODE_ENV: ‘“production”‘                    }                  }),                  new ExtractTextPlugin(‘style.css’)               )             }          5）vue-loader中options的loaders也需要根据env变量进行变化，          即对使用到插件的loader配置也进行处理，这里可以使用三元表达式：            loaders: env.production ? {              css: ExtractTextPlugin.extract({                 use: ‘css-loader!px2rem-loader                       ?remUnit=75&amp;remPrecision=8’,                 fallback: ‘vue-style-loader’              }),              scss: ExtractTextPlugin.extract({                 use: ‘css-loader!px2rem-loader                       ?remUnit=75&amp;remPrecision=8!sass-loader’,                 fallback: ‘vue-style-loader’              })            } : {              css:’vue-style-loader!css-loader!px2rem-loader                   ?remUnit=75&amp;remPrecision=8’,              scss:’vue-style-loader!css-loader!px2rem-loader                   ?remUnit=75&amp;remPrecision=8!sass-loader’,            }
+</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZJJ00</span>
+
+  
+</div>
+
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+-->
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+ 
+</body>
+</html>
