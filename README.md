@@ -2,7 +2,7 @@
 
 welcome to my blog 
 
-## Available Scripts
+## Entry
 
 In the project directory, you can see:
 
